@@ -1,0 +1,211 @@
+.results-page {
+  min-height: 100vh;
+}
+
+.results-shell {
+  width: 100%;
+  margin: 0 auto;
+  padding: 8px 10px;
+}
+
+.panel {
+  border: 1px solid rgba(18, 35, 72, 0.06);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 6px 14px rgba(16, 24, 40, 0.04);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 18px;
+  padding: 8px 10px;
+  margin-bottom: 0;
+}
+
+.toolbar__left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 220px;
+  color: #61718f;
+  font-size: 13px;
+}
+
+.field select {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid rgba(19, 37, 74, 0.12);
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1b2940;
+}
+
+.toolbar__right {
+  color: #4c5f80;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+}
+
+.panel {
+  padding: 8px 10px 10px;
+}
+
+.panel--wide {
+  grid-column: 1 / span 1;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 6px;
+  padding: 0;
+}
+
+.section-head h2 {
+  font-size: 18px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #19253b;
+}
+
+.viz {
+  min-height: 120px;
+}
+
+.viz svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.small-multiples {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 4px;
+}
+
+.dataset-card {
+  flex: 0 0 420px;
+  padding: 6px 8px;
+  border: 1px solid rgba(20, 39, 87, 0.06);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.dataset-card__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.dataset-card__head h3 {
+  font-size: 16px;
+  color: #1d2a42;
+}
+
+.dataset-card__meta {
+  color: #697893;
+  font-size: 11px;
+}
+
+.dataset-card__empty {
+  padding: 24px 0 8px;
+  color: #8b97aa;
+  font-size: 14px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.metric-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.metric-table th,
+.metric-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid rgba(20, 39, 87, 0.08);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.metric-table th {
+  color: #64738f;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.metric-table td strong {
+  color: #1b2a45;
+}
+
+.metric-table__section {
+  margin-top: 10px;
+}
+
+.metric-table__section:first-child {
+  margin-top: 0;
+}
+
+.metric-table__title {
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #1d2940;
+}
+
+@media (max-width: 1160px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 780px) {
+  .results-shell {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .panel {
+    border-radius: 10px;
+  }
+
+  .small-multiples {
+    gap: 8px;
+  }
+
+  .toolbar,
+  .section-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar__right {
+    text-align: left;
+  }
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/styles/base.css" />
+    <link rel="stylesheet" href="/assets/styles/site-shell.css" />
+    <link rel="stylesheet" href="/assets/styles/data.css" />
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body data-page="data">
+    <header class="pagebar">
+      <div class="pagebar__title" data-page-title></div>
+      <nav class="site-nav" data-site-nav></nav>
+    </header>
+
+    <div class="topbar">
+      <div class="group grow">
+        <select class="select flex" id="referenceSelect" title="Select reference"></select>
+        <select class="select flex" id="dataSelect" title="Select data file"></select>
+        <button class="btn primary" id="openButton">Open</button>
+      </div>
+
+      <div class="right">
+        <span class="chip" id="fileChip">Not opened</span>
+        <span class="chip">
+          <span class="statusDot" id="loadDot"></span>
+          <span id="loadText">Idle</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="col" id="col1" style="width:30%;">
+        <div class="panel" style="height:34%;">
+          <div class="panelHeader">
+            <div class="panelTitle">seer_data</div>
+            <div class="panelControls">
+              <div class="toggleGroup" id="toggleSeer">
+                <div class="toggle active" data-mode="tree">Tree</div>
+                <div class="toggle" data-mode="raw">Raw</div>
+              </div>
+            </div>
+          </div>
+          <div class="panelBody mono" id="seerBox"></div>
+        </div>
+
+        <div class="resizerH" id="resH1_1"></div>
+
+        <div class="panel" style="height:26%;">
+          <div class="panelHeader">
+            <div class="panelTitle">treatment_gt</div>
+          </div>
+          <div class="panelBody" id="gtTableBox"></div>
+        </div>
+
+        <div class="resizerH" id="resH1_2"></div>
+
+        <div class="panel" style="height:40%;">
+          <div class="panelHeader">
+            <div class="panelTitle">prediction_treatment</div>
+          </div>
+          <div class="panelBody" id="predictionTreatmentBox"></div>
+        </div>
+      </div>
+
+      <div class="resizerV" id="resV1"></div>
+
+      <div class="col" id="col2" style="width:40%;">
+        <div class="panel" style="height:28%;">
+          <div class="panelHeader">
+            <div class="panelTitle">prompt</div>
+            <div class="panelControls">
+              <div class="toggleGroup" id="togglePrompt">
+                <div class="toggle active" data-mode="raw">Raw</div>
+                <div class="toggle" data-mode="md">MD</div>
+              </div>
+            </div>
+          </div>
+          <div class="panelBody" id="promptBox"></div>
+        </div>
+
+        <div class="resizerH" id="resH2_1"></div>
+
+        <div class="panel" style="height:32%;">
+          <div class="panelHeader">
+            <div class="panelTitle">gt_thinking_tag</div>
+            <div class="panelControls">
+              <div class="toggleGroup" id="toggleGtThinkingTag">
+                <div class="toggle active" data-mode="raw">Raw</div>
+                <div class="toggle" data-mode="md">MD</div>
+              </div>
+            </div>
+          </div>
+          <div class="panelBody" id="gtThinkingTagBox"></div>
+        </div>
+
+        <div class="resizerH" id="resH2_2"></div>
+
+        <div class="panel" style="height:40%;">
+          <div class="panelHeader">
+            <div class="panelTitle">prediction_thinking</div>
+            <div class="panelControls">
+              <div class="toggleGroup" id="togglePredictionThinking">
+                <div class="toggle active" data-mode="raw">Raw</div>
+                <div class="toggle" data-mode="md">MD</div>
+              </div>
+            </div>
+          </div>
+          <div class="panelBody" id="predictionThinkingBox"></div>
+        </div>
+      </div>
+
+      <div class="resizerV" id="resV2"></div>
+
+      <div class="col" id="col3" style="width:30%;">
+        <div class="panel" style="height:32%;">
+          <div class="panelHeader">
+            <div class="panelTitle">
+              GT Subgraph
+              <button class="btn miniBtn" id="btnResetGtGraph">⟲ Reset</button>
+            </div>
+            <span class="muted small" id="gtGraphMeta">-</span>
+          </div>
+          <div class="panelBody graphStage" id="gtGraphWrap">
+            <div class="graphPlaceholder" id="gtGraphPlaceholder">Waiting for graph data…</div>
+            <svg class="graphCanvas" id="gtGraphSvg"></svg>
+          </div>
+        </div>
+
+        <div class="resizerH" id="resH3_1"></div>
+
+        <div class="panel" style="height:32%;">
+          <div class="panelHeader">
+            <div class="panelTitle">
+              Prediction Subgraph
+              <button class="btn miniBtn" id="btnResetPredGraph">⟲ Reset</button>
+            </div>
+            <span class="muted small" id="predGraphMeta">-</span>
+          </div>
+          <div class="panelBody graphStage" id="predGraphWrap">
+            <div class="graphPlaceholder" id="predGraphPlaceholder">Waiting for graph data…</div>
+            <svg class="graphCanvas" id="predGraphSvg"></svg>
+          </div>
+        </div>
+
+        <div class="resizerH" id="resH3_2"></div>
+
+        <div class="panel" style="height:36%;">
+          <div class="panelHeader">
+            <div class="panelTitle">score_results</div>
+            <div class="panelControls">
+              <div class="toggleGroup" id="toggleScore">
+                <div class="toggle active" data-mode="tree">Tree</div>
+                <div class="toggle" data-mode="raw">Raw</div>
+              </div>
+            </div>
+          </div>
+          <div class="panelBody mono" id="scoreBox"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottombar">
+      <div class="bottomLeft">
+        <button class="btn navBtn" id="prevButton" disabled title="Previous">←</button>
+      </div>
+
+      <div class="bottomCenter">
+        <button class="btn" id="randomButton" disabled>Random</button>
+        <span class="chip" id="posChip">0/0</span>
+        <div class="group">
+          <input class="input" id="positionInput" type="number" min="1" placeholder="pos" style="width:64px; text-align:center;" />
+          <button class="btn" id="jumpButton" disabled>Jump</button>
+        </div>
+        <span class="chip" id="uuidChip">uuid: -</span>
+      </div>
+
+      <div class="bottomRight">
+        <button class="btn navBtn" id="nextButton" disabled title="Next">→</button>
+      </div>
+    </div>
+
+    <script type="module" src="/assets/js/site-shell.js"></script>
+    <script type="module" src="/assets/js/data-page.js"></script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+.home-page {
+  background: #ffffff;
+}
+
+.page-shell {
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 36px 20px 64px;
+}
+
+.home-heading,
+.placeholder-page h1 {
+  margin: 0;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  color: #1f2330;
+}
+
+.home-card-grid {
+  width: min(1120px, 100%);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.home-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 190px;
+  padding: 22px 20px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(47, 111, 237, 0.18);
+  background:
+    radial-gradient(320px 140px at 0% 0%, rgba(47, 111, 237, 0.12), transparent 60%),
+    linear-gradient(180deg, #f7faff, #edf4ff);
+  color: #1f2330;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(47, 111, 237, 0.08);
+  transition: transform 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
+}
+
+.home-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(47, 111, 237, 0.28);
+  box-shadow: 0 16px 28px rgba(47, 111, 237, 0.12);
+}
+
+.home-card h2 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.1;
+  color: #2452b8;
+}
+
+.home-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.72;
+  color: #5e6f92;
+}
+
+.placeholder-page {
+  flex: 1;
+  max-width: 980px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 42px 24px 64px;
+}
+
+.placeholder-panel {
+  border: 1px solid #e6e8f0;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 10px 20px rgba(16, 24, 40, 0.06);
+  padding: 24px 24px 22px;
+  background:
+    radial-gradient(560px 220px at 10% 0%, rgba(47, 111, 237, 0.08), transparent 55%),
+    linear-gradient(180deg, #ffffff, #fbfbfd);
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #2f6fed;
+  margin: 0 0 12px;
+}
+
+.placeholder-page p {
+  max-width: 760px;
+  margin-top: 16px;
+  font-size: 17px;
+  line-height: 1.75;
+  color: #6c7486;
+}
+
+@media (max-width: 720px) {
+  .home-main,
+  .placeholder-page {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .home-card-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .home-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

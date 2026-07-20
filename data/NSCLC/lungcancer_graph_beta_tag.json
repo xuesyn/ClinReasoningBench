@@ -1,0 +1,734 @@
+{
+    "nodes": [
+      {
+        "key": "infer_tnm",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 90,
+        "values": ["是", "否"],
+        "desc": "标注中始终不要标注这个标签，仅为占位用。"
+      },
+      {
+        "key": "primary_tumor_evidence",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 101,
+        "values": ["有", "无", "不明"],
+        "desc": "是否有原发肿瘤证据（影像/支气管镜/病理综合结论；用于TX/T0分流）"
+      },
+      {
+        "key": "cytology_positive",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 102,
+        "values": ["是", "否", "不明"],
+        "desc": "痰细胞学或支气管灌洗是否发现癌细胞（用于TX判定）"
+      },
+      {
+        "key": "pathology_carcinoma_in_situ",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 103,
+        "values": ["是", "否", "不明"],
+        "desc": "病理是否原位癌（Tis）"
+      },
+      {
+        "key": "pathology_microinvasive_adenocarcinoma",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 104,
+        "values": ["是", "否", "不明"],
+        "desc": "病理是否微浸润性腺癌（T1mi）"
+      },
+      {
+        "key": "tumor_max_diameter_cm",
+        "type": "float",
+        "unit": "cm",
+        "key_id": 105,
+        "values": [],
+        "desc": "原发肿瘤最大径（cm；用于T1a/b/c与T2a/b、T3、T4按大小分层）"
+      },
+      {
+        "key": "main_bronchus_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 106,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵犯主支气管（T2条件之一；需排除侵及隆突）"
+      },
+      {
+        "key": "carina_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 107,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵及隆突（是→T4）"
+      },
+      {
+        "key": "superficial_spreading_limited_to_bronchial_wall",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 108,
+        "values": ["是", "否", "不明"],
+        "desc": "表浅扩散型且侵犯限于支气管壁（是：即便主支气管受累仍可按T1处理）"
+      },
+      {
+        "key": "visceral_pleura_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 109,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵及脏层胸膜（T2条件之一）"
+      },
+      {
+        "key": "obstructive_pneumonitis_or_atelectasis",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 110,
+        "values": ["是", "否", "不明"],
+        "desc": "是否存在阻塞性肺炎或部分/全肺肺不张（T2条件之一）"
+      },
+      {
+        "key": "chest_wall_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 111,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵犯胸壁（含肺上沟瘤）（是→T3）"
+      },
+      {
+        "key": "phrenic_nerve_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 112,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵犯膈神经（是→T3）"
+      },
+      {
+        "key": "pericardium_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 113,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵犯心包（是→T3）"
+      },
+      {
+        "key": "same_lobe_satellite_nodule",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 114,
+        "values": ["是", "否", "不明"],
+        "desc": "同一肺叶出现孤立性癌结节（是→T3）"
+      },
+      {
+        "key": "mediastinum_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 115,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵犯纵隔（是→T4）"
+      },
+      {
+        "key": "heart_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 116,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵犯心脏（是→T4）"
+      },
+      {
+        "key": "great_vessels_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 117,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵犯大血管（是→T4）"
+      },
+      {
+        "key": "recurrent_laryngeal_nerve_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 118,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵犯喉返神经（是→T4）"
+      },
+      {
+        "key": "trachea_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 119,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵犯主气管（是→T4）"
+      },
+      {
+        "key": "esophagus_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 120,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵犯食管（是→T4）"
+      },
+      {
+        "key": "vertebral_body_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 121,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵犯椎体（是→T4）"
+      },
+      {
+        "key": "diaphragm_invasion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 122,
+        "values": ["是", "否", "不明"],
+        "desc": "是否侵犯膈肌（是→T4）"
+      },
+      {
+        "key": "ipsilateral_different_lobe_nodule",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 123,
+        "values": ["是", "否", "不明"],
+        "desc": "同侧不同肺叶内孤立癌结节（是→T4）"
+      },
+      {
+        "key": "regional_nodes_evaluable",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 201,
+        "values": ["是", "否", "不明"],
+        "desc": "区域淋巴结是否可评估（否则NX）"
+      },
+      {
+        "key": "ipsilateral_hilar_or_intrapulmonary_node_positive",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 202,
+        "values": ["是", "否", "不明"],
+        "desc": "同侧支气管周围/同侧肺门/肺内淋巴结转移（是→N1）"
+      },
+      {
+        "key": "ipsilateral_mediastinal_or_subcarinal_node_positive",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 203,
+        "values": ["是", "否", "不明"],
+        "desc": "同侧纵隔或隆突下淋巴结转移（是→N2）"
+      },
+      {
+        "key": "contralateral_mediastinal_hilar_or_supraclavicular_node_positive",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 204,
+        "values": ["是", "否", "不明"],
+        "desc": "对侧纵隔/对侧肺门/斜角肌或锁骨上淋巴结转移（是→N3）"
+      },
+      {
+        "key": "distant_metastasis_evaluable",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 301,
+        "values": ["是", "否", "不明"],
+        "desc": "远处转移是否可评估（否则MX）"
+      },
+      {
+        "key": "contralateral_lung_nodule",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 302,
+        "values": ["是", "否", "不明"],
+        "desc": "对侧肺内癌结节（是→M1a）"
+      },
+      {
+        "key": "pleural_or_pericardial_nodule",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 303,
+        "values": ["是", "否", "不明"],
+        "desc": "胸膜或心包结节（是→M1a）"
+      },
+      {
+        "key": "malignant_pleural_or_pericardial_effusion",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 304,
+        "values": ["是", "否", "不明"],
+        "desc": "恶性胸膜/心包渗出液（是→M1a）"
+      },
+      {
+        "key": "extra_thoracic_metastasis_present",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 305,
+        "values": ["有", "无", "不明"],
+        "desc": "是否存在胸腔外远处转移（有→M1b/M1c）"
+      },
+      {
+        "key": "extra_thoracic_organ_count",
+        "type": "int",
+        "unit": "count",
+        "key_id": 306,
+        "values": [],
+        "desc": "胸腔外转移累及器官数（>=2→M1c）"
+      },
+      {
+        "key": "extra_thoracic_max_lesion_count_in_single_organ",
+        "type": "int",
+        "unit": "count",
+        "key_id": 307,
+        "values": [],
+        "desc": "胸腔外单器官内最大转移灶数（>=2→M1c；=1用于M1b）"
+      },
+      {
+        "key": "single_nonregional_lymph_node_metastasis",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 308,
+        "values": ["是", "否", "不明"],
+        "desc": "单个非区域淋巴结转移（是→M1b）"
+      },
+      {
+        "key": "t_category",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 1,
+        "values": ["TX", "T0", "Tis", "T1mi", "T1a", "T1b", "T1c", "T2a", "T2b", "T3", "T4"],
+        "desc": "T分期（UICC第8版）"
+      },
+      {
+        "key": "n_category",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 2,
+        "values": ["NX", "N0", "N1", "N2", "N3"],
+        "desc": "N分期（区域淋巴结）"
+      },
+      {
+        "key": "m_category",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 3,
+        "values": ["MX", "M0", "M1a", "M1b", "M1c"],
+        "desc": "M分期（远处转移）"
+      },
+      {
+        "key": "staging",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 4,
+        "values": ["IA", "IB", "II", "IIIA", "IIIB", "IIIC", "IV"],
+        "desc": "NSCLC临床分期组（用于一线治疗路径入口）"
+      },
+      {
+        "key": "ecog_ps",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 5,
+        "values": ["0", "1", "2", "3", "4"],
+        "desc": "ECOG体能状态（III期不可切除同步放化疗门槛：PS0-1）"
+      },
+      {
+        "key": "surgery_fit",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 6,
+        "values": ["是", "否", "不明"],
+        "desc": "是否适合手术（综合评估：严重内科合并症/高龄/低肺功能等）"
+      },
+      {
+        "key": "age",
+        "type": "int",
+        "unit": "year",
+        "key_id": 8,
+        "values": [],
+        "desc": "年龄（用于高龄阈值判定，例如≥80岁）"
+      },
+      {
+        "key": "low_lung_function",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 9,
+        "values": ["是", "否", "不明"],
+        "desc": "是否低肺功能（用于亚肺叶切除或放疗替代）"
+      },
+      {
+        "key": "severe_internal_comorbidity",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 10,
+        "values": ["有", "无", "不明"],
+        "desc": "是否存在严重内科合并症（I期可转立体定向放射治疗）"
+      },
+  
+      {
+        "key": "resectability",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 11,
+        "values": ["可切除", "不可切除", "未知"],
+        "desc": "III期局部晚期可切除性（MDT综合判断的最终结论；可由规则推断初判）"
+      },
+      {
+        "key": "n2_station_count",
+        "type": "int",
+        "unit": "count",
+        "key_id": 12,
+        "values": [],
+        "desc": "N2纵隔淋巴结累及站数（单组/两组等）"
+      },
+      {
+        "key": "mediastinal_node_max_diameter_cm",
+        "type": "float",
+        "unit": "cm",
+        "key_id": 13,
+        "values": [],
+        "desc": "纵隔淋巴结最大径（cm；N2单组<3cm为可切除条件之一）"
+      },
+      {
+        "key": "mediastinal_nodes_fused",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 14,
+        "values": ["有", "无", "不明"],
+        "desc": "纵隔淋巴结是否融合状肿大（不可切除提示）"
+      },
+      {
+        "key": "mediastinal_n2_path_positive",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 16,
+        "values": ["是", "否", "不明"],
+        "desc": "纵隔镜/EBUS-TBNA/EUS-FNA证实N2阳性（用于部分IIIA(N2)不可切除判定）"
+      },
+      {
+        "key": "treatment",
+        "type": "str",
+        "unit": "NULL",
+        "key_id": 18,
+        "values": [
+          "手术切除（肺叶切除）",
+          "亚肺叶切除（楔形切除）",
+          "根治性放疗",
+          "手术+辅助治疗",
+          "根治性化放疗",
+          "全身系统治疗"
+        ],
+        "desc": "一线/初始治疗方式"
+      }
+    ],
+  
+    "rules": [
+        {
+          "id": 9001,
+          "kind": "staging_rule",
+          "target": { "key": "t_category", "value": "Tis" },
+          "required_keys": ["infer_tnm", "pathology_carcinoma_in_situ"],
+          "expr": "infer_tnm == '是' && pathology_carcinoma_in_situ == '是'",
+          "describe": "T推断：Tis（原位癌）。"
+        },
+        {
+          "id": 9002,
+          "kind": "staging_rule",
+          "target": { "key": "t_category", "value": "T1mi" },
+          "required_keys": ["infer_tnm", "pathology_microinvasive_adenocarcinoma"],
+          "expr": "infer_tnm == '是' && pathology_microinvasive_adenocarcinoma == '是'",
+          "describe": "T推断：T1mi（微浸润性腺癌）。"
+        },
+        {
+          "id": 9003,
+          "kind": "staging_rule",
+          "target": { "key": "t_category", "value": "TX" },
+          "required_keys": ["infer_tnm", "primary_tumor_evidence", "cytology_positive", "pathology_carcinoma_in_situ", "pathology_microinvasive_adenocarcinoma"],
+          "expr": "infer_tnm == '是' && primary_tumor_evidence in ['无','不明'] && cytology_positive == '是' && pathology_carcinoma_in_situ != '是' && pathology_microinvasive_adenocarcinoma != '是'",
+          "describe": "T推断：TX（未发现原发肿瘤，或影像/支气管镜无法发现，但痰细胞学/灌洗发现癌细胞）。"
+        },
+        {
+          "id": 9004,
+          "kind": "staging_rule",
+          "target": { "key": "t_category", "value": "T0" },
+          "required_keys": ["infer_tnm", "primary_tumor_evidence", "cytology_positive", "pathology_carcinoma_in_situ", "pathology_microinvasive_adenocarcinoma"],
+          "expr": "infer_tnm == '是' && primary_tumor_evidence == '无' && cytology_positive != '是' && pathology_carcinoma_in_situ != '是' && pathology_microinvasive_adenocarcinoma != '是'",
+          "describe": "T推断：T0（无原发肿瘤证据）。"
+        },
+      
+        {
+          "id": 9010,
+          "kind": "staging_rule",
+          "target": { "key": "t_category", "value": "T4" },
+          "required_keys": ["infer_tnm", "primary_tumor_evidence", "tumor_max_diameter_cm", "mediastinum_invasion", "heart_invasion", "great_vessels_invasion", "carina_invasion", "recurrent_laryngeal_nerve_invasion", "trachea_invasion", "esophagus_invasion", "vertebral_body_invasion", "diaphragm_invasion", "ipsilateral_different_lobe_nodule"],
+          "expr": "infer_tnm == '是' && primary_tumor_evidence == '有' && (tumor_max_diameter_cm > 7 || mediastinum_invasion == '是' || heart_invasion == '是' || great_vessels_invasion == '是' || carina_invasion == '是' || recurrent_laryngeal_nerve_invasion == '是' || trachea_invasion == '是' || esophagus_invasion == '是' || vertebral_body_invasion == '是' || diaphragm_invasion == '是' || ipsilateral_different_lobe_nodule == '是')",
+          "describe": "T推断：T4（>7cm 或侵犯纵隔/心脏/大血管/隆突/喉返神经/主气管/食管/椎体/膈肌，或同侧不同肺叶孤立结节）。"
+        },
+        {
+          "id": 9011,
+          "kind": "staging_rule",
+          "target": { "key": "t_category", "value": "T3" },
+          "required_keys": ["infer_tnm", "primary_tumor_evidence", "tumor_max_diameter_cm", "chest_wall_invasion", "phrenic_nerve_invasion", "pericardium_invasion", "same_lobe_satellite_nodule"],
+          "expr": "infer_tnm == '是' && primary_tumor_evidence == '有' && ((tumor_max_diameter_cm > 5 && tumor_max_diameter_cm <= 7) || chest_wall_invasion == '是' || phrenic_nerve_invasion == '是' || pericardium_invasion == '是' || same_lobe_satellite_nodule == '是')",
+          "describe": "T推断：T3（5–7cm 或侵犯胸壁/膈神经/心包，或同一肺叶孤立结节）。"
+        },
+      
+        {
+          "id": 9012,
+          "kind": "staging_rule",
+          "target": { "key": "t_category", "value": "T2b" },
+          "required_keys": ["infer_tnm", "primary_tumor_evidence", "tumor_max_diameter_cm", "main_bronchus_invasion", "carina_invasion", "superficial_spreading_limited_to_bronchial_wall", "visceral_pleura_invasion", "obstructive_pneumonitis_or_atelectasis"],
+          "expr": "infer_tnm == '是' && primary_tumor_evidence == '有' && ( (tumor_max_diameter_cm > 4 && tumor_max_diameter_cm <= 5) || ( (tumor_max_diameter_cm > 4 && tumor_max_diameter_cm <= 5) && ( (main_bronchus_invasion == '是' && carina_invasion != '是' && superficial_spreading_limited_to_bronchial_wall != '是') || visceral_pleura_invasion == '是' || obstructive_pneumonitis_or_atelectasis == '是' ) ) )",
+          "describe": "T推断：T2b（4–5cm；或满足T2触发项且大小落在4–5cm）。"
+        },
+        {
+          "id": 9013,
+          "kind": "staging_rule",
+          "target": { "key": "t_category", "value": "T2a" },
+          "required_keys": ["infer_tnm", "primary_tumor_evidence", "tumor_max_diameter_cm", "main_bronchus_invasion", "carina_invasion", "superficial_spreading_limited_to_bronchial_wall", "visceral_pleura_invasion", "obstructive_pneumonitis_or_atelectasis"],
+          "expr": "infer_tnm == '是' && primary_tumor_evidence == '有' && ( (tumor_max_diameter_cm > 3 && tumor_max_diameter_cm <= 4) || ( tumor_max_diameter_cm <= 4 && ( (main_bronchus_invasion == '是' && carina_invasion != '是' && superficial_spreading_limited_to_bronchial_wall != '是') || visceral_pleura_invasion == '是' || obstructive_pneumonitis_or_atelectasis == '是' ) ) )",
+          "describe": "T推断：T2a（3–4cm；或<=4cm但满足T2触发项：侵犯主支气管(未侵隆突且非表浅扩散型)/侵及脏层胸膜/阻塞性肺炎或肺不张）。"
+        },
+      
+        {
+          "id": 9014,
+          "kind": "staging_rule",
+          "target": { "key": "t_category", "value": "T1c" },
+          "required_keys": ["infer_tnm", "primary_tumor_evidence", "tumor_max_diameter_cm"],
+          "expr": "infer_tnm == '是' && primary_tumor_evidence == '有' && tumor_max_diameter_cm > 2 && tumor_max_diameter_cm <= 3",
+          "describe": "T推断：T1c（2–3cm）。"
+        },
+        {
+          "id": 9015,
+          "kind": "staging_rule",
+          "target": { "key": "t_category", "value": "T1b" },
+          "required_keys": ["infer_tnm", "primary_tumor_evidence", "tumor_max_diameter_cm"],
+          "expr": "infer_tnm == '是' && primary_tumor_evidence == '有' && tumor_max_diameter_cm > 1 && tumor_max_diameter_cm <= 2",
+          "describe": "T推断：T1b（1–2cm）。"
+        },
+        {
+          "id": 9016,
+          "kind": "staging_rule",
+          "target": { "key": "t_category", "value": "T1a" },
+          "required_keys": ["infer_tnm", "primary_tumor_evidence", "tumor_max_diameter_cm"],
+          "expr": "infer_tnm == '是' && primary_tumor_evidence == '有' && tumor_max_diameter_cm <= 1",
+          "describe": "T推断：T1a（≤1cm）。"
+        },
+        {
+          "id": 9101,
+          "kind": "staging_rule",
+          "target": { "key": "n_category", "value": "NX" },
+          "required_keys": ["infer_tnm", "regional_nodes_evaluable"],
+          "expr": "infer_tnm == '是' && regional_nodes_evaluable in ['否','不明']",
+          "describe": "N推断：NX（区域淋巴结无法评估）。"
+        },
+        {
+          "id": 9102,
+          "kind": "staging_rule",
+          "target": { "key": "n_category", "value": "N3" },
+          "required_keys": ["infer_tnm", "regional_nodes_evaluable", "contralateral_mediastinal_hilar_or_supraclavicular_node_positive"],
+          "expr": "infer_tnm == '是' && regional_nodes_evaluable == '是' && contralateral_mediastinal_hilar_or_supraclavicular_node_positive == '是'",
+          "describe": "N推断：N3（对侧纵隔/对侧肺门/斜角肌或锁骨上淋巴结转移）。"
+        },
+        {
+          "id": 9103,
+          "kind": "staging_rule",
+          "target": { "key": "n_category", "value": "N2" },
+          "required_keys": ["infer_tnm", "regional_nodes_evaluable", "ipsilateral_mediastinal_or_subcarinal_node_positive", "contralateral_mediastinal_hilar_or_supraclavicular_node_positive"],
+          "expr": "infer_tnm == '是' && regional_nodes_evaluable == '是' && contralateral_mediastinal_hilar_or_supraclavicular_node_positive != '是' && ipsilateral_mediastinal_or_subcarinal_node_positive == '是'",
+          "describe": "N推断：N2（同侧纵隔或隆突下淋巴结转移）。"
+        },
+        {
+          "id": 9104,
+          "kind": "staging_rule",
+          "target": { "key": "n_category", "value": "N1" },
+          "required_keys": ["infer_tnm", "regional_nodes_evaluable", "ipsilateral_hilar_or_intrapulmonary_node_positive", "ipsilateral_mediastinal_or_subcarinal_node_positive", "contralateral_mediastinal_hilar_or_supraclavicular_node_positive"],
+          "expr": "infer_tnm == '是' && regional_nodes_evaluable == '是' && contralateral_mediastinal_hilar_or_supraclavicular_node_positive != '是' && ipsilateral_mediastinal_or_subcarinal_node_positive != '是' && ipsilateral_hilar_or_intrapulmonary_node_positive == '是'",
+          "describe": "N推断：N1（同侧支气管周围/肺门/肺内淋巴结转移）。"
+        },
+        {
+          "id": 9105,
+          "kind": "staging_rule",
+          "target": { "key": "n_category", "value": "N0" },
+          "required_keys": ["infer_tnm", "regional_nodes_evaluable", "ipsilateral_hilar_or_intrapulmonary_node_positive", "ipsilateral_mediastinal_or_subcarinal_node_positive", "contralateral_mediastinal_hilar_or_supraclavicular_node_positive"],
+          "expr": "infer_tnm == '是' && regional_nodes_evaluable == '是' && contralateral_mediastinal_hilar_or_supraclavicular_node_positive == '否' && ipsilateral_mediastinal_or_subcarinal_node_positive == '否' && ipsilateral_hilar_or_intrapulmonary_node_positive == '否'",
+          "describe": "N推断：N0（无区域淋巴结转移）。"
+        },
+        {
+          "id": 9201,
+          "kind": "staging_rule",
+          "target": { "key": "m_category", "value": "MX" },
+          "required_keys": ["infer_tnm", "distant_metastasis_evaluable"],
+          "expr": "infer_tnm == '是' && distant_metastasis_evaluable in ['否','不明']",
+          "describe": "M推断：MX（远处转移不能判定）。"
+        },
+        {
+          "id": 9202,
+          "kind": "staging_rule",
+          "target": { "key": "m_category", "value": "M1c" },
+          "required_keys": ["infer_tnm", "distant_metastasis_evaluable", "extra_thoracic_metastasis_present", "extra_thoracic_organ_count", "extra_thoracic_max_lesion_count_in_single_organ"],
+          "expr": "infer_tnm == '是' && distant_metastasis_evaluable == '是' && extra_thoracic_metastasis_present == '有' && (extra_thoracic_organ_count >= 2 || (extra_thoracic_organ_count == 1 && extra_thoracic_max_lesion_count_in_single_organ >= 2))",
+          "describe": "M推断：M1c（胸腔外单器官多灶或多器官转移）。"
+        },
+        {
+          "id": 9203,
+          "kind": "staging_rule",
+          "target": { "key": "m_category", "value": "M1b" },
+          "required_keys": ["infer_tnm", "distant_metastasis_evaluable", "extra_thoracic_metastasis_present", "extra_thoracic_organ_count", "extra_thoracic_max_lesion_count_in_single_organ", "single_nonregional_lymph_node_metastasis"],
+          "expr": "infer_tnm == '是' && distant_metastasis_evaluable == '是' && ( (extra_thoracic_metastasis_present == '有' && extra_thoracic_organ_count == 1 && extra_thoracic_max_lesion_count_in_single_organ == 1) || single_nonregional_lymph_node_metastasis == '是' )",
+          "describe": "M推断：M1b（胸腔外单器官单灶转移，包括单个非区域淋巴结转移）。"
+        },
+        {
+          "id": 9204,
+          "kind": "staging_rule",
+          "target": { "key": "m_category", "value": "M1a" },
+          "required_keys": ["infer_tnm", "distant_metastasis_evaluable", "extra_thoracic_metastasis_present", "contralateral_lung_nodule", "pleural_or_pericardial_nodule", "malignant_pleural_or_pericardial_effusion"],
+          "expr": "infer_tnm == '是' && distant_metastasis_evaluable == '是' && extra_thoracic_metastasis_present != '有' && (contralateral_lung_nodule == '是' || pleural_or_pericardial_nodule == '是' || malignant_pleural_or_pericardial_effusion == '是')",
+          "describe": "M推断：M1a（胸腔内播散：对侧肺结节/胸膜或心包结节/恶性胸膜或心包渗出液）。"
+        },
+        {
+          "id": 9205,
+          "kind": "staging_rule",
+          "target": { "key": "m_category", "value": "M0" },
+          "required_keys": ["infer_tnm", "distant_metastasis_evaluable", "extra_thoracic_metastasis_present", "contralateral_lung_nodule", "pleural_or_pericardial_nodule", "malignant_pleural_or_pericardial_effusion", "single_nonregional_lymph_node_metastasis"],
+          "expr": "infer_tnm == '是' && distant_metastasis_evaluable == '是' && extra_thoracic_metastasis_present != '有' && contralateral_lung_nodule != '是' && pleural_or_pericardial_nodule != '是' && malignant_pleural_or_pericardial_effusion != '是' && single_nonregional_lymph_node_metastasis != '是'",
+          "describe": "M推断：M0（未发现远处转移）。"
+        },
+        {
+          "id": 1,
+          "kind": "staging_rule",
+          "target": { "key": "staging", "value": "IV" },
+          "required_keys": ["m_category"],
+          "expr": "m_category in ['M1a','M1b','M1c']",
+          "describe": "NSCLC IV期分期条件：存在远处转移（M1a/M1b/M1c）。"
+        },
+        {
+          "id": 2,
+          "kind": "staging_rule",
+          "target": { "key": "staging", "value": "IA" },
+          "required_keys": ["t_category","n_category","m_category"],
+          "expr": "m_category == 'M0' && n_category == 'N0' && t_category in ['T1mi','T1a','T1b','T1c']",
+          "describe": "NSCLC IA期分期条件：T1(mi/a/b/c)N0M0。"
+        },
+        {
+          "id": 3,
+          "kind": "staging_rule",
+          "target": { "key": "staging", "value": "IB" },
+          "required_keys": ["t_category","n_category","m_category"],
+          "expr": "m_category == 'M0' && n_category == 'N0' && t_category == 'T2a'",
+          "describe": "NSCLC IB期分期条件：T2aN0M0。"
+        },
+        {
+          "id": 4,
+          "kind": "staging_rule",
+          "target": { "key": "staging", "value": "II" },
+          "required_keys": ["t_category","n_category","m_category"],
+          "expr": "m_category == 'M0' && ( (t_category == 'T2b' && n_category == 'N0') || (t_category in ['T1a','T1b','T1c'] && n_category == 'N1') || (t_category in ['T2a','T2b'] && n_category == 'N1') || (t_category == 'T3' && n_category == 'N0') )",
+          "describe": "NSCLC II期分期条件：T2bN0M0，或（T1a-c/T2a-b）N1M0，或 T3N0M0。"
+        },
+        {
+          "id": 5,
+          "kind": "staging_rule",
+          "target": { "key": "staging", "value": "IIIA" },
+          "required_keys": ["t_category","n_category","m_category"],
+          "expr": "m_category == 'M0' && ( (t_category in ['T1a','T1b','T1c'] && n_category == 'N2') || (t_category in ['T2a','T2b'] && n_category == 'N2') || (t_category == 'T3' && n_category == 'N1') || (t_category == 'T4' && n_category in ['N0','N1']) )",
+          "describe": "NSCLC IIIA期分期条件：T1a-cN2M0，或 T2a-bN2M0，或 T3N1M0，或 T4N0-1M0。"
+        },
+        {
+          "id": 6,
+          "kind": "staging_rule",
+          "target": { "key": "staging", "value": "IIIB" },
+          "required_keys": ["t_category","n_category","m_category"],
+          "expr": "m_category == 'M0' && ( (t_category in ['T1a','T1b','T1c'] && n_category == 'N3') || (t_category in ['T2a','T2b'] && n_category == 'N3') || (t_category == 'T3' && n_category == 'N2') || (t_category == 'T4' && n_category == 'N2') )",
+          "describe": "NSCLC IIIB期分期条件：T1a-cN3M0，或 T2a-bN3M0，或 T3N2M0，或 T4N2M0。"
+        },
+        {
+          "id": 7,
+          "kind": "staging_rule",
+          "target": { "key": "staging", "value": "IIIC" },
+          "required_keys": ["t_category","n_category","m_category"],
+          "expr": "m_category == 'M0' && ( (t_category == 'T3' && n_category == 'N3') || (t_category == 'T4' && n_category == 'N3') )",
+          "describe": "NSCLC IIIC期分期条件：T3N3M0 或 T4N3M0。"
+        },
+      
+        {
+          "id": 201,
+          "kind": "staging_rule",
+          "target": { "key": "resectability", "value": "可切除" },
+          "required_keys": ["staging","t_category","n_category","m_category"],
+          "expr": "m_category == 'M0' && staging == 'IIIA' && ( (t_category in ['T3','T4'] && n_category == 'N1') || (t_category == 'T4' && n_category == 'N0') )",
+          "describe": "III期可切除性（初判规则-类型1）：在M0前提下，IIIA期且满足 T3-4N1 或 T4N0，可作为“可切除局部晚期”入口（最终以MDT结论为准）。"
+        },
+        {
+          "id": 202,
+          "kind": "staging_rule",
+          "target": { "key": "resectability", "value": "可切除" },
+          "required_keys": ["staging","n_category","n2_station_count","mediastinal_node_max_diameter_cm","mediastinal_nodes_fused"],
+          "expr": "staging == 'IIIA' && n_category == 'N2' && ( (n2_station_count == 1 && mediastinal_node_max_diameter_cm < 3) || (n2_station_count == 2 && mediastinal_nodes_fused == '无') )",
+          "describe": "III期可切除性（初判规则-类型2，选择性N2）：IIIA期N2且（单站N2且最大径<3cm）或（两站N2但无融合）→ 倾向可切除（最终以MDT结论为准）。"
+        },
+        {
+          "id": 203,
+          "kind": "staging_rule",
+          "target": { "key": "resectability", "value": "不可切除" },
+          "required_keys": ["staging"],
+          "expr": "staging in ['IIIB','IIIC']",
+          "describe": "III期不可切除性（初判规则）：IIIB/IIIC期通常归入不可切除局部晚期（最终以MDT结论为准）。"
+        },
+        {
+          "id": 204,
+          "kind": "staging_rule",
+          "target": { "key": "resectability", "value": "不可切除" },
+          "required_keys": ["staging","n_category","mediastinal_nodes_fused","mediastinal_n2_path_positive"],
+          "expr": "staging == 'IIIA' && n_category == 'N2' && mediastinal_nodes_fused == '有' && mediastinal_n2_path_positive == '是'",
+          "describe": "III期不可切除性（初判规则-部分IIIA(N2)）：IIIA期N2且纵隔淋巴结融合状肿大，并由纵隔镜/EBUS-TBNA/EUS-FNA证实N2阳性 → 倾向不可切除（最终以MDT结论为准）。"
+        },
+      
+        {
+          "id": 1001,
+          "kind": "treatment_recommend",
+          "target": { "key": "treatment", "value": "手术切除(肺叶切除)" },
+          "required_keys": ["staging","surgery_fit"],
+          "expr": "staging in ['IA','IB','II'] && surgery_fit == '是'",
+          "describe": "一线治疗推荐（I–II期）：若评估适合手术（surgery_fit=是），首选外科手术切除，以肺叶切除为主。"
+        },
+        {
+          "id": 1002,
+          "kind": "treatment_recommend",
+          "target": { "key": "treatment", "value": "亚肺叶切除(楔形切除)" },
+          "required_keys": ["staging","age","low_lung_function","surgery_fit"],
+          "expr": "staging in ['IA','II'] && surgery_fit == '是' && (age >= 80 || low_lung_function == '是')",
+          "describe": "一线治疗推荐（亚肺叶切除适用人群）：对IA/II期且适合手术者，若高龄（例如≥80岁）或低肺功能，可考虑亚肺叶切除（以楔形切除节点承载，亦可覆盖“肺段/楔形”取舍）。"
+        },
+        {
+          "id": 1003,
+          "kind": "treatment_recommend",
+          "target": { "key": "treatment", "value": "根治性放疗" },
+          "required_keys": ["staging","surgery_fit","severe_internal_comorbidity"],
+          "expr": "staging in ['IA','IB'] && (surgery_fit == '否' || severe_internal_comorbidity == '有')",
+          "describe": "一线治疗推荐（I期替代路径）：对IA/IB期，若不适合手术（surgery_fit=否）或存在严重内科合并症，可采用根治性放疗（可包含SBRT等）。"
+        },
+        {
+          "id": 2001,
+          "kind": "treatment_recommend",
+          "target": { "key": "treatment", "value": "手术+辅助治疗（化疗±放疗)" },
+          "required_keys": ["staging","resectability"],
+          "expr": "staging == 'II' || (staging in ['IIIA','IIIB','IIIC'] && resectability == '可切除')",
+          "describe": "一线治疗推荐（II期/III期可切除）：II期完全切除后倾向推荐术后含铂辅助化疗；III期若MDT判断可切除，常采用以手术为核心的多学科综合治疗，并联合（新/辅助）化疗，必要时±放疗。"
+        },
+        {
+          "id": 3001,
+          "kind": "treatment_recommend",
+          "target": { "key": "treatment", "value": "根治性化放疗" },
+          "required_keys": ["staging","resectability","ecog_ps"],
+          "expr": "staging in ['IIIA','IIIB','IIIC'] && resectability == '不可切除' && ecog_ps in ['0','1']",
+          "describe": "一线治疗推荐（III期不可切除）：对IIIA/IIIB/IIIC且不可切除者，若ECOG PS为0–1，推荐首选同步化放疗。"
+        },
+        {
+          "id": 4001,
+          "kind": "treatment_recommend",
+          "target": { "key": "treatment", "value": "全身系统治疗" },
+          "required_keys": ["staging"],
+          "expr": "staging == 'IV'",
+          "describe": "一线治疗推荐（IV期）：以全身系统治疗为主要手段，治疗目标为提高生活质量并延长生存期。"
+        }
+      ]
+      
+  }
+  

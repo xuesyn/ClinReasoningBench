@@ -1,0 +1,30 @@
+# Instructions
+    Imagine you are a senior hepatobiliary surgeon. You have access to a patient's medical records and the anticipated treatment plan. Your task is to determine the patient's expected survival time (accurate to the month) under this treatment approach.
+    In addition to your predicted survival time, you need to provide a step-by-step reasoning process.
+    Furthermore, you need to indicate your level of confidence in your answer.
+
+# Output Format 
+    Your output needs to be output in JSON format that can be parsed by json.loads() in python. The details are as follows:
+        {{"thinking": <Your-step-by-step-thinking-progress>,"survival_month":<Your-predicted-survival_months>,"confidence":<your-confidence-on-predicted-survival_months>}}
+    The confidence score ranges from 0 to 1, with the specific rules as follows: 
+        First, reason through the question step by step to arrive at an answer (your estimated number of months of survival for this patient under this treatment). 
+        Then, thoroughly assess your confidence in that answer by evaluating your thinking process so far. 
+        Finally, classify your confidence into one of the following classes based on how likely your answer is to be correct: 
+            - "Almost no chance" (0.0–0.1) 
+            - "Highly unlikely" (0.1–0.2) 
+            - "Chances are slight" (0.2–0.3) 
+            - "Unlikely" (0.3–0.4) 
+            - "Less than even" (0.4–0.5) 
+            - "Better than even" (0.5–0.6) 
+            - "Likely" (0.6–0.7) 
+            - "Very good chance" (0.7–0.8) 
+            - "Highly likely" (0.8–0.9) 
+            - "Almost certain" (0.9–1.0) 
+    Each category reflects the probability that your answer is correct.
+
+# Input 
+    The following are the expected treatments: 
+    {TREATMENT} 
+    
+    Below is all the patient's relevant information: 
+    {INPUT_DATA}

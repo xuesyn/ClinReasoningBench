@@ -1,0 +1,228 @@
+{
+  "nodes": [
+    {
+      "key": "age", "type": "int", "unit": "years", "key_id": 1, "values": [], "desc": "患者年龄"
+    },
+    {
+      "key": "lkw_time", "type": "float", "unit": "hours", "key_id": 2, "values": [], "desc": "最后正常时间 (Last Known Well)"
+    },
+    {
+      "key": "nihss_score", "type": "int", "unit": "NULL", "key_id": 3, "values": [], "desc": "NIHSS 卒中评分 (0-42)"
+    },
+    {
+      "key": "mrs_pre_stroke", "type": "str", "unit": "NULL", "key_id": 4, "values": ["0", "1", "2", "3", "4", "5"], "desc": "发病前 mRS 评分"
+    },
+    {
+      "key": "sbp", "type": "int", "unit": "mmHg", "key_id": 5, "values": [], "desc": "收缩压"
+    },
+    {
+      "key": "dbp", "type": "int", "unit": "mmHg", "key_id": 6, "values": [], "desc": "舒张压"
+    },
+    {
+      "key": "glucose", "type": "float", "unit": "mg/dL", "key_id": 7, "values": [], "desc": "指尖血糖"
+    },
+    {
+      "key": "temperature", "type": "float", "unit": "celsius", "key_id": 9, "values": [], "desc": "体温"
+    },
+    {
+      "key": "swallow_screen_pass", "type": "str", "unit": "NULL", "key_id": 10, "values": ["是", "否"], "desc": "吞咽功能筛查是否通过"
+    },
+    {
+      "key": "hypotension_signs", "type": "str", "unit": "NULL", "key_id": 11, "values": ["有", "无"], "desc": "是否有低血压/低血容量体征"
+    },
+    {
+      "key": "airway_compromise", "type": "str", "unit": "NULL", "key_id": 12, "values": ["有", "无"], "desc": "气道是否受损（意识下降/球麻痹）"
+    },
+    {
+      "key": "ich_sah_present", "type": "str", "unit": "NULL", "key_id": 13, "values": ["有", "无"], "desc": "CT显示脑出血或蛛网膜下腔出血"
+    },
+    {
+      "key": "hypodensity_extent", "type": "str", "unit": "NULL", "key_id": 14, "values": ["None", "<1/3 MCA", ">1/3 MCA"], "desc": "CT低密度灶范围"
+    },
+    {
+      "key": "aspects_score", "type": "int", "unit": "NULL", "key_id": 15, "values": [], "desc": "ASPECTS 评分 (0-10)"
+    },
+    {
+      "key": "lvo_site", "type": "str", "unit": "NULL", "key_id": 16, "values": ["无", "ICA", "M1", "M2", "Basilar", "Vertebral"], "desc": "大血管闭塞部位 (CTA)"
+    },
+    {
+      "key": "perfusion_mismatch", "type": "str", "unit": "NULL", "key_id": 17, "values": ["符合DAWN标准", "符合DEFUSE-3标准", "不符合"], "desc": "灌注成像不匹配 (核心梗死 vs 临床缺损)"
+    },
+    {
+      "key": "dwi_flair_mismatch", "type": "str", "unit": "NULL", "key_id": 18, "values": ["是", "否"], "desc": "MRI DWI-FLAIR 不匹配 (提示发病<4.5h)"
+    },
+    {
+      "key": "history_ich", "type": "str", "unit": "NULL", "key_id": 19, "values": ["有", "无"], "desc": "既往颅内出血史"
+    },
+    {
+      "key": "recent_surgery_trauma", "type": "str", "unit": "NULL", "key_id": 20, "values": ["有", "无"], "desc": "近3个月内严重手术/外伤/卒中"
+    },
+    {
+      "key": "active_bleeding", "type": "str", "unit": "NULL", "key_id": 21, "values": ["有", "无"], "desc": "活动性内出血"
+    },
+    {
+      "key": "platelet_count", "type": "float", "unit": "10^9/L", "key_id": 22, "values": [], "desc": "血小板计数"
+    },
+    {
+      "key": "inr", "type": "float", "unit": "NULL", "key_id": 23, "values": [], "desc": "INR 值"
+    },
+    {
+      "key": "noac_use_48h", "type": "str", "unit": "NULL", "key_id": 24, "values": ["是", "否"], "desc": "48h内是否服用NOACs"
+    },
+    {
+      "key": "tia_high_risk", "type": "str", "unit": "NULL", "key_id": 25, "values": ["是", "否"], "desc": "是否为高危TIA (ABCD2≥4)"
+    },
+    {
+      "key": "treatment", "type": "str", "unit": "NULL", "key_id": 26, 
+      "values": [
+        "IV_Alteplase", 
+        "Mechanical_Thrombectomy_StentRetriever", 
+        "Mechanical_Thrombectomy_Aspiration", 
+        "Intra_arterial_Fibrinolysis", 
+        "Antiplatelet_Aspirin", 
+        "Dual_Antiplatelet", 
+        "Emergency_CEA_CAS", 
+        "Hemorrhagic_Management",
+        "Airway_Intubation",
+        "Hypoglycemia_Correction",
+        "Hyperglycemia_Control",
+        "Antipyretic_Therapy",
+        "Fluid_Resuscitation_Pressors",
+        "Antihypertensive_Pre_TPA",
+        "Active_BP_Reduction",
+        "NPO_Swallow_Precautions"
+      ], 
+      "desc": "推荐的治疗措施 (可多选)"
+    }
+  ],
+  "rules": [
+    {
+      "id": 1,
+      "kind": "contraindication_rule",
+      "target": { "key": "treatment", "value": "Hemorrhagic_Management" },
+      "required_keys": ["ich_sah_present"],
+      "expr": "ich_sah_present == '有'",
+      "describe": "绝对禁忌：CT发现出血，转为出血性卒中管理。"
+    },
+    {
+      "id": 2,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "IV_Alteplase" },
+      "required_keys": ["lkw_time", "ich_sah_present", "sbp", "dbp", "glucose", "history_ich", "active_bleeding", "platelet_count", "inr", "noac_use_48h", "recent_surgery_trauma", "hypodensity_extent"],
+      "expr": "lkw_time <= 3.0 && ich_sah_present == '无' && sbp < 185 && dbp < 110 && glucose >= 50 && history_ich == '无' && active_bleeding == '无' && platelet_count >= 100 && inr <= 1.7 && noac_use_48h == '否' && recent_surgery_trauma == '无' && hypodensity_extent != '>1/3 MCA'",
+      "describe": "IV Alteplase (路径1：标准0-3h)：标准溶栓窗口，严格排除所有禁忌症。"
+    },
+    {
+      "id": 3,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "IV_Alteplase" },
+      "required_keys": ["lkw_time", "age", "nihss_score", "noac_use_48h", "ich_sah_present", "sbp", "dbp", "history_ich", "active_bleeding", "platelet_count", "inr", "recent_surgery_trauma"],
+      "expr": "lkw_time > 3.0 && lkw_time <= 4.5 && age <= 80 && nihss_score <= 25 && noac_use_48h == '否' && ich_sah_present == '无' && sbp < 185 && dbp < 110 && history_ich == '无' && active_bleeding == '无' && platelet_count >= 100 && inr <= 1.7 && recent_surgery_trauma == '无'",
+      "describe": "IV Alteplase (路径2：标准3-4.5h)：扩展窗口期，严格执行Class I推荐（排除>80岁、NIHSS>25及抗凝药）。"
+    },
+    {
+      "id": 4,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "IV_Alteplase" },
+      "required_keys": ["lkw_time", "dwi_flair_mismatch", "ich_sah_present", "treatment"],
+      "expr": "lkw_time == 'Unknown' && dwi_flair_mismatch == '是' && ich_sah_present == '无'",
+      "describe": "IV Alteplase (路径3：Wake-Up)：发病时间不明，但MRI显示DWI-FLAIR不匹配。"
+    },
+    {
+      "id": 6,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "Mechanical_Thrombectomy_StentRetriever" },
+      "required_keys": ["lkw_time", "mrs_pre_stroke", "lvo_site", "nihss_score", "aspects_score"],
+      "expr": "lkw_time <= 6.0 && mrs_pre_stroke <= 1 && lvo_site in ['ICA', 'M1'] && nihss_score >= 6 && aspects_score >= 6",
+      "describe": "EVT 机械取栓 (0-6h)：严格基于2019指南Class I标准（mRS<=1, NIHSS>=6, ASPECTS>=6）。"
+    },
+    {
+      "id": 7,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "Mechanical_Thrombectomy_StentRetriever" },
+      "required_keys": ["lkw_time", "lvo_site", "perfusion_mismatch"],
+      "expr": "lkw_time > 6.0 && lkw_time <= 24.0 && lvo_site in ['ICA', 'M1'] && perfusion_mismatch in ['符合DAWN标准', '符合DEFUSE-3标准']",
+      "describe": "EVT 机械取栓 (6-24h)：必须依赖灌注成像不匹配证据。"
+    },
+    {
+      "id": 8,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "Antiplatelet_Aspirin" },
+      "required_keys": ["ich_sah_present", "treatment"],
+      "expr": "ich_sah_present == '无' && !(treatment in ['IV_Alteplase', 'Dual_Antiplatelet'])",
+      "describe": "阿司匹林单抗：作为兜底方案，适用于无出血、未溶栓且未接受双抗治疗的所有患者。"
+    },
+    {
+      "id": 9,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "Dual_Antiplatelet" },
+      "required_keys": ["ich_sah_present", "nihss_score", "tia_high_risk", "treatment"],
+      "expr": "ich_sah_present == '无' && (nihss_score <= 3 || tia_high_risk == '是') && !(treatment in ['IV_Alteplase'])",
+      "describe": "双抗治疗：严格限定于未溶栓的轻型卒中(NIHSS≤3)或高危TIA。"
+    },
+    {
+      "id": 11,
+      "kind": "supportive_rule",
+      "target": { "key": "treatment", "value": "Airway_Intubation" },
+      "required_keys": ["airway_compromise"],
+      "expr": "airway_compromise == '有'",
+      "describe": "气道插管：气道受损时的必须操作。"
+    },
+    {
+      "id": 12,
+      "kind": "supportive_rule",
+      "target": { "key": "treatment", "value": "Hypoglycemia_Correction" },
+      "required_keys": ["glucose"],
+      "expr": "glucose < 60",
+      "describe": "纠正低血糖：血糖 < 60 mg/dL。"
+    },
+    {
+      "id": 13,
+      "kind": "supportive_rule",
+      "target": { "key": "treatment", "value": "Hyperglycemia_Control" },
+      "required_keys": ["glucose"],
+      "expr": "glucose > 180",
+      "describe": "控制高血糖：血糖 > 180 mg/dL。"
+    },
+    {
+      "id": 14,
+      "kind": "supportive_rule",
+      "target": { "key": "treatment", "value": "Antipyretic_Therapy" },
+      "required_keys": ["temperature"],
+      "expr": "temperature > 38.0",
+      "describe": "退热：体温 > 38°C。"
+    },
+    {
+      "id": 15,
+      "kind": "supportive_rule",
+      "target": { "key": "treatment", "value": "Fluid_Resuscitation_Pressors" },
+      "required_keys": ["hypotension_signs"],
+      "expr": "hypotension_signs == '有'",
+      "describe": "液体复苏/升压：低血压体征。"
+    },
+    {
+      "id": 16,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "Antihypertensive_Pre_TPA" },
+      "required_keys": ["lkw_time", "ich_sah_present", "sbp", "dbp", "history_ich", "lvo_site", "dwi_flair_mismatch"],
+      "expr": "(sbp > 185 || dbp > 110) && ich_sah_present == '无' && (lkw_time <= 4.5 || (lvo_site in ['ICA', 'M1'] && lkw_time <= 24.0) || (lkw_time == 'Unknown' && dwi_flair_mismatch == '是'))",
+      "describe": "溶栓前积极降压：针对所有潜在溶栓（含Wake-Up）或取栓候选人，若血压超标则触发。"
+    },
+    {
+      "id": 17,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "Active_BP_Reduction" },
+      "required_keys": ["treatment", "sbp", "dbp"],
+      "expr": "!(treatment in ['IV_Alteplase', 'Mechanical_Thrombectomy_StentRetriever']) && (sbp > 220 || dbp > 120)",
+      "describe": "非再灌注降压：不溶栓/取栓患者，仅在血压>220/120时触发。"
+    },
+    {
+      "id": 18,
+      "kind": "supportive_rule",
+      "target": { "key": "treatment", "value": "NPO_Swallow_Precautions" },
+      "required_keys": ["swallow_screen_pass"],
+      "expr": "swallow_screen_pass != '是'",
+      "describe": "禁食水：只要吞咽筛查未明确通过，一律执行。"
+    }
+  ]
+}

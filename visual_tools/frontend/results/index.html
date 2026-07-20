@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/styles/base.css" />
+    <link rel="stylesheet" href="/assets/styles/site-shell.css" />
+    <link rel="stylesheet" href="/assets/styles/results.css" />
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  </head>
+  <body data-page="results" class="results-page">
+    <header class="pagebar">
+      <div class="pagebar__title" data-page-title></div>
+      <nav class="site-nav" data-site-nav></nav>
+    </header>
+
+    <main class="results-shell">
+      <section class="toolbar panel">
+        <div class="toolbar__left">
+          <label class="field">
+            <span>Metric</span>
+            <select id="metricSelect"></select>
+          </label>
+        </div>
+        <div class="toolbar__right" id="metricMeta"></div>
+      </section>
+
+      <section class="dashboard">
+        <article class="panel panel--wide">
+          <div class="section-head">
+            <div>
+              <h2>Detailed Score Table</h2>
+            </div>
+          </div>
+          <div class="table-wrap" id="metricTables"></div>
+        </article>
+
+        <article class="panel panel--wide">
+          <div class="section-head">
+            <div>
+              <h2>Per-Dataset View</h2>
+            </div>
+          </div>
+          <div class="small-multiples" id="smallMultiples"></div>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="/assets/js/site-shell.js"></script>
+    <script type="module" src="/assets/js/results-page.js"></script>
+  </body>
+</html>

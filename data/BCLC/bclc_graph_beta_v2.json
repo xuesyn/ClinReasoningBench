@@ -1,0 +1,223 @@
+{
+  "nodes": [
+    {"key": "ps","type": "str","unit": "NULL","key_id": 1,"values": ["0","1","2","3","4"],"desc": "ECOG Performance Status score"},
+    {"key": "liver_function_status","type": "str","unit": "NULL","key_id": 2,"values": ["preserved","end stage"],"desc": "Assessment of underlying liver function (preserved vs. end-stage)"},
+    {"key": "num_tumor","type": "int","unit": "NULL","key_id": 3,"values": [],"desc": "Number of tumor nodules"},
+    {"key": "vascular_invasion","type": "str","unit": "NULL","key_id": 4,"values": ["true","false"],"desc": "Presence of macrovascular invasion"},
+    {"key": "max_tumor_size","type": "float","unit": "cm","key_id": 5,"values": [],"desc": "Diameter of the largest tumor nodule"},
+    {"key": "extrahepatic_spread","type": "str","unit": "NULL","key_id": 6,"values": ["true","false"],"desc": "Presence of extrahepatic spread"},
+    {"key": "CSPH","type": "str","unit": "NULL","key_id": 7,"values": ["true","false"],"desc": "Presence of Clinically Significant Portal Hypertension"},
+    {"key": "HVPG","type": "float","unit": "mmHg","key_id": 8,"values": [],"desc": "Hepatic Venous Pressure Gradient measurement"},  
+    {"key": "lt_eligible","type": "str","unit": "NULL","key_id": 9,"values": ["true","false"],"desc": "Eligibility candidacy for liver transplantation"},
+    {"key": "staging","type": "str","unit": "NULL","key_id": 10, "values": ["0","A","B","C","D"],"desc": "Barcelona Clinic Liver Cancer (BCLC) staging classification"},
+    {"key": "diffuse_involvement","type": "str","unit": "NULL","key_id": 11,"values":["true","false"],"desc": "Presence of diffuse liver tumor involvement"},
+    {"key": "infiltrative_pattern","type": "str","unit": "NULL","key_id": 12,"values":["true","false"],"desc": "Presence of an infiltrative tumor growth pattern"},
+    {"key": "extensive_involvement","type": "str","unit": "NULL","key_id": 13,"values":["true","false"],"desc": "Presence of extensive bilobar liver involvement"},
+    {"key": "bilirubin","type": "float","unit": "mg/dl","key_id": 14,"values":[],"desc": "Total serum bilirubin level"},
+    {"key": "fluid_retention_diuretic_required","type": "str","unit": "NULL","key_id": 15,"values":["true","false"],"desc": "Fluid retention requiring diuretic control"},
+    {"key": "jaundice","type":"str","unit":"NULL","key_id":16,"values":["true","false"],"desc": "Clinical presence of jaundice"},
+    {"key": "ascites","type":"str","unit":"NULL","key_id":17,"values":["true","false"],"desc": "Presence of ascites"},
+    {"key": "encephalopathy","type":"str","unit":"NULL","key_id":18,"values":["true","false"],"desc": "Presence of hepatic encephalopathy"},
+    {"key": "AFP","type": "float","unit": "ng/ml","key_id": 19,"values": [],"desc": "Alpha-fetoprotein (AFP) serum concentration"},
+    {"key": "cirrhosis", "type": "str", "unit": "NULL", "key_id": 20, "values": ["true","false"],"desc": "Presence of underlying liver cirrhosis"},
+    {"key": "fibrosis", "type": "str", "unit": "NULL", "key_id": 21, "values": ["true","false"],"desc": "Presence of liver fibrosis"},
+    {"key": "child_pugh","type": "str","unit": "NULL","key_id": 22,"values": ["A","B","C"],"desc": "Child-Pugh classification for severity of cirrhosis"},
+    {"key": "ALBI_grade","type": "str","unit": "NULL","key_id": 23,"values": ["1", "2", "3"],"desc": "Albumin-Bilirubin (ALBI) grade"},
+    {"key": "MELD","type": "float","unit": "NULL","key_id": 24,"values": [],"desc": "Model for End-Stage Liver Disease (MELD) score"},
+    {"key": "treatment","type": "str","unit": "NULL","key_id": 25,"values": ["resection","ablation","transplant","TACE","systemic treatment","best supportive care"],"desc": "Selected treatment strategy"}
+  ],
+  "rules": [
+    {
+      "id": 0,
+      "kind": "other_rules",
+      "target": { "key": "liver_function_status", "value": "end stage" },
+      "required_keys": ["jaundice","ascites","encephalopathy"],
+      "expr": "jaundice == 'true' || ascites == 'true' || encephalopathy == 'true' ",
+      "describe": "The presence of jaundice, ascites, or encephalopathy indicates end-stage liver function"
+    },
+    {
+      "id": 1,
+      "kind": "other_rules",
+      "target": { "key": "liver_function_status", "value": "end stage" },
+      "required_keys": ["bilirubin","AFP","child_pugh","ALBI_grade","cirrhosis","fibrosis","MELD"],
+      "expr": "bilirubin >= 0 || AFP >= 0 || child_pugh in ['A','B','C'] || ALBI_grade in ['1','2','3'] || cirrhosis in ['true','false'] ||fibrosis in ['true','false'] || MELD >= 0 ",
+      "describe": "Variables such as bilirubin, AFP, Child-Pugh score, ALBI grade, cirrhosis, fibrosis, and MELD score are relevant factors for the assessment of liver function"
+    },
+    {
+      "id": 2,
+      "kind": "other_rules",
+      "target": { "key": "liver_function_status", "value": "preserved" },
+      "required_keys": ["jaundice","ascites","encephalopathy"],
+      "expr": "jaundice == 'false' && ascites == 'false' && encephalopathy == 'false'",
+      "describe": "Preserved liver function is defined by the absence of signs of decompensation, specifically jaundice, ascites, and encephalopathy"
+    },
+        {
+      "id": 3,
+      "kind": "other_rules",
+      "target": { "key": "liver_function_status", "value": "preserved" },
+      "required_keys": ["bilirubin","AFP","child_pugh","ALBI_grade","cirrhosis","fibrosis","MELD"],
+      "expr": "bilirubin >= 0 || AFP >= 0 || child_pugh in ['A','B','C'] || ALBI_grade in ['1','2','3'] ||cirrhosis in ['true','false'] ||fibrosis in ['true','false'] || MELD >= 0",
+      "describe": ""
+    },
+
+    {
+      "id": 4,
+      "kind": "other_rules",
+      "target": { "key": "lt_eligible", "value": "true" },
+      "required_keys": ["num_tumor","max_tumor_size","vascular_invasion","extrahepatic_spread"],
+      "expr": "vascular_invasion == 'false' && extrahepatic_spread == 'false' && ((num_tumor == 1 && max_tumor_size <= 5) || (num_tumor >= 2 && num_tumor <= 3 && max_tumor_size <= 3))",
+      "describe": "Milan criteria for liver transplantation (single tumour ≤5 cm, or up to 3 nodules each ≤3 cm, without macrovascular invasion or extrahepatic spread)."
+    },
+    {
+      "id": 101,
+      "kind": "staging_rule",
+      "target": { "key": "staging", "value": "0" },
+      "required_keys": ["ps","liver_function_status","num_tumor","max_tumor_size","vascular_invasion","extrahepatic_spread"],
+      "expr": "ps in['0','1'] && liver_function_status == 'preserved' && num_tumor == 1 && max_tumor_size <= 2 && vascular_invasion == 'false' && extrahepatic_spread == 'false'",
+      "describe": "Very early stage (BCLC 0) is defined as a solitary HCC <= 2 cm without vascular invasion or extrahepatic spread in a patient with preserved liver function and no cancer related symptoms."
+    },
+
+    {
+      "id": 102,
+      "kind": "staging_rule",
+      "target": { "key": "staging", "value": "A" },
+      "required_keys": ["ps","liver_function_status","num_tumor","max_tumor_size","vascular_invasion","extrahepatic_spread"],
+      "expr": "ps in['0','1'] && ( num_tumor == 1 || (num_tumor >= 2 && num_tumor <= 3 && max_tumor_size <= 3)) && liver_function_status == 'preserved' && vascular_invasion == 'false' && extrahepatic_spread == 'false' ",
+      "describe": "Early stage (BCLC-A) is defined as solitary HCC of any size, or up to 3 nodules (none >3 cm), with preserved liver function, PS 0, and no macrovascular invasion or extrahepatic spread."
+    },
+    {
+      "id": 103,
+      "kind": "staging_rule",
+      "target": { "key": "staging", "value": "B" },
+      "required_keys": ["ps","liver_function_status","num_tumor","max_tumor_size","vascular_invasion","extrahepatic_spread"],
+      "expr": "ps in ['0','1'] && liver_function_status == 'preserved' && vascular_invasion == 'false' && extrahepatic_spread == 'false' && (num_tumor > 3 ||(num_tumor in [2,3] && max_tumor_size > 3))",
+      "describe": "Intermediate stage (BCLC-B) is defined as multifocal HCC exceeding BCLC-A criteria, with preserved liver function, PS 0, and no vascular invasion or extrahepatic spread."
+    },
+    {
+      "id": 104,
+      "kind": "staging_rule",
+      "target": { "key": "staging", "value": "C" },
+      "required_keys": ["ps","liver_function_status","vascular_invasion","extrahepatic_spread"],
+      "expr": "liver_function_status == 'preserved' && (ps in ['1','2'] || vascular_invasion == 'true' || extrahepatic_spread == 'true')",
+      "describe": "This stage includes patients presenting with vascular invasion or extrahepatic spread who are still relatively ﬁt, as reﬂected by a PS <= 2 at staging work-up, and who have preserved liver function. "
+    },
+    {
+      "id": 105,
+      "kind": "staging_rule",
+      "target": { "key": "staging", "value": "D" },
+      "required_keys": ["ps","liver_function_status","lt_eligible"],
+      "expr": "ps in ['3','4'] || (liver_function_status == 'end stage' && lt_eligible == 'false')",
+      "describe": "Patients with major cancer-related symptoms (PS >2) and/or impaired liver function without the option of LT due to HCC burden or non–HCC–related factors present poor short-term survival and belong to the BCLC stage D"
+    },
+
+
+    {
+      "id": 501,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "resection" },
+      "required_keys": ["staging"],
+      "expr": "staging == '0' || staging == 'A'",
+      "describe": "Surgical resection may be considered as a treatment option for patients in BCLC-0 or BCLC-A"
+    },
+    {
+      "id": 502,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "ablation" },
+      "required_keys": ["staging"],
+      "expr": "staging == '0' || staging == 'A'",
+      "describe": "Ablation may be considered as a treatment option for patients in BCLC-0 or BCLC-A"
+    },
+    {
+      "id": 503,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "transplant" },
+      "required_keys": ["staging"],
+      "expr": "staging == '0'|| staging == 'A' || staging == 'B'||staging == 'D'",
+      "describe": "Liver transplantation may be considered for patients in BCLC stages 0, A, and B (if criteria met) and potentially stage D (if eligible)"
+    },
+    {
+      "id": 504,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["staging"],
+      "expr": "staging == '0'|| staging == 'A' || staging == 'B' ",
+      "describe": "TACE may be considered for patients in BCLC stages 0, A (via treatment stage migration), and B" 
+    },
+    {
+      "id": 506,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "systemic treatment" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'A'|| staging == 'B'|| staging == 'C'",
+      "describe": "Systemic treatment may be considered for patients in BCLC stages A (if other options fail), B (if not TACE candidates), and C" 
+    },
+    {
+      "id": 507,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "best supportive care" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'D'",
+      "describe": "For end-stage patients (BCLC-D), symptomatic management and coordination of palliative care are mandatory.可以行 best supportive care"
+    },
+
+
+    {
+      "id": 201,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "resection" },
+      "required_keys": ["CSPH","HVPG"],
+      "expr": " HVPG <= 10 || CSPH == 'false'",
+      "describe": "it has been established that the presence of CSPH (defined by a hepatic venous pressure gradient [HVPG] >10 mmHg) predicts a higher rate of postoperative complications and a lower long-term survival."
+    },  
+
+    {
+      "id": 301,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["liver_function_status"],
+      "expr": "liver_function_status == 'preserved'",
+      "describe": "For patients to be candidates for TACE, liver function has to be well preserved."
+    },
+    {
+      "id": 302,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["diffuse_involvement","infiltrative_pattern","extensive_involvement"],
+      "expr": "diffuse_involvement == 'false' && infiltrative_pattern == 'false' && extensive_involvement == 'false'",
+      "describe": "BCLC-B patients with diffuse, infiltrative, extensive liver involvement do not benefit from TACE; systemic therapy should be recommended instead."
+    },
+    {
+      "id": 303,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["bilirubin", "fluid_retention_diuretic_required"],
+      "expr": "bilirubin <= 2 && fluid_retention_diuretic_required == 'false'",
+      "describe": "For patients to be candidates for TACE, liver function has to be well preserved. Increased bilirubin beyond 2 mg/dL (~34.2 μmol/L) or even slight fluid retention requiring diuretic treatment are associated with increased risk of adverse events and suboptimal survival after TACE; therefore, TACE should be restricted to patients with preserved liver function, total bilirubin ≤2 mg/dL and without fluid retention requiring diuretics."
+    },
+    {
+      "id": 401,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "transplant" },
+      "required_keys": ["num_tumor","max_tumor_size","vascular_invasion","extrahepatic_spread"],
+      "expr": "vascular_invasion == 'false' && extrahepatic_spread == 'false' && ((num_tumor == 1 && max_tumor_size <= 5) || (num_tumor >= 2 && num_tumor <= 3 && max_tumor_size <= 3))",
+      "describe": "Liver transplantation requirements follow the Milan criteria: single tumor ≤5 cm, or up to 3 nodules each ≤3 cm, without macrovascular invasion or extrahepatic spread."
+    },
+    {
+      "id": 402,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "transplant" },
+      "required_keys": ["AFP"],
+      "expr": "AFP < 1000",
+      "describe": "AFP values ≥1,000 ng/mL are widely accepted as a contraindication for liver transplantation in HCC."
+    },
+    {
+      "id": 403,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "transplant" },
+      "required_keys": ["lt_eligible"],
+      "expr": "lt_eligible == 'true'",
+      "describe": ""
+    }
+    
+  ]
+}

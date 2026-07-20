@@ -1,0 +1,365 @@
+{
+  "nodes": [
+    {"key": "ps", "type": "str", "unit": "NULL", "key_id": 1, "values": ["0","1","2","3","4"], "desc": "全身状况评分（ECOG 体能状态）"},
+    {"key": "child_pugh", "type": "str", "unit": "NULL", "key_id": 2, "values": ["A","B","C"], "desc": "Child-Pugh 肝功能分级"},
+
+    {"key": "metastasis", "type": "str", "unit": "NULL", "key_id": 3, "values": ["有","无"], "desc": "远处转移情况"},
+    {"key": "cancer_thrombus", "type": "str", "unit": "NULL", "key_id": 4, "values": ["有","无"], "desc": "癌栓有无"},
+
+    {"key": "num_tumor", "type": "int", "unit": "NULL", "key_id": 5, "values": [], "desc": "肿瘤数量"},
+    {"key": "max_tumor_size", "type": "float", "unit": "cm", "key_id": 6, "values": [], "desc": "最大肿瘤直径"},
+
+    {"key": "staging", "type": "str", "unit": "NULL", "key_id": 7, "node_id": 7,"values": ["I_a","I_b","II_a","II_b","III_a","III_b","IV"], "desc": "CNLC 分期"},
+
+    {"key": "ICG_R15", "type": "float", "unit": "percent", "key_id": 8, "values": [], "desc": "ICG-R15 滞留率"},
+    {"key": "FLR_SLV", "type": "float", "unit": "percent", "key_id": 9, "values": [], "desc": "术后残余肝体积占标准肝体积百分比"},
+
+    {"key": "cirrhosis", "type": "str", "unit": "NULL", "key_id": 10, "values": ["有","无"], "desc": "肝硬化情况"},
+    {"key": "fibrosis", "type": "str", "unit": "NULL", "key_id": 11, "values": ["有","无"], "desc": "肝纤维化情况"},
+
+    {"key": "macrovascular_invasion", "type": "str", "unit": "NULL", "key_id": 12, "values": ["有","无"], "desc": "大血管侵犯情况"},
+    {"key": "tumor_size_sum", "type": "float", "unit": "cm", "key_id": 13, "values": [], "desc": "肿瘤直径和"},
+
+    {"key": "uncorrectable_coagulopathy", "type": "str", "unit": "NULL", "key_id": 14, "values": ["有","无"], "desc": "无法纠正的凝血功能障碍"},
+
+    {"key": "pv_main_occlusion", "type": "str", "unit": "NULL", "key_id": 15, "values": ["有","无"], "desc": "门静脉主干栓塞情况"},
+    {"key": "pv_collateral_insufficient", "type": "str", "unit": "NULL", "key_id": 16, "values": ["有","无"], "desc": "门静脉侧支代偿情况"},
+    {"key": "pv_recanalization_unsuccessful", "type": "str", "unit": "NULL", "key_id": 17, "values": ["有","无"], "desc": "门静脉复通情况"},
+
+    {"key": "active_hepatitis", "type": "str", "unit": "NULL", "key_id": 18, "values": ["有","无"], "desc": "活动性肝炎情况"},
+    {"key": "hepatitis_uncontrolled", "type": "str", "unit": "NULL", "key_id": 19, "values": ["有","无"], "desc": "肝炎是否能有效控制"},
+    {"key": "severe_infection", "type": "str", "unit": "NULL", "key_id": 20, "values": ["有","无"], "desc": "严重感染情况"},
+
+    {"key": "widespread_distant_metastasis", "type": "str", "unit": "NULL", "key_id": 21, "values": ["有","无"], "desc": "远处广泛转移情况"},
+    {"key": "cachexia", "type": "str", "unit": "NULL", "key_id": 22, "values": ["有","无"], "desc": "恶液质情况"},
+    {"key": "multiple_organ_failure", "type": "str", "unit": "NULL", "key_id": 23, "values": ["有","无"], "desc": "多器官功能衰竭情况"},
+
+    {"key": "serum_creatinine", "type": "float", "unit": "umol/L", "key_id": 24, "values": [], "desc": "血清肌酐水平"},
+    {"key": "creatinine_clearance", "type": "float", "unit": "mL/min", "key_id": 25, "values": [], "desc": "肌酐清除率"},
+
+    {"key": "iodinated_contrast_allergy", "type": "str", "unit": "NULL", "key_id": 26, "values": ["有","无"], "desc": "碘对比剂过敏情况"},
+    {"key": "diffuse_intrahepatic_distribution", "type": "str", "unit": "NULL", "key_id": 27, "values": ["有","无"], "desc": "肝内病灶弥漫分布情况" },
+
+    {"key": "treatment", "type": "str", "unit": "NULL", "key_id": 28,"values": ["手术切除","消融","肝移植", "TACE", "手术切除 + 消融","系统抗肿瘤治疗","TACE + 系统抗肿瘤治疗","放疗","对症支持","舒缓疗护","TACE + 消融"], "desc": "你推荐的任何治疗方案"},
+
+    {"key": "bilirubin", "type": "float", "unit": "umol/L", "key_id": 29, "values": [], "desc": "总胆红素水平"},
+    {"key": "portal_hypertension", "type": "str", "unit": "NULL", "key_id": 30, "values": ["有","无"], "desc": "门静脉高压情况"}
+  ],
+  "rules": [
+    {
+      "id": 1,
+      "kind": "staging_rule",
+      "target": { "key": "staging", "value": "I_a" },
+      "required_keys": ["ps","child_pugh","num_tumor","max_tumor_size","metastasis","cancer_thrombus"],
+      "expr": "ps in ['0','1','2'] && child_pugh in ['A','B'] && num_tumor == 1 && max_tumor_size <= 5 && metastasis == '无' && cancer_thrombus == '无'",
+      "describe": "CNLC I_a分期条件：PS 0～2 分，肝功能ChildPugh A/B 级，单个肿瘤、直径≤5 cm，无影像学可见血管癌栓和肝外转移。"
+    },
+    {
+      "id": 2,
+      "kind": "staging_rule",
+      "target": { "key": "staging", "value": "I_b" },
+      "required_keys": ["ps","child_pugh","num_tumor","max_tumor_size","metastasis","cancer_thrombus"],
+      "expr": "ps in ['0','1','2'] && child_pugh in ['A','B'] && ((num_tumor == 1 && max_tumor_size > 5) || (num_tumor in [2,3] && max_tumor_size <= 3)) && metastasis == '无' && cancer_thrombus == '无'",
+      "describe": "CNLC I_b 分期条件：PS 0～2 分，肝功能ChildPugh A/B 级，单个肿瘤、直径＞5 cm，或 2～3个肿瘤、最大直径≤3 cm，无影像学可见血管癌栓和肝外转移。"
+    },
+    {
+      "id": 3,
+      "kind": "staging_rule",
+      "target": { "key": "staging", "value": "II_a" },
+      "required_keys": ["ps","child_pugh","num_tumor","max_tumor_size","metastasis","cancer_thrombus"],
+      "expr": "ps in ['0','1','2'] && child_pugh in ['A','B'] && num_tumor in [2,3] && max_tumor_size > 3 && metastasis == '无' && cancer_thrombus == '无'",
+      "describe": "CNLC II_a 分期条件：PS 0～2 分，肝功能ChildPugh A/B 级，2～3 个肿瘤、最大直径＞3 cm，无影像学可见血管癌栓和肝外转移。"
+    },
+    {
+      "id": 4,
+      "kind": "staging_rule",
+      "target": { "key": "staging", "value": "II_b" },
+      "required_keys": ["ps","child_pugh","num_tumor","metastasis","cancer_thrombus"],
+      "expr": "ps in ['0','1','2'] && child_pugh in ['A','B'] && num_tumor >= 4 && metastasis == '无' && cancer_thrombus == '无'",
+      "describe": "CNLC II_b 分期条件：PS 0～2 分，肝功能ChildPugh A/B 级，肿瘤数目≥4个，不论肿瘤直径大小，无影像学可见血管癌栓和肝外转移。"
+    },
+    {
+      "id": 5,
+      "kind": "staging_rule",
+      "target": { "key": "staging", "value": "III_a" },
+      "required_keys": ["ps","child_pugh","metastasis","cancer_thrombus"],
+      "expr": "ps in ['0','1','2'] && child_pugh in ['A','B'] && metastasis == '无' && cancer_thrombus == '有'",
+      "describe": "CNLC III_a 分期条件：PS 0～2 分，肝功能ChildPugh A/B 级，不论肿瘤直径大小和数目，有影像学可见血管癌栓而无肝外转移。"
+    },
+    {
+      "id": 6,
+      "kind": "staging_rule",
+      "target": { "key": "staging", "value": "III_b" },
+      "required_keys": ["ps","child_pugh","metastasis"],
+      "expr": "ps in ['0','1','2'] && child_pugh in ['A','B'] && metastasis == '有'",
+      "describe": "CNLC III_b 分期条件：PS 0～2 分，肝功能ChildPugh A/B 级，不论肿瘤直径大小和数目，不论有无影像学可见血管癌栓，但有肝外转移。"
+    },
+    {
+      "id": 7,
+      "kind": "staging_rule",
+      "target": { "key": "staging", "value": "IV" },
+      "required_keys": ["ps","child_pugh"],
+      "expr": "ps in ['3','4'] || (child_pugh == 'C' && ps in ['0','1','2'])",
+      "describe": "CNLC IV 分期条件：PS 3～4 分，或肝功能ChildPugh C级，不论肿瘤直径大小和数目，不论有无影像学可见血管癌栓，不论有无肝外转移。"
+    },
+
+    {
+      "id": 101,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "手术切除" },
+      "required_keys": ["child_pugh"],
+      "expr": "child_pugh != 'C'",
+      "describe": "肝切除必要条件1：Child-Pugh 不为 C 级"
+    },
+    {
+      "id": 102,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "手术切除" },
+      "required_keys": ["ICG_R15"],
+      "expr": "ICG_R15 < 30",
+      "describe": "肝切除必要条件2：ICG_R15 < 30%"
+    },
+    {
+      "id": 103,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "手术切除" },
+      "required_keys": ["bilirubin"],
+      "expr": "bilirubin <= 34.2",
+      "describe": "肝切除必要条件3：胆红素 ≤ 34.2 μmol/L"
+    },
+    {
+      "id": 104,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "手术切除" },
+      "required_keys": ["FLR_SLV","cirrhosis","fibrosis"],
+      "expr": "(FLR_SLV >= 40 && ( cirrhosis == '有' || fibrosis == '有')) || (FLR_SLV >= 30 && ( cirrhosis == '无' && fibrosis == '无'))",
+      "describe": "肝切除的必要条件4：FLR 须占SLV 的40% 以上（伴有慢性肝病、肝实质损伤或肝硬化者）或30% 以上（无肝纤维化或肝硬化者）"
+    },
+    {
+      "id": 105,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "手术切除" },
+      "required_keys": ["portal_hypertension"],
+      "expr": "portal_hypertension == '无'",
+      "describe": "肝切除的必要条件5：不能有门静脉高压"
+    },
+
+    {
+      "id": 201,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "肝移植" },
+      "required_keys": ["macrovascular_invasion"],
+      "expr": "macrovascular_invasion == '无'",
+      "describe": "肝移植的必要条件1：无大血管侵犯"
+    },
+    {
+      "id": 202,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "肝移植" },
+      "required_keys": ["num_tumor", "max_tumor_size","tumor_size_sum"],
+      "expr": "(num_tumor == 1 && max_tumor_size <= 6.5)||(num_tumor > 1 && num_tumor <=3 && max_tumor_size<=4.5 && tumor_size_sum <=8 )",
+      "describe": "肝移植的必要条件2：单发肿瘤最大直径小于6.5cm，或者多发肿瘤时要求数目 ≤3、最大直径 ≤4.5 cm，直径和小于或等于8"
+    },
+    {
+      "id": 301,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["child_pugh"],
+      "expr": "child_pugh != 'C'",
+      "describe": "TACE必要条件1：Child-Pugh 不为 C 级"
+    },
+    {
+      "id": 302,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["uncorrectable_coagulopathy"],
+      "expr": "uncorrectable_coagulopathy == '无'",
+      "describe": "TACE必要条件2：要求无无法纠正的凝血功能障碍"
+    },
+    {
+      "id": 304,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["pv_main_occlusion","pv_collateral_insufficient", "pv_recanalization_unsuccessful"],
+      "expr": "pv_main_occlusion == '无' || pv_collateral_insufficient == '无' ||(pv_collateral_insufficient == '有'&& pv_recanalization_unsuccessful == '无')",
+      "describe": "TACE必要条件3：没有门静脉栓塞 或者 没有侧支代偿不足且无法复通的情况 "
+    },
+    {
+      "id": 305,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["severe_infection"],
+      "expr": "severe_infection == '无'",
+      "describe": "TACE必要条件4：无严重感染"
+    },
+    {
+      "id": 306,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["active_hepatitis", "hepatitis_uncontrolled"],
+      "expr": "active_hepatitis == '无' || (active_hepatitis == '有' && hepatitis_uncontrolled == '无')",
+      "describe": "TACE必要条件5：患者不存在“有活动性肝炎且不能有效控制”的情况"
+    },
+    {
+      "id": 307,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["diffuse_intrahepatic_distribution"],
+      "expr": "diffuse_intrahepatic_distribution == '无'",
+      "describe": "TACE必要条件6：没有肿瘤弥漫分布"
+    },
+    {
+      "id": 308,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["widespread_distant_metastasis"],
+      "expr": "widespread_distant_metastasis == '无'",
+      "describe": "TACE必要条件7：没有远处广泛转移"
+    },
+    {
+      "id": 309,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["ps"],
+      "expr": "ps in ['0','1','2']",
+      "describe": "TACE必要条件7：ECOG PS ≤ 2"
+    },
+    {
+      "id": 310,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["cachexia"],
+      "expr": "cachexia == '无'",
+      "describe": "TACE必要条件8：无恶液质"
+    },
+    {
+      "id": 311,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["multiple_organ_failure"],
+      "expr": "multiple_organ_failure == '无'",
+      "describe": "TACE必要条件9：无多器官功能衰竭"
+    },
+    {
+      "id": 312,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["serum_creatinine"],
+      "expr": "serum_creatinine <= 176.8",
+      "describe": "TACE必要条件10：血肌酐 ≤ 176.8 μmol/L"
+    },
+    {
+      "id": 313,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["creatinine_clearance"],
+      "expr": "creatinine_clearance >= 30",
+      "describe": "TACE必要条件11：肌酐清除率 ≥ 30 mL/min"
+    },
+    {
+      "id": 314,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["iodinated_contrast_allergy"],
+      "expr": "iodinated_contrast_allergy == '无'",
+      "describe": "TACE必要条件12：无严重碘对比剂过敏"
+    },
+    {
+      "id": 401,
+      "kind": "treatment_requirement",
+      "target": { "key": "treatment", "value": "放疗" },
+      "required_keys": ["diffuse_intrahepatic_distribution"],
+      "expr": "diffuse_intrahepatic_distribution == '无'",
+      "describe": "放疗必要条件1：肝内病灶无弥散分布"
+    },
+
+    {
+      "id": 501,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "手术切除" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'I_a' || staging == 'I_b' || staging == 'II_a' || staging == 'II_b' || staging == 'III_a'",
+      "describe": "适合手术切除的分期：I_a I_b II_a II_b III_a"
+    },
+    {
+      "id": 502,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "消融" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'I_a' || staging == 'I_b'",
+      "describe": "适合消融的分期：I_a I-b"
+    },
+    {
+      "id": 503,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "肝移植" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'I_a' || staging == 'I_b' || staging == 'II_a' || staging == 'IV'",
+      "describe": "适合肝移植的分期：I_a I_b II_a IV"
+    },
+    {
+      "id": 504,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "TACE" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'I_b' || staging == 'II_a' || staging == 'II_b' || staging == 'III_b'",
+      "describe": "适合TACE的分期：I_b II_a II_b III_b"
+    },
+    {
+      "id": 505,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "系统抗肿瘤治疗" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'II_b' || staging == 'III_a' || staging == 'III_b'",
+      "describe": "适合系统抗肿瘤治疗的分期：II_b III_a III_b"
+    },
+    {
+      "id": 506,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "对症支持" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'IV'",
+      "describe": "适合对症支持的分期：IV"
+    },
+    {
+      "id": 507,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "手术切除 + 消融" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'II_a'",
+      "describe": "适合手术切除 + 消融的分期：II_a"
+    },
+    {
+      "id": 508,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "TACE + 系统抗肿瘤治疗" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'III_a'",
+      "describe": "适合TACE + 系统抗肿瘤治疗的分期：III_a"
+    },
+    {
+      "id": 509,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "放疗" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'III_a' || staging == 'III_b'",
+      "describe": "适合放疗的分期：III_a III_b"
+    },
+    {
+      "id": 510,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "舒缓疗护" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'IV'",
+      "describe": "适合舒缓疗护的分期：IV"
+    },
+    {
+      "id": 511,
+      "kind": "treatment_recommend",
+      "target": { "key": "treatment", "value": "TACE + 消融" },
+      "required_keys": ["staging"],
+      "expr": "staging == 'I_b' || staging == 'II_a'",
+      "describe": "适合TACE + 消融的分期：I_b II_a"
+    }
+  ]
+}

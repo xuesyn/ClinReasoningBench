@@ -1,0 +1,51 @@
+# Task
+You will receive a reasoning text about a clinical treatment decision. Your task is to insert XML-like tags into the text to mark confirmed patient facts, without changing the original text content.
+
+# Rules
+
+1) **Only tag confirmed patient facts** — NOT guideline conditions, thresholds, ranges, or examples.
+
+2) **Preserve original text** — Only insert tags. Do NOT delete, rewrite, rearrange, or add explanations.
+
+2a) **Preserve existing `<knowledge_id='...'>` tags** — the first-pass reasoning already inserts these guideline-citation markers. Leave them exactly where they are; do NOT remove, rewrap, modify, or reposition them.
+
+3) **Use allowed values only** — Tag content must exactly match one of the allowed values (case-sensitive). If unsure, do NOT tag.
+
+4) **Shortest valid span** — Each tag wraps the minimum text needed. Do NOT include surrounding words like "is", "of", "indicates".
+
+5) **Tag every occurrence** — If the same fact appears multiple times, tag each one.
+
+6) **Numbers: value only, unit outside** — Example: `<bilirubin>34</bilirubin> μmol/L`
+
+7) **Do NOT tag ranges/thresholds** — `0-2`, `≤5`, `<5cm` are NOT patient facts.
+
+8) **When patient value and threshold appear together, only tag patient value** — Example: "PS is 1, guideline requires 0-2" → "PS is <ps>1</ps>, guideline requires 0-2"
+
+9) **Implicit facts** — You may tag clear implicit facts with minimal annotation:
+   - "single tumor" → "single tumor (<num_tumor>1</num_tumor>)"
+   - "moderate fibrosis" → "moderate fibrosis (<fibrosis>有</fibrosis>)"
+   - "no metastasis" → "no metastasis (<metastasis>无</metastasis>)"
+
+10) **Treatment tags**:
+    - Clearly recommended: `<treatment>name</treatment>`
+    - Clearly rejected: `<treatment_not_recommended>name</treatment_not_recommended>`
+    - Use the recommended list below as a strong hint for what counts as clearly recommended.
+    - General discussion/listing: do NOT tag
+
+11) **Staging tags**: Only tag when the text makes a definitive staging conclusion for this patient.
+
+# Tag Schema
+{node_guide}
+
+# Recommended Treatments
+{recommended_list}
+
+# Input Text
+{thinking_text}
+
+# Output Format
+Output valid JSON only (no code blocks):
+{{
+  "thinking": "<brief explanation of your tagging decisions>",
+  "result": "<the original text with tags inserted>"
+}}

@@ -1,0 +1,232 @@
+{
+  "nodes": [
+    {"key": "classification", "type": "str", "unit": "NULL", "key_id": 1, "values": ["UA","NSTEMI","STEMI"], "desc": "classification of ACS /ACS的分类"},
+    {
+      "key": "treatment", "type": "str", "unit": "NULL", "key_id": 2, 
+      "values": ["analgesics","aspirin therapy","P2Y12 inhibitors","intravenous glycoprotein IIb/IIIa inhibitors","parenteral anticoagulation","lipid management","beta-blocker therapy","RAAS inhibitors","fibrinolytic therapy","PCI","CABG surgery","immediate invasive","early invasive","routine invasive","selective invasive"], 
+      "desc": "Candidate treatment/strategy options / 可选治疗（或策略）选项"
+    },
+    {"key": "stemi_ecg", "type": "str", "unit": "NULL", "key_id": 3, "values": ["true", "false"], "desc": "ECG meets STEMI criteria (ST-segment elevation or STEMI equivalent) / 心电图符合STEMI标准（ST段抬高或STEMI等同）"},
+    {"key": "pci_capable_hospital", "type": "str", "unit": "NULL", "key_id": 4, "values": ["true", "false"], "desc": "Currently at a PCI-capable hospital / 当前是否在具备PCI能力的医院"},
+    {"key": "fmc_to_device_min", "type": "int", "unit": "min", "key_id": 5, "values": [], "desc": "Estimated time from first medical contact (FMC) to device activation / 预计首次医疗接触(FMC)到器械开通时间"},
+    {"key": "spo2", "type": "float", "unit": "percent", "key_id": 6, "values": [], "desc": "Oxygen saturation (SpO2) / 血氧饱和度（SpO2）百分比"},
+    {"key": "fibrinolysis_contraindication", "type": "str", "unit": "NULL", "key_id": 7, "values": ["true", "false"], "desc": "Any absolute contraindication to fibrinolysis / 溶栓禁忌证"},
+    {"key": "beta_blocker_contraindication", "type": "str", "unit": "NULL", "key_id": 8, "values": ["true", "false"], "desc": "Any absolute contraindication to beta-blocker therapy/ beta阻滞剂禁忌证"},
+
+    {"key": "sbp", "type": "int", "unit": "mmHg", "key_id": 9, "values": [], "desc": "Systolic blood pressure / 收缩压"},
+    {"key": "dbp", "type": "int", "unit": "mmHg", "key_id": 10, "values": [], "desc": "Diastolic blood pressure / 舒张压"},
+    {"key": "prior_intracranial_hemorrhage", "type": "str", "unit": "NULL", "key_id": 11, "values": ["true", "false"], "desc": "Prior intracranial hemorrhage / 既往颅内出血"},
+    {"key": "structural_cerebral_vascular_lesion", "type": "str", "unit": "NULL", "key_id": 12, "values": ["true", "false"], "desc": "Known structural cerebral vascular lesion (e.g., AVM) / 已知结构性脑血管病变（如AVM）"},
+    {"key": "malignant_intracranial_neoplasm", "type": "str", "unit": "NULL", "key_id": 13, "values": ["true", "false"], "desc": "Known malignant intracranial neoplasm / 已知恶性颅内肿瘤"},
+    {"key": "ischemic_stroke_within_3_months", "type": "str", "unit": "NULL", "key_id": 14, "values": ["true", "false"], "desc": "Ischemic stroke within 3 months (except acute ischemic stroke within 4.5 h) / 3个月内缺血性卒中（除4.5小时内急性缺血性卒中）"},
+    {"key": "suspected_aortic_dissection", "type": "str", "unit": "NULL", "key_id": 15, "values": ["true", "false"], "desc": "Suspected aortic dissection / 怀疑主动脉夹层"},
+    {"key": "active_bleeding_or_diathesis", "type": "str", "unit": "NULL", "key_id": 16, "values": ["true", "false"], "desc": "Active bleeding or bleeding diathesis (excluding menses) / 活动性出血或出血素质（不含月经）"},
+    {"key": "significant_head_or_facial_trauma_within_3_months", "type": "str", "unit": "NULL", "key_id": 17, "values": ["true", "false"], "desc": "Significant closed head or facial trauma within 3 months / 3个月内严重闭合性头部或面部外伤"},
+    {"key": "intracranial_or_intraspinal_surgery_within_2_months", "type": "str", "unit": "NULL", "key_id": 18, "values": ["true", "false"], "desc": "Intracranial or intraspinal surgery within 2 months / 2个月内颅内或脊髓手术"},
+
+    {"key": "pci_with_large_thrombus", "type": "str", "unit": "NULL", "key_id": 19, "values": ["true", "false"], "desc": "undergoing PCI with large thrombus burden / 行PCI时可见血栓负荷大"},
+    {"key": "no_reflow", "type": "str", "unit": "NULL", "key_id": 20, "values": ["true", "false"], "desc": "undergoing PCI with no-reflow / 行PCI时发生无复流"},
+    {"key": "slow_flow", "type": "str", "unit": "NULL", "key_id": 21, "values": ["true", "false"], "desc": "undergoing PCI with slow flow. / 行PCI时血流缓慢"},
+
+    {"key": "LVEF", "type": "float", "unit": "percent", "key_id": 22, "values": [], "desc": "LVEF value (percent)/ LVEF百分比"},
+    {"key": "hypertension", "type": "str", "unit": "NULL", "key_id": 23, "values": ["true", "false"], "desc": "hypertension/ 是否有高血压"},
+    {"key": "diabetes_mellitus", "type": "str", "unit": "NULL", "key_id": 24, "values": ["true", "false"], "desc": "diabetes mellitus/ 是否有糖尿病"},
+    {"key": "anterior_stemi", "type": "str", "unit": "NULL", "key_id": 25, "values": ["true", "false"], "desc": "STEMI with anterior location/ 是否前壁STEMI"},
+    {"key": "st_depression_only", "type": "str", "unit": "NULL", "key_id": 26, "values": ["true", "false"], "desc": "Only ST-segment depression (no ST elevation) / 仅ST段压低（无ST段抬高）"},
+    {"key": "posterior_stemi", "type": "str", "unit": "NULL", "key_id": 27, "values": ["true", "false"], "desc": "True posterior STEMI suspected / 怀疑真正后壁STEMI"},
+    {"key": "troponin_above_99th", "type": "str", "unit": "NULL", "key_id": 28, "values": ["true", "false"], "desc": "Cardiac troponin > 99th percentile URL / 心肌肌钙蛋白超过99百分位上限"},
+    {"key": "ischemic_symptoms", "type": "str", "unit": "NULL", "key_id": 29, "values": ["true", "false"], "desc": "Ischemic symptoms suggestive of ACS / 与ACS相关的缺血症状（胸痛/胸闷等）"},
+
+    {"key": "hemodynamic_instability", "type": "str", "unit": "NULL", "key_id": 30, "values": ["true", "false"], "desc": "Hemodynamic instability / 血流动力学不稳定"},
+    {"key": "electrical_instability", "type": "str", "unit": "NULL", "key_id": 31, "values": ["true", "false"], "desc": "Electrical instability (e.g., malignant arrhythmia) / 电不稳定（如恶性心律失常）"},
+    {"key": "cardiogenic_shock", "type": "str", "unit": "NULL", "key_id": 32, "values": ["true", "false"], "desc": "Cardiogenic shock / 心源性休克"},
+    {"key": "refractory_angina", "type": "str", "unit": "NULL", "key_id": 33, "values": ["true", "false"], "desc": "Refractory angina (ongoing/recurrent ischemic symptoms despite therapy) / 难治性心绞痛（治疗后仍持续/反复缺血）"},
+    {"key": "HF", "type": "str", "unit": "NULL", "key_id": 34, "values": ["true", "false"], "desc": "signs or symptoms of HF/ 心力衰竭体征或症状"},
+    {"key": "GRACE", "type": "float", "unit": "NULL", "key_id": 35, "values": [], "desc": "GRACE risk score"},
+    {"key": "rising_Tn", "type": "str", "unit": "NULL", "key_id": 36, "values": ["true", "false"], "desc": "Steeply rising Tn values on serial testing despite optimized medical therapy/ 在优化药物治疗后，序贯检测中肌钙蛋白（Tn）数值快速上升"},
+    {"key": "stable_or_downtrending_Tn", "type": "str", "unit": "NULL", "key_id": 37, "values": ["true", "false"], "desc": "肌钙蛋白（Tn）数值稳定或下降（Stable or downtrending Tn values）"},
+    {"key": "TIMI", "type": "int", "unit": "NULL", "key_id": 38, "values": [], "desc": "TIMI risk score / TIMI风险评分"},
+    
+    {"key": "dynamic_ST_changes", "type": "str", "unit": "NULL", "key_id": 39, "values": ["true", "false"], "desc": "Ongoing dynamic ST-segment changes/ 持续的动态 ST 段改变"}
+  ],
+  "rules": [
+    {
+      "id": 1,
+      "kind": "classification_rule",
+      "target": { "key": "classification", "value": "STEMI" },
+      "required_keys": ["stemi_ecg"],
+      "expr": "stemi_ecg == 'true'",
+      "describe": "ECG meeting STEMI criteria indicates STEMI. / 心电图符合STEMI标准可判定为STEMI。"
+    },  
+    {
+      "id": 2,
+      "kind": "classification_rule",
+      "target": {"key": "classification", "value": "NSTEMI"},
+      "required_keys": ["stemi_ecg", "ischemic_symptoms", "troponin_above_99th"],
+      "expr": "stemi_ecg == 'false' && ischemic_symptoms == 'true' && troponin_above_99th == 'true'",
+      "describe": "Ischemic symptoms with troponin above the 99th percentile (without STEMI ECG) indicates NSTEMI. / 无STEMI心电图但有缺血症状且肌钙蛋白>99百分位可判定为NSTEMI。"
+    },
+    {
+      "id": 3,
+      "kind": "classification_rule",
+      "target": {"key": "classification", "value": "UA"},
+      "required_keys": ["stemi_ecg", "ischemic_symptoms", "troponin_above_99th"],
+      "expr": "stemi_ecg == 'false' && ischemic_symptoms == 'true' && troponin_above_99th == 'false'",
+      "describe": "Ischemic symptoms without troponin elevation (and no STEMI ECG) may be classified as unstable angina (UA). / 无STEMI心电图且肌钙蛋白未升高的缺血症状可归类为不稳定型心绞痛（UA）。"
+    },
+    {
+      "id": 102,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "fibrinolytic therapy" },
+      "required_keys": ["classification","fibrinolysis_contraindication","fmc_to_device_min"],
+      "expr": "classification in ['STEMI'] && fibrinolysis_contraindication == 'false' && fmc_to_device_min >120",
+      "describe": "In STEMI with symptom onset <12 h and anticipated delay to PPCI >120 min from FMC, fibrinolytic therapy should be administered in patients without contraindication. / STEMI发病<12小时且预计FMC到PPCI延迟>120分钟者，若无禁忌证应给予溶栓以降低MACE"
+    },
+    {
+      "id": 103,
+      "kind": "treatment_requirement",
+      "target": {"key": "treatment", "value": "fibrinolytic therapy"},
+      "required_keys": ["st_depression_only", "posterior_stemi"],
+      "expr": "st_depression_only == 'false' || posterior_stemi == 'true'",
+      "describe": "Fibrinolytic therapy should not be administered to patients with only ST-segment depression except when true posterior STEMI is suspected. / 仅ST段压低者不应溶栓，除非怀疑真正后壁STEMI。"
+    },
+    {
+      "id": 105,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "PCI" },
+      "required_keys": ["classification"],
+      "expr": "classification in ['STEMI','UA','NSTEMI']",
+      "describe": ""
+    },
+    {
+      "id": 201,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "CABG surgery" },
+      "required_keys": ["classification"],
+      "expr": "classification in ['STEMI','UA','NSTEMI']",
+      "describe": ""
+    },
+    {
+      "id": 202,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "immediate invasive" },
+      "required_keys": ["classification","hemodynamic_instability","electrical_instability","cardiogenic_shock","refractory_angina","HF"],
+      "expr": "classification in ['UA','NSTEMI'] && (hemodynamic_instability == 'true' || electrical_instability == 'true' || cardiogenic_shock == 'true' || refractory_angina == 'true' || HF =='true')",
+      "describe": " In patients with NSTE-ACS who have refractory angina or hemodynamic or electrical instability, an immediate invasive strategy with intent to perform revascularization is indicated to reduce MACE./ 对出现顽固性心绞痛、血流动力学或电不稳定的NSTE-ACS患者，应当立即（<2小时内）侵入性介入，以降低MACE"
+    },
+
+    {
+      "id": 203,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "early invasive" },
+      "required_keys": ["classification","GRACE","rising_Tn","dynamic_ST_changes"],
+      "expr": "classification in ['UA','NSTEMI'] && (GRACE > 140 || rising_Tn == 'true' || dynamic_ST_changes == 'true')",
+      "describe": "In patients with high-risk NSTE-ACS—defined by any of the following: a GRACE risk score >140, steelpy rising Tn values on serial testing despite optimized medical therapy, or ongoing dynamic ST-segment changes--an early invasive strategy (within 24 hours) is reasonable to reduce MACE. / 对高危NSTE-ACS患者（满足以下任意一项：GRACE 风险评分 >140；在优化药物治疗后，序贯检测中肌钙蛋白（Tn）数值快速上升；持续的动态 ST 段改变），宜选择早期侵入（<24小时内），以降低MACE。"
+    },
+    {
+      "id": 204,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "routine invasive" },
+      "required_keys": ["classification","GRACE","ischemic_symptoms","stable_or_downtrending_Tn","TIMI","troponin_above_99th","dynamic_ST_changes"],
+      "expr": "(classification in ['UA','NSTEMI'] &&  (ischemic_symptoms == 'false' || (GRACE >=109 && GRACE <=140) || stable_or_downtrending_Tn == 'true')) ||  (classification in ['UA','NSTEMI'] && (GRACE <109 || TIMI <2 ||ischemic_symptoms =='false' || troponin_above_99th == 'false' || dynamic_ST_changes == 'false') )",
+      "describe": "In patients with Intermediate-risk NSTE-ACS—defined by any of the following: GRACE risk score of 109 to 140, an absence of ongoing ischemic symptoms, or stable or downtrending Tn values-—a routine invasive strategy is recommended during the hospital stay to reduce MACE. / 满足以下任意一项（GRACE 风险评分 109–140;无持续性缺血症状;肌钙蛋白（Tn）数值稳定或下降）宜采用常规侵入性策略"
+    },
+    {
+      "id": 206,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "selective invasive" },
+      "required_keys": ["classification","GRACE","TIMI","ischemic_symptoms","troponin_above_99th","dynamic_ST_changes"],
+      "expr": "classification in ['UA','NSTEMI'] && (GRACE <109 ||TIMI <2 ||ischemic_symptoms =='false' ||troponin_above_99th == 'false' || dynamic_ST_changes == 'false')",
+      "describe": "In patients with lower-risk NSTE-ACS—defined by any of the following: a GRACE risk score <109, a TIMI risk score <2, an absence of ongoing ischemic symptoms, cardiac troponin (cTn) levels <99th percentile (i.e., unstable angina), or no dynamic ST-segment changes--either a routine invasive strategy or a selective invasive strategy is recommended./满足以下任意一项（GRACE 风险评分 <109；TIMI 风险评分 <2；无持续性缺血症状；肌钙蛋白（Tn）<第99百分位（即不稳定型心绞痛）；无动态 ST 段改变） 选择常规侵入性策略 或 选择性侵入性策略"
+    },
+    {
+      "id": 208,
+      "kind": "treatment_rule",
+      "target": { "key": "treatment", "value": "analgesics" },
+      "required_keys": ["classification"],
+      "expr": "classification in ['STEMI','NSTEMI','UA']",
+      "describe": "Patients presenting with known or suspected ACS often experience chest pain or other uncomfortable symptoms. Rapid and effective pain relief remains an important treatment goal to prevent sympathetic activation and adverse clinical sequelae (Table 6). Analgesic therapies may provide symptomatic relief, but they have not been shown to improve clinical outcomes in patients with ACS. /  ACS患者常出现胸痛或其他难受症状。迅速有效缓解疼痛是重要目标，以避免交感神经过度激活及其不良后果。"
+    },
+    {
+      "id": 209,
+      "kind": "treatment_rule",
+      "target": {"key": "treatment", "value": "aspirin therapy"},
+      "required_keys": ["classification"],
+      "expr": "classification in ['STEMI','NSTEMI','UA']",
+      "describe": "In patients with ACS, an initial oral loading dose of aspirin (162–325 mg) and a maintenance dose (75–100 mg daily) is recommended. / ACS患者推荐口服阿司匹林负荷162–325 mg，并维持75–100 mg每日。"
+    },
+    {
+      "id": 210,
+      "kind": "treatment_rule",
+      "target": {"key": "treatment", "value": "P2Y12 inhibitors"},
+      "required_keys": ["classification"],
+      "expr": "classification in ['STEMI','NSTEMI','UA']",
+      "describe": "In patients with ACS, aspirin and a P2Y12 inhibitor should be administered to reduce MACE. / ACS患者应给予阿司匹林联合P2Y12受体抑制剂以降低主要不良心血管事件。"
+    },
+    {
+      "id": 211,
+      "kind": "treatment_requirement",
+      "target": {"key": "treatment", "value": "intravenous glycoprotein IIb/IIIa inhibitors"},
+      "required_keys": ["classification","pci_with_large_thrombus","no_reflow","slow_flow"],
+      "expr": "classification in ['STEMI','NSTEMI','UA'] && (pci_with_large_thrombus == 'true' || no_reflow == 'true' || slow_flow == 'true')",
+      "describe": "In patients with ACS undergoing PCI with large thrombus burden, no-reflow, or slow flow, adjunctive use of an intravenous or intracoronary glycoprotein IIb/IIIa inhibitor is reasonable to improve procedural success and reduce infarct size. In patients with ACS, glycoprotein IIb/IIIa inhibitors should not be administered routinely due to lack of ischemic benefit and increased risk of bleeding./ 对行PCI时可见血栓负荷大、发生无复流或血流缓慢的ACS患者，可酌情辅用静脉或冠脉内GPIIb/IIIa受体拮抗剂，以提高手术成功率并减少梗死范围。对ACS患者，不应常规使用GPIIb/IIIa抑制剂，因为无缺血获益且增加出血风险。"
+    },
+    {
+      "id": 212,
+      "kind": "treatment_requirement",
+      "target": {"key": "treatment", "value": "parenteral anticoagulation"},
+      "required_keys": ["classification"],
+      "expr": "classification in ['STEMI','NSTEMI','UA']",
+      "describe": "Parenteral anticoagulation is recommended for all patients with ACS, irrespective of the initial treatment strategy. / 所有ACS患者均推荐使用肠外抗凝治疗，与初始治疗策略无关。"
+    },
+    {
+      "id": 213,
+      "kind": "treatment_requirement",
+      "target": {"key": "treatment", "value": "lipid management"},
+      "required_keys": ["classification"],
+      "expr": "classification in ['STEMI','NSTEMI','UA']",
+      "describe": "In patients with ACS, high-intensity statin therapy is recommended to reduce the risk of MACE. In patients with ACS already on maximally tolerated statin therapy with LDL-C ≥70 mg/dL, adding a nonstatin lipid-lowering agent is recommended. / ACS患者推荐高强度他汀治疗以降低主要不良心血管事件风险。ACS患者若已用最大耐受剂量他汀且LDL-C≥70 mg/dL，推荐加用非他汀降脂药物。"
+    },
+    {
+      "id": 214,
+      "kind": "treatment_requirement",
+      "target": {"key": "treatment", "value": "beta-blocker therapy"},
+      "required_keys": ["classification","beta_blocker_contraindication"],
+      "expr": "classification in ['STEMI','NSTEMI','UA'] && beta_blocker_contraindication == 'false'",
+      "describe": "In patients with ACS without contraindications, early (<24 hours) initiation of oral beta-blocker therapy is recommended to reduce risk of reinfarction and ventricular arrhythmias. / 对无禁忌证的ACS患者，应在发病24小时内早期启动口服β受体阻滞剂，以降低再梗死和室性心律失常风险。若患者入院时有β阻滞剂禁忌（如Killip II-IV心衰、低心排、心动过缓、AV传导阻滞无起搏器、严重支气管痉挛等）"
+    },
+    {
+      "id": 215,
+      "kind": "treatment_rule",
+      "target": {"key": "treatment", "value": "RAAS inhibitors"},
+      "required_keys": ["classification"],
+      "expr": "classification in ['STEMI','NSTEMI','UA']",
+      "describe": "Oral ACE inhibitors reduce all-cause death and MACE in patients with STEMI or NSTEMI, particularly when associ- ated with high-risk features (LVEF ≤40%, hypertension, diabetes mellitus, or STEMI with anterior location)./口服ACEI可降低STEMI或NSTEMI患者全因死亡和MACE风险，尤以具有高危特征者（LVEF≤40%，高血压，糖尿病或前壁STEMI）中效果显著。"
+    },
+    {
+      "id": 216,
+      "kind": "treatment_requirement",
+      "target": {"key": "treatment", "value": "RAAS inhibitors"},
+      "required_keys": ["LVEF","hypertension","diabetes_mellitus","anterior_stemi"],
+      "expr": "LVEF <= 40 || hypertension == 'true' || diabetes_mellitus == 'true' || anterior_stemi == 'true'",
+      "describe": "/"
+    },
+    {
+      "id": 301,
+      "kind": "derived_state",
+      "target": {"key": "fibrinolysis_contraindication", "value": "true"},
+      "required_keys": ["prior_intracranial_hemorrhage", "structural_cerebral_vascular_lesion", "malignant_intracranial_neoplasm", "ischemic_stroke_within_3_months", "suspected_aortic_dissection", "active_bleeding_or_diathesis", "significant_head_or_facial_trauma_within_3_months", "intracranial_or_intraspinal_surgery_within_2_months", "sbp", "dbp"],
+      "expr": "prior_intracranial_hemorrhage == 'true' || structural_cerebral_vascular_lesion == 'true' || malignant_intracranial_neoplasm == 'true' || ischemic_stroke_within_3_months == 'true' || suspected_aortic_dissection == 'true' || active_bleeding_or_diathesis == 'true' || significant_head_or_facial_trauma_within_3_months == 'true' || intracranial_or_intraspinal_surgery_within_2_months == 'true' || (sbp > 180 || dbp > 110)",
+      "describe": "Absolute contraindications to fibrinolysis include prior ICH, intracranial lesion/neoplasm, recent ischemic stroke, suspected aortic dissection, active bleeding/diathesis, recent significant head/facial trauma, recent intracranial/intraspinal surgery, or severe uncontrolled hypertension unresponsive to therapy. / 溶栓绝对禁忌证包括既往颅内出血、颅内血管病变/肿瘤、近3个月缺血性卒中、疑主动脉夹层、活动性出血/出血素质、近期严重头面部外伤、近期颅内/脊髓手术，或对治疗无反应的严重高血压（收缩压 SBP >180 mmHg 或舒张压 DBP >110 mmHg）。"
+    },
+    {
+      "id": 302,
+      "kind": "derived_state",
+      "target": {"key": "fibrinolysis_contraindication", "value": "false"},
+      "required_keys": ["prior_intracranial_hemorrhage", "structural_cerebral_vascular_lesion", "malignant_intracranial_neoplasm", "ischemic_stroke_within_3_months", "suspected_aortic_dissection", "active_bleeding_or_diathesis", "significant_head_or_facial_trauma_within_3_months", "intracranial_or_intraspinal_surgery_within_2_months", "sbp", "dbp"],
+      "expr": "prior_intracranial_hemorrhage == 'false' && structural_cerebral_vascular_lesion == 'false' && malignant_intracranial_neoplasm == 'false' && ischemic_stroke_within_3_months == 'false' &&suspected_aortic_dissection == 'false' && active_bleeding_or_diathesis == 'false' && significant_head_or_facial_trauma_within_3_months == 'false' && intracranial_or_intraspinal_surgery_within_2_months == 'false' && (sbp <= 180 && dbp <= 110)",
+      "describe": ""
+    }
+
+  ]
+}

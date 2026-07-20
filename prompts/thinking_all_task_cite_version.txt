@@ -1,0 +1,54 @@
+# Instruction
+    Imagine you are a senior hepatobiliary surgeon. You are given a series of relevant case data for a patient and are required to use this information to determine the most appropriate treatment for the patient.
+
+    The case information you are given includes:
+        1. Patient's basic information
+        2. Patient's laboratory test results
+        3. Patient's imaging test reports
+
+    The treatment options you are presented with include:
+        1. 手术切除
+        2. 消融
+        3. 肝移植
+        4. TACE
+        5. TACE + 消融
+        6. 手术切除 + 消融
+        7. 系统抗肿瘤治疗
+        8. TACE + 系统抗肿瘤治疗
+        9. 放疗
+        10. 对症支持
+        11. 舒缓疗护
+
+    In addition to assigning a recommendation score to each treatment option, you also need to provide a step-by-step reasoning process. Specifically, if your reasoning involves important key conclusions, you need to mark them with special tags, such as 'The ecog-ps score of the patient is <ps>1</ps> and child-pugh rank is <child_pugh>B</child_pugh> and patient <cancer_thrombus>有</cancer_thrombus> cancer thrombus, and thus this patient meets the CNLC stage <staging>III_a</staging>, ... we suggest <treatment>TACE + 系统抗肿瘤治疗</treatment>'. Below is all the content that needs to be marked (if it appears in the reasoning), and the value of each content should be contained in a special label with the corresponding key, in the format <key>value</key> (like <staging>III_a</staging>):
+    {REFERENCE_TREE}
+    In addition, if you have referenced clinical knowledge from the guideline mentioned below as a basis for your decision during the reasoning process, you need to use the special tag <cite></cite> to indicate the citation, for example: <cite>In most cases, surgical resection is not the preferred treatment for CNLC stage III a liver cancer, especially in patients with portal vein tumor thrombus.</cite>.:
+    {REFERENCE_NAME}
+
+    Also, you should give following labels accroding to your thinking process:
+    1. Your CNLC staging: Ia/Ib/IIa/IIb/IIIa/IIIb/IV
+    2. Does this patient fall within the indications for each treatment regimen: Yes/No
+    3. Does this patient fall within the contraindications of any of the treatment options: Yes/No
+        
+# Output Format
+    Your output needs to be output in JSON format that can be parsed by json.loads() in python. The details are as follows:
+    {{"thinking": <Your-step-by-step-thinking-progress>,"scores": {{"手术切除": <score-on-手术切除>, "消融": <score-on-消融>, "肝移植": <score-on-肝移植>, "TACE": <score-on-TACE>, "TACE + 消融": <score-on-TACE + 消融>, "手术切除 + 消融": <score-on-手术切除 + 消融>, "系统抗肿瘤治疗": <score-on-系统抗肿瘤治疗>, "TACE + 系统抗肿瘤治疗": <score-on-TACE + 系统抗肿瘤治疗>, "放疗": <score-on-放疗>, "对症支持": <score-on-对症支持>, "舒缓疗护": <score-on-舒缓疗护>}},"staging": <your-prediction-on-cnlc-staging>, "indication": {{"手术切除": <indication-on-手术切除>, "消融": <indication-on-消融>, "肝移植": <indication-on-肝移植>, "TACE": <indication-on-TACE>, "TACE + 消融": <indication-on-TACE + 消融>, "手术切除 + 消融": <indication-on-手术切除 + 消融>, "系统抗肿瘤治疗": <indication-on-系统抗肿瘤治疗>, "TACE + 系统抗肿瘤治疗": <indication-on-TACE + 系统抗肿瘤治疗>, "放疗": <indication-on-放疗>, "对症支持": <indication-on-对症支持>, "舒缓疗护": <indication-on-舒缓疗护>}},"contraindication": {{"手术切除": <contraindication-on-手术切除>, "消融": <contraindication-on-消融>, "肝移植": <contraindication-on-肝移植>, "TACE": <contraindication-on-TACE>, "TACE + 消融": <contraindication-on-TACE + 消融>, "手术切除 + 消融": <contraindication-on-手术切除 + 消融>, "系统抗肿瘤治疗": <contraindication-on-系统抗肿瘤治疗>, "TACE + 系统抗肿瘤治疗": <contraindication-on-TACE + 系统抗肿瘤治疗>, "放疗": <contraindication-on-放疗>, "对症支持": <contraindication-on-对症支持>, "舒缓疗护": <contraindication-on-舒缓疗护>}}}}
+    Each treatment is scored from 0 to 1, with the specific rules as follows:
+        First, reason through the question step by step to arrive at an answer (how much you recommend each treatment).
+        Then, thoroughly assess your confidence in that answer by evaluating your thinking process so far.
+        Finally, classify your confidence into one of the following classes based on how likely your answer is to be correct:
+        - "Almost no chance" (0.0–0.1)
+        - "Highly unlikely" (0.1–0.2)
+        - "Chances are slight" (0.2–0.3)
+        - "Unlikely" (0.3–0.4)
+        - "Less than even" (0.4–0.5)
+        - "Better than even" (0.5–0.6)
+        - "Likely" (0.6–0.7)
+        - "Very good chance" (0.7–0.8)
+        - "Highly likely" (0.8–0.9)
+        - "Almost certain" (0.9–1.0)
+        Each category reflects the probability that your answer is correct.
+    The indication and contraindication for each treatment can be marked as "Yes" or "No". "Yes" indicates that the patient meets the indications for the treatment or falls under the contraindications of the treatment; "No" indicates that the patient does not meet the indications for the treatment or does not fall under the contraindications of the treatment.
+
+# Input
+    Below is all the patient's relevant information:
+    {INPUT_DATA}

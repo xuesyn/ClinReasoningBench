@@ -1,0 +1,183 @@
+@import url("/assets/styles/workspace.css");
+
+.node-label {
+  font-size: 12px;
+}
+
+.node-label tspan.key {
+  font-size: 12px;
+}
+
+.node-label tspan.value {
+  font-size: 11px;
+}
+
+.nodeInfoCard {
+  position: absolute;
+  min-width: 220px;
+  max-width: 320px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(47, 111, 237, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 14px 32px rgba(16, 24, 40, 0.18);
+  padding: 12px;
+  z-index: 20;
+}
+
+.nodeInfoHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.nodeInfoTitle {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.nodeInfoClose {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0;
+}
+
+.nodeInfoMeta {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 6px 10px;
+  font-size: 12px;
+}
+
+.nodeInfoMetaLabel {
+  color: var(--muted);
+}
+
+.nodeInfoMetaValue {
+  color: var(--text);
+  word-break: break-word;
+}
+
+.link {
+  opacity: 0.72;
+}
+
+.link.active {
+  stroke: var(--accent);
+  stroke-width: 2.4px;
+  opacity: 1;
+}
+
+.link.dim {
+  opacity: 0.14;
+}
+
+.node-circle.active {
+  stroke: var(--accent);
+  stroke-width: 2.8px;
+  fill: #eef4ff;
+}
+
+.node-circle.dim,
+.node-label.dim {
+  opacity: 0.22;
+}
+
+.ruleCard {
+  border: 1px solid rgba(31, 35, 48, 0.08);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: border-color 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.ruleCard:hover {
+  transform: translateY(-1px);
+  border-color: rgba(47, 111, 237, 0.24);
+}
+
+.ruleCard.active {
+  border-color: rgba(47, 111, 237, 0.5);
+  background: rgba(47, 111, 237, 0.06);
+  box-shadow: 0 0 0 1px rgba(47, 111, 237, 0.14);
+}
+
+.ruleTitle {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.ruleMeta {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.ruleExpr {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: #f7f8fb;
+  border-radius: 8px;
+  padding: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.guidanceCard {
+  border: 1px solid rgba(31, 35, 48, 0.08);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.guidanceHead {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.guidanceId {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.guidanceTag {
+  font-size: 11px;
+  color: var(--muted);
+  background: #f1f4fb;
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+.guidanceSection {
+  margin-bottom: 8px;
+}
+
+.guidanceSection:last-child {
+  margin-bottom: 0;
+}
+
+.guidanceLabel {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.guidanceValue {
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

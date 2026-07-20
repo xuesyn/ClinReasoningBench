@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/styles/base.css" />
+    <link rel="stylesheet" href="/assets/styles/site-shell.css" />
+    <link rel="stylesheet" href="/assets/styles/gt.css" />
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body data-page="gt">
+    <header class="pagebar">
+      <div class="pagebar__title" data-page-title></div>
+      <nav class="site-nav" data-site-nav></nav>
+    </header>
+
+    <div class="topbar">
+      <div class="group grow">
+        <select class="select flex" id="referenceSelect" title="Select reference"></select>
+        <select class="select flex" id="gtSelect" title="Select GT file"></select>
+        <button class="btn primary" id="openButton">Open</button>
+      </div>
+
+      <div class="group">
+        <span class="muted small">auto</span>
+        <select class="select compact" id="autoFilter">
+          <option value="all">All</option>
+          <option value="1">1</option>
+          <option value="0">0</option>
+        </select>
+      </div>
+
+      <div class="group">
+        <span class="muted small">manual</span>
+        <select class="select compact" id="manualFilter">
+          <option value="all">All</option>
+          <option value="null">null</option>
+          <option value="1">1</option>
+          <option value="0">0</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <button class="btn" id="applyFilterButton">Apply</button>
+      </div>
+
+      <div class="right">
+        <span class="chip" id="fileChip">Not opened</span>
+        <span class="chip">
+          <span class="statusDot" id="loadDot"></span>
+          <span id="loadText">Idle</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="col" id="col1" style="width:23%;">
+        <div class="panel" style="height:34%;">
+          <div class="panelHeader">
+            <div class="panelTitle">seer_data</div>
+            <div class="panelControls">
+              <div class="toggleGroup" id="toggleSeer">
+                <div class="toggle active" data-mode="tree">Tree</div>
+                <div class="toggle" data-mode="raw">Raw</div>
+              </div>
+            </div>
+          </div>
+          <div class="panelBody mono" id="seerBox"></div>
+        </div>
+
+        <div class="resizerH" id="resH1_1"></div>
+
+        <div class="panel" style="height:40%;">
+          <div class="panelHeader">
+            <div class="panelTitle">emr</div>
+            <div class="panelControls">
+              <div class="toggleGroup" id="toggleEmr">
+                <div class="toggle active" data-mode="tree">Tree</div>
+                <div class="toggle" data-mode="raw">Raw</div>
+              </div>
+            </div>
+          </div>
+          <div class="panelBody mono" id="emrBox"></div>
+        </div>
+
+        <div class="resizerH" id="resH1_2"></div>
+
+        <div class="panel" style="height:26%;">
+          <div class="panelHeader">
+            <div class="panelTitle">treatment_gt</div>
+          </div>
+          <div class="panelBody" id="gtTableBox"></div>
+        </div>
+      </div>
+
+      <div class="resizerV" id="resV1"></div>
+
+      <div class="col" id="col2" style="width:48%;">
+        <div class="panel" style="height:50%;">
+          <div class="panelHeader">
+            <div class="panelTitle">thinking</div>
+            <div class="panelControls">
+              <div class="toggleGroup" id="toggleThinking">
+                <div class="toggle active" data-mode="raw">Raw</div>
+                <div class="toggle" data-mode="md">MD</div>
+              </div>
+            </div>
+          </div>
+          <div class="panelBody" id="thinkingBox"></div>
+        </div>
+
+        <div class="resizerH" id="resH2_1"></div>
+
+        <div class="panel" style="height:50%;">
+          <div class="panelHeader">
+            <div class="panelTitle">thinking_tag</div>
+            <div class="panelControls">
+              <div class="toggleGroup" id="toggleThinkingTag">
+                <div class="toggle active" data-mode="raw">Raw</div>
+                <div class="toggle" data-mode="md">MD</div>
+              </div>
+            </div>
+          </div>
+          <div class="panelBody" id="thinkingTagBox"></div>
+        </div>
+      </div>
+
+      <div class="resizerV" id="resV2"></div>
+
+      <div class="col" id="col3" style="width:29%;">
+        <div class="panel" style="height:43%;">
+          <div class="panelHeader">
+            <div class="panelTitle">
+              Subgraph
+              <button class="btn miniBtn" id="btnResetGraph" title="Reset view">⟲ Reset</button>
+            </div>
+            <span class="muted small" id="graphMeta">-</span>
+          </div>
+          <div class="panelBody graphStage" id="graphWrap">
+            <div class="graphPlaceholder" id="graphPlaceholder">Waiting for subgraph data…</div>
+            <svg class="graphCanvas" id="graphSvg"></svg>
+          </div>
+        </div>
+
+        <div class="resizerH" id="resH3_1"></div>
+
+        <div class="panel" style="height:27%;">
+          <div class="panelHeader">
+            <div class="panelTitle">gt_check</div>
+            <div class="panelControls">
+              <div class="toggleGroup" id="toggleGtCheck">
+                <div class="toggle active" data-mode="readable">Read</div>
+                <div class="toggle" data-mode="raw">Raw</div>
+              </div>
+            </div>
+          </div>
+          <div class="panelBody mono" id="gtCheckBox"></div>
+        </div>
+
+        <div class="resizerH" id="resH3_2"></div>
+
+        <div class="panel" style="height:30%;">
+          <div class="panelHeader">
+            <div class="panelTitle">Status & Check</div>
+          </div>
+          <div class="panelBody">
+            <div class="mono small" id="statusBox" style="margin-bottom:8px;"></div>
+
+            <div class="subSection">
+              <div class="subTitle">Comment</div>
+              <div class="commentBox"><span id="commentText" class="mono">-</span></div>
+            </div>
+
+            <div class="subSection">
+              <div class="statusRow">
+                <div class="statusGroup">
+                  <div class="subTitle">Manual Check</div>
+                  <div class="radio-group" id="manualRadioGroup">
+                    <button class="radio-btn" data-val="null" disabled>Null</button>
+                    <button class="radio-btn" data-val="0" disabled>0 (Fail)</button>
+                    <button class="radio-btn" data-val="1" disabled>1 (Pass)</button>
+                    <button class="radio-btn" data-val="2" disabled>2</button>
+                    <button class="radio-btn" data-val="3" disabled>3</button>
+                  </div>
+                </div>
+
+                <div class="statusGroup statusGroupRight">
+                  <div class="subTitle">Auto Check</div>
+                  <span id="autoCheckShow" class="chip autoChip">-</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottombar">
+      <div class="bottomLeft">
+        <button class="btn navBtn" id="prevButton" disabled title="Previous">←</button>
+      </div>
+
+      <div class="bottomCenter">
+        <button class="btn" id="randomButton" disabled>Random</button>
+        <span class="chip" id="posChip">0/0</span>
+
+        <div class="group">
+          <input class="input" id="positionInput" type="number" min="1" placeholder="pos" style="width:64px; text-align:center;" />
+          <button class="btn" id="jumpButton" disabled>Jump</button>
+        </div>
+
+        <span class="chip" id="uuidChip">uuid: -</span>
+      </div>
+
+      <div class="bottomRight">
+        <button class="btn navBtn" id="nextButton" disabled title="Next">→</button>
+      </div>
+    </div>
+
+    <div id="guidanceTooltip"></div>
+    <script type="module" src="/assets/js/site-shell.js"></script>
+    <script type="module" src="/assets/js/gt-page.js"></script>
+  </body>
+</html>

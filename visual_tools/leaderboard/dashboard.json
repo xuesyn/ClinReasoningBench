@@ -1,0 +1,1348 @@
+{
+  "source_file": "results_filtered_latest.xlsx",
+  "models": [
+    {
+      "name": "GPT-5.2",
+      "id": "gpt-5-2",
+      "family": "frontier",
+      "access": "closed"
+    },
+    {
+      "name": "Claude 4.5 sonnet",
+      "id": "claude-4-5-sonnet",
+      "family": "frontier",
+      "access": "closed"
+    },
+    {
+      "name": "Gemini 3 pro preview",
+      "id": "gemini-3-pro-preview",
+      "family": "frontier",
+      "access": "closed"
+    },
+    {
+      "name": "Baichuan-M3 (plus)",
+      "id": "baichuan-m3-plus",
+      "family": "medical",
+      "access": "open"
+    },
+    {
+      "name": "medgemma",
+      "id": "medgemma",
+      "family": "medical",
+      "access": "open"
+    },
+    {
+      "name": "GLM-4.7",
+      "id": "glm-4-7",
+      "family": "general",
+      "access": "open"
+    },
+    {
+      "name": "kimi-k2.5",
+      "id": "kimi-k2-5",
+      "family": "general",
+      "access": "open"
+    },
+    {
+      "name": "Deepseek-v3.2",
+      "id": "deepseek-v3-2",
+      "family": "general",
+      "access": "open"
+    },
+    {
+      "name": "Qwen-Max",
+      "id": "qwen-max",
+      "family": "general",
+      "access": "closed"
+    },
+    {
+      "name": "Qwen3.5-Plus",
+      "id": "qwen-3-5-plus",
+      "family": "general",
+      "access": "open"
+    }
+  ],
+  "datasets": [
+    {
+      "id": "cnlc",
+      "label": "CNLC",
+      "source": "seer",
+      "disease": "肝癌",
+      "guideline": "cnlc",
+      "task_family": "oncology",
+      "sample_size": 4103,
+      "metrics": [
+        {
+          "key": "parse_error_rate",
+          "label": "Parse Error Rate",
+          "raw_label": "parse_error_rate",
+          "group": "robustness",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.01267365342432366,
+            "Claude 4.5 sonnet": 0.02656592737021692,
+            "Gemini 3 pro preview": 0.07214233487691933,
+            "Baichuan-M3 (plus)": 0.005605654399220083,
+            "medgemma": 0.5283938581525713,
+            "GLM-4.7": 0.001706068730197416,
+            "kimi-k2.5": 0.001949792834511333,
+            "Deepseek-v3.2": 0.0002437241043139166,
+            "Qwen-Max": 0.0002437241043139166,
+            "Qwen3.5-Plus": 0.02559103095296125
+          }
+        },
+        {
+          "key": "pw_ece_mem",
+          "label": "PW-ECE Mem",
+          "raw_label": "PW ECE Mem",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.04210119283398409,
+            "Claude 4.5 sonnet": 0.04158954799529709,
+            "Gemini 3 pro preview": 0.0884653900437829,
+            "Baichuan-M3 (plus)": 0.1123647599737742,
+            "medgemma": 0.45163896178438,
+            "GLM-4.7": 0.04860510192599561,
+            "kimi-k2.5": 0.06917384099626171,
+            "Deepseek-v3.2": 0.03740699511729966,
+            "Qwen-Max": 0.05629879045963741,
+            "Qwen3.5-Plus": 0.1275122134147601
+          }
+        },
+        {
+          "key": "pw_ece_rt",
+          "label": "PW-ECE RT",
+          "raw_label": "PW ECE RT",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.03528375009235928,
+            "Claude 4.5 sonnet": 0.05257066755961655,
+            "Gemini 3 pro preview": 0.1230462855216121,
+            "Baichuan-M3 (plus)": 0.1368862067474789,
+            "medgemma": 0.4618446205383101,
+            "GLM-4.7": 0.05944134323544865,
+            "kimi-k2.5": 0.09159598781113323,
+            "Deepseek-v3.2": 0.05451491818671936,
+            "Qwen-Max": 0.05756134069819289,
+            "Qwen3.5-Plus": 0.1465681533196347
+          }
+        },
+        {
+          "key": "ndcg_ece",
+          "label": "NDCG ECE",
+          "raw_label": "NDCG ECE",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.08916642724287688,
+            "Claude 4.5 sonnet": 0.1325965583403644,
+            "Gemini 3 pro preview": 0.1986679866002837,
+            "Baichuan-M3 (plus)": 0.2256105727365472,
+            "medgemma": 0.5113928831323082,
+            "GLM-4.7": 0.1492917161812677,
+            "kimi-k2.5": 0.1478176233081435,
+            "Deepseek-v3.2": 0.1468306181930829,
+            "Qwen-Max": 0.110591818959306,
+            "Qwen3.5-Plus": 0.2279579518930238
+          }
+        },
+        {
+          "key": "indication_hit",
+          "label": "Indication/Contra Hit Score",
+          "raw_label": "禁忌证和适应证(命中分)",
+          "group": "labeling",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.7639421266036098,
+            "Claude 4.5 sonnet": 0.7440564553652658,
+            "Gemini 3 pro preview": 0.7486096647685933,
+            "Baichuan-M3 (plus)": 0.5743801652892555,
+            "medgemma": 0.3439057895553122,
+            "GLM-4.7": 0.7545255134823873,
+            "kimi-k2.5": 0.7561540336339386,
+            "Deepseek-v3.2": 0.7632552677641781,
+            "Qwen-Max": 0.734252099350818,
+            "Qwen3.5-Plus": 0.7126271242771485
+          }
+        },
+        {
+          "key": "indication_exact",
+          "label": "Indication/Contra Exact Match",
+          "raw_label": "禁忌证和适应证（完全匹配分）",
+          "group": "labeling",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.006580550816475749,
+            "Claude 4.5 sonnet": 0.006336826712161832,
+            "Gemini 3 pro preview": 0.01559834267609067,
+            "Baichuan-M3 (plus)": 0.006580550816475749,
+            "medgemma": 0.00365586156470875,
+            "GLM-4.7": 0.006824274920789666,
+            "kimi-k2.5": 0.002437241043139166,
+            "Deepseek-v3.2": 0.00073117231294175,
+            "Qwen-Max": 0.004143309773336583,
+            "Qwen3.5-Plus": 0.006336826712161832
+          }
+        },
+        {
+          "key": "treatment_ndcg",
+          "label": "Treatment NDCG",
+          "raw_label": "治疗 ndcg",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.8167548105284956,
+            "Claude 4.5 sonnet": 0.7932700469144336,
+            "Gemini 3 pro preview": 0.810087217548448,
+            "Baichuan-M3 (plus)": 0.6845248854153776,
+            "medgemma": 0.3470999665573797,
+            "GLM-4.7": 0.783792565371861,
+            "kimi-k2.5": 0.8027925898386351,
+            "Deepseek-v3.2": 0.8236023512411159,
+            "Qwen-Max": 0.823864097261845,
+            "Qwen3.5-Plus": 0.7545050765355628
+          }
+        },
+        {
+          "key": "staging_accuracy",
+          "label": "Staging Accuracy",
+          "raw_label": "分期(gt missing staging rate 0.0056)",
+          "group": "staging",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.3633926395320497,
+            "Claude 4.5 sonnet": 0.4601511089446746,
+            "Gemini 3 pro preview": 0.9090909090909091,
+            "Baichuan-M3 (plus)": 0.3994638069705094,
+            "medgemma": 0.2130148671703631,
+            "GLM-4.7": 0.666585425298562,
+            "kimi-k2.5": 0.5625152327565196,
+            "Deepseek-v3.2": 0.7058250060931026,
+            "Qwen-Max": 0.2956373385327809,
+            "Qwen3.5-Plus": 0.8501096758469413
+          }
+        },
+        {
+          "key": "pred-missing-staging-rate",
+          "label": "Pred missing staging rate",
+          "raw_label": "Pred missing staging rate",
+          "group": "other",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.01267365342432366,
+            "Claude 4.5 sonnet": 0.02875944430904217,
+            "Gemini 3 pro preview": 0.07238605898123325,
+            "Baichuan-M3 (plus)": 0.007067999025103583,
+            "medgemma": 0.537899098220814,
+            "GLM-4.7": 0.001949792834511333,
+            "kimi-k2.5": 0.00219351693882525,
+            "Deepseek-v3.2": 0.0002437241043139166,
+            "Qwen-Max": 0.0002437241043139166,
+            "Qwen3.5-Plus": 0.02559103095296125
+          }
+        },
+        {
+          "key": "reasoning_score",
+          "label": "Reasoning (Graph + Citation)",
+          "raw_label": "推理（graph+citation）",
+          "group": "reasoning",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.4107024602330709,
+            "Claude 4.5 sonnet": 0.3596336888220846,
+            "Gemini 3 pro preview": 0.3208024024250692,
+            "Baichuan-M3 (plus)": 0.06355155870602035,
+            "medgemma": 0.06589187388180827,
+            "GLM-4.7": 0.4327515234589287,
+            "kimi-k2.5": 0.3594227974564335,
+            "Deepseek-v3.2": 0.3990851515650503,
+            "Qwen-Max": 0.3687379591867334,
+            "Qwen3.5-Plus": 0.416331141703899
+          }
+        }
+      ]
+    },
+    {
+      "id": "bclc",
+      "label": "BCLC",
+      "source": "seer",
+      "disease": "肝癌",
+      "guideline": "bclc",
+      "task_family": "oncology",
+      "sample_size": 3689,
+      "metrics": [
+        {
+          "key": "parse_error_rate",
+          "label": "Parse Error Rate",
+          "raw_label": "parse_error_rate",
+          "group": "robustness",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.007047980482515587,
+            "Claude 4.5 sonnet": 0.0,
+            "Gemini 3 pro preview": 0.1000271076172404,
+            "Baichuan-M3 (plus)": 0.0005421523448088912,
+            "medgemma": 0.09352127947953374,
+            "GLM-4.7": 0.01328273244781784,
+            "kimi-k2.5": 0.000813228517213337,
+            "Deepseek-v3.2": 0.0,
+            "Qwen-Max": 0.0,
+            "Qwen3.5-Plus": 0.0
+          }
+        },
+        {
+          "key": "pw_ece_mem",
+          "label": "PW-ECE Mem",
+          "raw_label": "PW ECE Mem",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.09113519981452936,
+            "Claude 4.5 sonnet": 0.08137495340786555,
+            "Gemini 3 pro preview": 0.1194393823088759,
+            "Baichuan-M3 (plus)": 0.03986327319354072,
+            "medgemma": 0.1629785543111811,
+            "GLM-4.7": 0.1588337495145253,
+            "kimi-k2.5": 0.08910057272560065,
+            "Deepseek-v3.2": 0.06695020627799872,
+            "Qwen-Max": 0.1057169076298526,
+            "Qwen3.5-Plus": 0.06573818598774409
+          }
+        },
+        {
+          "key": "pw_ece_rt",
+          "label": "PW-ECE RT",
+          "raw_label": "PW ECE RT",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.08766785363770857,
+            "Claude 4.5 sonnet": 0.07932311207540102,
+            "Gemini 3 pro preview": 0.1271133273244593,
+            "Baichuan-M3 (plus)": 0.04208517404732081,
+            "medgemma": 0.1714721214180006,
+            "GLM-4.7": 0.1658743902712315,
+            "kimi-k2.5": 0.09694367500562241,
+            "Deepseek-v3.2": 0.07509654554299453,
+            "Qwen-Max": 0.1121678020968736,
+            "Qwen3.5-Plus": 0.06917280322464309
+          }
+        },
+        {
+          "key": "ndcg_ece",
+          "label": "NDCG ECE",
+          "raw_label": "NDCG ECE",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.09126013577902817,
+            "Claude 4.5 sonnet": 0.04546913138928628,
+            "Gemini 3 pro preview": 0.2168994044900922,
+            "Baichuan-M3 (plus)": 0.101690268123735,
+            "medgemma": 0.2811254121659887,
+            "GLM-4.7": 0.2488396148672057,
+            "kimi-k2.5": 0.1713723833153823,
+            "Deepseek-v3.2": 0.1745069052805786,
+            "Qwen-Max": 0.2060874148664642,
+            "Qwen3.5-Plus": 0.182537269322385
+          }
+        },
+        {
+          "key": "indication_hit",
+          "label": "Indication/Contra Hit Score",
+          "raw_label": "禁忌证和适应证(命中分)",
+          "group": "labeling",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.7284053699681258,
+            "Claude 4.5 sonnet": 0.7958708410050259,
+            "Gemini 3 pro preview": 0.7590604276901352,
+            "Baichuan-M3 (plus)": 0.6711614557846592,
+            "medgemma": 0.7283345302930583,
+            "GLM-4.7": 0.7739169665911306,
+            "kimi-k2.5": 0.8158534088122001,
+            "Deepseek-v3.2": 0.7834731350995924,
+            "Qwen-Max": 0.7696345400330218,
+            "Qwen3.5-Plus": 0.7342197387263802
+          }
+        },
+        {
+          "key": "indication_exact",
+          "label": "Indication/Contra Exact Match",
+          "raw_label": "禁忌证和适应证（完全匹配分）",
+          "group": "labeling",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.08023854703171591,
+            "Claude 4.5 sonnet": 0.07834101382488479,
+            "Gemini 3 pro preview": 0.1816210355109786,
+            "Baichuan-M3 (plus)": 0.06912442396313365,
+            "medgemma": 0.0219571699647601,
+            "GLM-4.7": 0.1512605042016807,
+            "kimi-k2.5": 0.1439414475467606,
+            "Deepseek-v3.2": 0.1032800216860938,
+            "Qwen-Max": 0.08755760368663594,
+            "Qwen3.5-Plus": 0.07915424234209813
+          }
+        },
+        {
+          "key": "treatment_ndcg",
+          "label": "Treatment NDCG",
+          "raw_label": "治疗 ndcg",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.777369093879157,
+            "Claude 4.5 sonnet": 0.8005966221617778,
+            "Gemini 3 pro preview": 0.690281299769164,
+            "Baichuan-M3 (plus)": 0.8034479091543091,
+            "medgemma": 0.5819934089385111,
+            "GLM-4.7": 0.6253169635660032,
+            "kimi-k2.5": 0.7053280216011482,
+            "Deepseek-v3.2": 0.6998758930406667,
+            "Qwen-Max": 0.7503681793983616,
+            "Qwen3.5-Plus": 0.7001158310428068
+          }
+        },
+        {
+          "key": "staging_accuracy",
+          "label": "Staging Accuracy",
+          "raw_label": "分期(gt missing staging rate 0.0011)",
+          "group": "staging",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.7668744917321767,
+            "Claude 4.5 sonnet": 0.7937110328002168,
+            "Gemini 3 pro preview": 0.7178097045269721,
+            "Baichuan-M3 (plus)": 0.6993765248034698,
+            "medgemma": 0.5974518839793982,
+            "GLM-4.7": 0.7010029818378964,
+            "kimi-k2.5": 0.6703713743561941,
+            "Deepseek-v3.2": 0.7156410951477366,
+            "Qwen-Max": 0.7584711303876389,
+            "Qwen3.5-Plus": 0.6896177825969098
+          }
+        },
+        {
+          "key": "pred-missing-staging-rate",
+          "label": "Pred missing staging rate",
+          "raw_label": "Pred missing staging rate",
+          "group": "other",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.007047980482515587,
+            "Claude 4.5 sonnet": 0.000813228517213337,
+            "Gemini 3 pro preview": 0.1000271076172404,
+            "Baichuan-M3 (plus)": 0.05529953917050692,
+            "medgemma": 0.0967741935483871,
+            "GLM-4.7": 0.0154513418270534,
+            "kimi-k2.5": 0.000813228517213337,
+            "Deepseek-v3.2": 0.003252914068853348,
+            "Qwen-Max": 0.0,
+            "Qwen3.5-Plus": 0.0
+          }
+        },
+        {
+          "key": "reasoning_score",
+          "label": "Reasoning (Graph + Citation)",
+          "raw_label": "推理（graph+citation）",
+          "group": "reasoning",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.2429587354369468,
+            "Claude 4.5 sonnet": 0.4283885813311039,
+            "Gemini 3 pro preview": 0.2488685699146461,
+            "Baichuan-M3 (plus)": 0.04415004399633862,
+            "medgemma": 0.09506677052620736,
+            "GLM-4.7": 0.2665789144184753,
+            "kimi-k2.5": 0.2964073055275128,
+            "Deepseek-v3.2": 0.2719510487450663,
+            "Qwen-Max": 0.3407043257721559,
+            "Qwen3.5-Plus": 0.3283204237172404
+          }
+        }
+      ]
+    },
+    {
+      "id": "nsclc",
+      "label": "NSCLC",
+      "source": "seer",
+      "disease": "肺癌",
+      "guideline": "中国肺癌2024",
+      "task_family": "oncology",
+      "sample_size": 4219,
+      "metrics": [
+        {
+          "key": "parse_error_rate",
+          "label": "Parse Error Rate",
+          "raw_label": "parse_error_rate",
+          "group": "robustness",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.001659160938611045,
+            "Claude 4.5 sonnet": 0.02109504621948329,
+            "Gemini 3 pro preview": 0.05759658686892628,
+            "Baichuan-M3 (plus)": 0.006162597771983883,
+            "medgemma": 0.2443707039582839,
+            "GLM-4.7": 0.0002370229912301493,
+            "kimi-k2.5": 0.000711068973690448,
+            "Deepseek-v3.2": 0.0,
+            "Qwen-Max": 0.001422137947380896,
+            "Qwen3.5-Plus": 0.004029390850912538
+          }
+        },
+        {
+          "key": "pw_ece_mem",
+          "label": "PW-ECE Mem",
+          "raw_label": "PW ECE Mem",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.04882056295465427,
+            "Claude 4.5 sonnet": 0.115976683874261,
+            "Gemini 3 pro preview": 0.1646515549060623,
+            "Baichuan-M3 (plus)": 0.1376557462567747,
+            "medgemma": 0.3514979997874218,
+            "GLM-4.7": 0.1185552112901285,
+            "kimi-k2.5": 0.1073825529094014,
+            "Deepseek-v3.2": 0.1005429408006429,
+            "Qwen-Max": 0.1123892502415308,
+            "Qwen3.5-Plus": 0.2262367919686151
+          }
+        },
+        {
+          "key": "pw_ece_rt",
+          "label": "PW-ECE RT",
+          "raw_label": "PW ECE RT",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.05179120641639605,
+            "Claude 4.5 sonnet": 0.1158723529731274,
+            "Gemini 3 pro preview": 0.1692068458871167,
+            "Baichuan-M3 (plus)": 0.1486732346487991,
+            "medgemma": 0.3627719140551255,
+            "GLM-4.7": 0.1243184518620921,
+            "kimi-k2.5": 0.1145824036143422,
+            "Deepseek-v3.2": 0.108377769613494,
+            "Qwen-Max": 0.1221782084741521,
+            "Qwen3.5-Plus": 0.2328979575633313
+          }
+        },
+        {
+          "key": "ndcg_ece",
+          "label": "NDCG ECE",
+          "raw_label": "NDCG ECE",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.07505920027761118,
+            "Claude 4.5 sonnet": 0.1283795006753987,
+            "Gemini 3 pro preview": 0.1916423830010458,
+            "Baichuan-M3 (plus)": 0.1738191193100082,
+            "medgemma": 0.3786923217219075,
+            "GLM-4.7": 0.147772999165388,
+            "kimi-k2.5": 0.1408231389548171,
+            "Deepseek-v3.2": 0.1362910378128981,
+            "Qwen-Max": 0.1462520678817447,
+            "Qwen3.5-Plus": 0.2557664912834428
+          }
+        },
+        {
+          "key": "indication_hit",
+          "label": "Indication/Contra Hit Score",
+          "raw_label": "禁忌证和适应证(命中分)",
+          "group": "labeling",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.7597179426404396,
+            "Claude 4.5 sonnet": 0.7901358931816403,
+            "Gemini 3 pro preview": 0.7473927470964704,
+            "Baichuan-M3 (plus)": 0.6843248795133154,
+            "medgemma": 0.6023346764636177,
+            "GLM-4.7": 0.76678912854547,
+            "kimi-k2.5": 0.7444299597060938,
+            "Deepseek-v3.2": 0.7675989570988422,
+            "Qwen-Max": 0.7226040925969869,
+            "Qwen3.5-Plus": 0.5903057596586889
+          }
+        },
+        {
+          "key": "indication_exact",
+          "label": "Indication/Contra Exact Match",
+          "raw_label": "禁忌证和适应证（完全匹配分）",
+          "group": "labeling",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.1329698980801138,
+            "Claude 4.5 sonnet": 0.1998103816070159,
+            "Gemini 3 pro preview": 0.2130836691159042,
+            "Baichuan-M3 (plus)": 0.08153590898317137,
+            "medgemma": 0.1848779331595165,
+            "GLM-4.7": 0.1912775539227305,
+            "kimi-k2.5": 0.1284664612467409,
+            "Deepseek-v3.2": 0.19056648494904,
+            "Qwen-Max": 0.1481393695188433,
+            "Qwen3.5-Plus": 0.0
+          }
+        },
+        {
+          "key": "treatment_ndcg",
+          "label": "Treatment NDCG",
+          "raw_label": "治疗 ndcg",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.8298099600123818,
+            "Claude 4.5 sonnet": 0.8128624192301669,
+            "Gemini 3 pro preview": 0.7859671546828539,
+            "Baichuan-M3 (plus)": 0.8193035037688712,
+            "medgemma": 0.6041613190621947,
+            "GLM-4.7": 0.8157877016296798,
+            "kimi-k2.5": 0.8332896511591061,
+            "Deepseek-v3.2": 0.802546005711894,
+            "Qwen-Max": 0.823068577117427,
+            "Qwen3.5-Plus": 0.7222672655081542
+          }
+        },
+        {
+          "key": "staging_accuracy",
+          "label": "Staging Accuracy",
+          "raw_label": "分期(gt missing staging rate 0.0009)",
+          "group": "staging",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.9390850912538516,
+            "Claude 4.5 sonnet": 0.7670063996207632,
+            "Gemini 3 pro preview": 0.8281583313581418,
+            "Baichuan-M3 (plus)": 0.5847357193647784,
+            "medgemma": 0.4546100971794264,
+            "GLM-4.7": 0.8355060440862764,
+            "kimi-k2.5": 0.8073003081298886,
+            "Deepseek-v3.2": 0.8502014695425456,
+            "Qwen-Max": 0.8712965157620289,
+            "Qwen3.5-Plus": 0.8966579758236549
+          }
+        },
+        {
+          "key": "pred-missing-staging-rate",
+          "label": "Pred missing staging rate",
+          "raw_label": "Pred missing staging rate",
+          "group": "other",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.002370229912301493,
+            "Claude 4.5 sonnet": 0.1585683811329699,
+            "Gemini 3 pro preview": 0.1305996681678123,
+            "Baichuan-M3 (plus)": 0.2547997155724105,
+            "medgemma": 0.4403887177056174,
+            "GLM-4.7": 0.1315477601327329,
+            "kimi-k2.5": 0.1275183692818203,
+            "Deepseek-v3.2": 0.07703247214979853,
+            "Qwen-Max": 0.04100497748281583,
+            "Qwen3.5-Plus": 0.01848779331595165
+          }
+        },
+        {
+          "key": "reasoning_score",
+          "label": "Reasoning (Graph + Citation)",
+          "raw_label": "推理（graph+citation）",
+          "group": "reasoning",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.3987505275030188,
+            "Claude 4.5 sonnet": 0.4204164452245887,
+            "Gemini 3 pro preview": 0.3417703375125545,
+            "Baichuan-M3 (plus)": 0.02308467967710526,
+            "medgemma": 0.0893544285818719,
+            "GLM-4.7": 0.3206129252554394,
+            "kimi-k2.5": 0.3848499575307249,
+            "Deepseek-v3.2": 0.2973872869236492,
+            "Qwen-Max": 0.3233599738964403,
+            "Qwen3.5-Plus": 0.3644781488962711
+          }
+        }
+      ]
+    },
+    {
+      "id": "acs",
+      "label": "Acute Coronary Syndromes",
+      "source": "mimic",
+      "disease": "心梗",
+      "guideline": "Aha https://www.ahajournals.org/doi/10.1161/CIR.0000000000001309",
+      "task_family": "acute",
+      "sample_size": 3611,
+      "metrics": [
+        {
+          "key": "parse_error_rate",
+          "label": "Parse Error Rate",
+          "raw_label": "parse_error_rate",
+          "group": "robustness",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.0,
+            "Claude 4.5 sonnet": 0.0,
+            "Gemini 3 pro preview": 0.288285793409028,
+            "Baichuan-M3 (plus)": 0.142896704513985,
+            "medgemma": 0.2342841318194406,
+            "GLM-4.7": 0.002769315978953199,
+            "kimi-k2.5": 0.0005538631957906397,
+            "Deepseek-v3.2": 0.003877042370534478,
+            "Qwen-Max": 0.0,
+            "Qwen3.5-Plus": 0.0005538631957906397
+          }
+        },
+        {
+          "key": "iou_ece",
+          "label": "IoU ECE",
+          "raw_label": "IOU ECE",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.24507169651174,
+            "Claude 4.5 sonnet": 0.2282698328779763,
+            "Gemini 3 pro preview": 0.5276697624662327,
+            "Baichuan-M3 (plus)": 0.361183265179382,
+            "medgemma": 0.390549604707734,
+            "GLM-4.7": 0.440575034676399,
+            "kimi-k2.5": 0.1244093424652824,
+            "Deepseek-v3.2": 0.2230877802464651,
+            "Qwen-Max": 0.4101094818901531,
+            "Qwen3.5-Plus": 0.2128788178497344
+          }
+        },
+        {
+          "key": "f1_ece",
+          "label": "F1 ECE",
+          "raw_label": "F1 ECE",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.1395110279598083,
+            "Claude 4.5 sonnet": 0.2294262617884394,
+            "Gemini 3 pro preview": 0.4564899332812816,
+            "Baichuan-M3 (plus)": 0.269916695770605,
+            "medgemma": 0.3607657856719272,
+            "GLM-4.7": 0.3534433014043464,
+            "kimi-k2.5": 0.06522773697630004,
+            "Deepseek-v3.2": 0.1387179658692306,
+            "Qwen-Max": 0.3377009482500072,
+            "Qwen3.5-Plus": 0.1345367247439307
+          }
+        },
+        {
+          "key": "indication_hit",
+          "label": "Indication/Contra Hit Score",
+          "raw_label": "禁忌证和适应证(命中分)",
+          "group": "labeling",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.538650420012926,
+            "Claude 4.5 sonnet": 0.4966491276654746,
+            "Gemini 3 pro preview": 0.4172251453890958,
+            "Baichuan-M3 (plus)": 0.4789070432936458,
+            "medgemma": 0.4640265854334074,
+            "GLM-4.7": 0.5303055478630173,
+            "kimi-k2.5": 0.5466998984584193,
+            "Deepseek-v3.2": 0.5470783716422115,
+            "Qwen-Max": 0.5231053263177399,
+            "Qwen3.5-Plus": 0.629622449921541
+          }
+        },
+        {
+          "key": "indication_exact",
+          "label": "Indication/Contra Exact Match",
+          "raw_label": "禁忌证和适应证（完全匹配分）",
+          "group": "labeling",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.0,
+            "Claude 4.5 sonnet": 0.0,
+            "Gemini 3 pro preview": 0.0,
+            "Baichuan-M3 (plus)": 0.0,
+            "medgemma": 0.0,
+            "GLM-4.7": 0.0,
+            "kimi-k2.5": 0.0,
+            "Deepseek-v3.2": 0.0,
+            "Qwen-Max": 0.0,
+            "Qwen3.5-Plus": 0.0005538631957906397
+          }
+        },
+        {
+          "key": "procedure_acc",
+          "label": "Procedure Accuracy",
+          "raw_label": "治疗（proc_acc）",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.2740699713837348,
+            "Claude 4.5 sonnet": 0.2061755746330656,
+            "Gemini 3 pro preview": 0.2788701190805872,
+            "Baichuan-M3 (plus)": 0.2444251031899883,
+            "medgemma": 0.197921034932943,
+            "GLM-4.7": 0.2075602326225423,
+            "kimi-k2.5": 0.2102833933351795,
+            "Deepseek-v3.2": 0.203590879719376,
+            "Qwen-Max": 0.1849903073940737,
+            "Qwen3.5-Plus": 0.3882581002492385
+          }
+        },
+        {
+          "key": "procedure_recall",
+          "label": "Procedure Recall",
+          "raw_label": "proc_recall",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.2850087695006,
+            "Claude 4.5 sonnet": 0.1885904181667128,
+            "Gemini 3 pro preview": 0.2746699898458413,
+            "Baichuan-M3 (plus)": 0.187298070709868,
+            "medgemma": 0.1734053355487861,
+            "GLM-4.7": 0.1785285701098495,
+            "kimi-k2.5": 0.1992522846856826,
+            "Deepseek-v3.2": 0.1630665558940275,
+            "Qwen-Max": 0.1440967414381981,
+            "Qwen3.5-Plus": 0.3992892088987354
+          }
+        },
+        {
+          "key": "med_acc",
+          "label": "Medication Accuracy",
+          "raw_label": "med_acc",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.7379903997046069,
+            "Claude 4.5 sonnet": 0.5521561102979032,
+            "Gemini 3 pro preview": 0.5544510160752163,
+            "Baichuan-M3 (plus)": 0.6518442325697931,
+            "medgemma": 0.5804766520288568,
+            "GLM-4.7": 0.6164916063351393,
+            "kimi-k2.5": 0.7699107225277301,
+            "Deepseek-v3.2": 0.7155121256478248,
+            "Qwen-Max": 0.4944626867639855,
+            "Qwen3.5-Plus": 0.7860301196080784
+          }
+        },
+        {
+          "key": "med_recall",
+          "label": "Medication Recall",
+          "raw_label": "med_recall",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.5416307314950362,
+            "Claude 4.5 sonnet": 0.5488817238332601,
+            "Gemini 3 pro preview": 0.5055419287626417,
+            "Baichuan-M3 (plus)": 0.6508769500600007,
+            "medgemma": 0.6334526776648065,
+            "GLM-4.7": 0.5465812134878866,
+            "kimi-k2.5": 0.660958578945287,
+            "Deepseek-v3.2": 0.671698250056046,
+            "Qwen-Max": 0.4431479210349313,
+            "Qwen3.5-Plus": 0.8221182629795216
+          }
+        },
+        {
+          "key": "all_acc",
+          "label": "Overall Treatment Accuracy",
+          "raw_label": "all_acc",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.6582455284338453,
+            "Claude 4.5 sonnet": 0.5175330969224679,
+            "Gemini 3 pro preview": 0.4851111602634749,
+            "Baichuan-M3 (plus)": 0.5983189592646861,
+            "medgemma": 0.5394913365350968,
+            "GLM-4.7": 0.5597940376187412,
+            "kimi-k2.5": 0.7077161714865975,
+            "Deepseek-v3.2": 0.6541859529743801,
+            "Qwen-Max": 0.4587824680319843,
+            "Qwen3.5-Plus": 0.7111008011035767
+          }
+        },
+        {
+          "key": "all_recall",
+          "label": "Overall Treatment Recall",
+          "raw_label": "all_recall",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.4842408337838975,
+            "Claude 4.5 sonnet": 0.4652287103339471,
+            "Gemini 3 pro preview": 0.4529037157187284,
+            "Baichuan-M3 (plus)": 0.5468980364231026,
+            "medgemma": 0.5323386873442302,
+            "GLM-4.7": 0.459818214186814,
+            "kimi-k2.5": 0.5569776872255446,
+            "Deepseek-v3.2": 0.5540288052819252,
+            "Qwen-Max": 0.3692085031187787,
+            "Qwen3.5-Plus": 0.7362889187799151
+          }
+        },
+        {
+          "key": "reasoning_score",
+          "label": "Reasoning (Graph + Citation)",
+          "raw_label": "推理（graph+citation）",
+          "group": "reasoning",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.08549241859351492,
+            "Claude 4.5 sonnet": 0.2100037690439927,
+            "Gemini 3 pro preview": 0.1541171559044861,
+            "Baichuan-M3 (plus)": 0.03530727026152173,
+            "medgemma": 0.02667947181974144,
+            "GLM-4.7": 0.1351369632507486,
+            "kimi-k2.5": 0.2029473107729969,
+            "Deepseek-v3.2": 0.1279938648684165,
+            "Qwen-Max": 0.1242174416849386,
+            "Qwen3.5-Plus": 0.2127441196768991
+          }
+        }
+      ]
+    },
+    {
+      "id": "ais",
+      "label": "Acute Ischemic Stroke",
+      "source": "mimic",
+      "disease": "脑梗",
+      "guideline": "Aha https://www.ahajournals.org/doi/10.1161/STROKEAHA.119.027708",
+      "task_family": "acute",
+      "sample_size": 3657,
+      "metrics": [
+        {
+          "key": "parse_error_rate",
+          "label": "Parse Error Rate",
+          "raw_label": "parse_error_rate",
+          "group": "robustness",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.0,
+            "Claude 4.5 sonnet": 0.00109379272627837,
+            "Gemini 3 pro preview": 0.002461033634126333,
+            "Baichuan-M3 (plus)": 0.155045118949959,
+            "medgemma": 0.1730926989335521,
+            "GLM-4.7": 0.006015859994531037,
+            "kimi-k2.5": 0.0005468963631391851,
+            "Deepseek-v3.2": 0.0005468963631391851,
+            "Qwen-Max": 0.0,
+            "Qwen3.5-Plus": 0.007383100902378999
+          }
+        },
+        {
+          "key": "iou_ece",
+          "label": "IoU ECE",
+          "raw_label": "IOU ECE",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.1240444939255439,
+            "Claude 4.5 sonnet": 0.1406873552115601,
+            "Gemini 3 pro preview": 0.2019877078531954,
+            "Baichuan-M3 (plus)": 0.427885726675718,
+            "medgemma": 0.5106675864469257,
+            "GLM-4.7": 0.3539170366898243,
+            "kimi-k2.5": 0.2011983679128934,
+            "Deepseek-v3.2": 0.2157170853028069,
+            "Qwen-Max": 0.3731335425428881,
+            "Qwen3.5-Plus": 0.2587585590662006
+          }
+        },
+        {
+          "key": "f1_ece",
+          "label": "F1 ECE",
+          "raw_label": "F1 ECE",
+          "group": "calibration",
+          "direction": "lower",
+          "values": {
+            "GPT-5.2": 0.06122201986024781,
+            "Claude 4.5 sonnet": 0.1094237391448285,
+            "Gemini 3 pro preview": 0.1160758050627027,
+            "Baichuan-M3 (plus)": 0.3372829036487796,
+            "medgemma": 0.4108941175799387,
+            "GLM-4.7": 0.2428474937088749,
+            "kimi-k2.5": 0.1294338982197929,
+            "Deepseek-v3.2": 0.1226265804198552,
+            "Qwen-Max": 0.2504375756713696,
+            "Qwen3.5-Plus": 0.1523446125169001
+          }
+        },
+        {
+          "key": "indication_hit",
+          "label": "Indication/Contra Hit Score",
+          "raw_label": "禁忌证和适应证(命中分)",
+          "group": "labeling",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.8326240771123872,
+            "Claude 4.5 sonnet": 0.8906719989062073,
+            "Gemini 3 pro preview": 0.9028062619633579,
+            "Baichuan-M3 (plus)": 0.7260305578342904,
+            "medgemma": 0.717553664205633,
+            "GLM-4.7": 0.8239848236259228,
+            "kimi-k2.5": 0.8823916461580531,
+            "Deepseek-v3.2": 0.8887493163795461,
+            "Qwen-Max": 0.8695993984140006,
+            "Qwen3.5-Plus": 0.8379306808859721
+          }
+        },
+        {
+          "key": "indication_exact",
+          "label": "Indication/Contra Exact Match",
+          "raw_label": "禁忌证和适应证（完全匹配分）",
+          "group": "labeling",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.03718895269346459,
+            "Claude 4.5 sonnet": 0.06426032266885426,
+            "Gemini 3 pro preview": 0.1145747880776593,
+            "Baichuan-M3 (plus)": 0.07027618266338528,
+            "medgemma": 0.03199343724364233,
+            "GLM-4.7": 0.02625102543068089,
+            "kimi-k2.5": 0.0257041290675417,
+            "Deepseek-v3.2": 0.05742411812961444,
+            "Qwen-Max": 0.02023516543614985,
+            "Qwen3.5-Plus": 0.05004101722723544
+          }
+        },
+        {
+          "key": "procedure_acc",
+          "label": "Procedure Accuracy",
+          "raw_label": "治疗（proc_acc）",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.9246604685078847,
+            "Claude 4.5 sonnet": 0.9288806854434419,
+            "Gemini 3 pro preview": 0.9480676328502415,
+            "Baichuan-M3 (plus)": 0.7324309543341538,
+            "medgemma": 0.6645930179564306,
+            "GLM-4.7": 0.9117218120499497,
+            "kimi-k2.5": 0.9354206544526479,
+            "Deepseek-v3.2": 0.8961124783520191,
+            "Qwen-Max": 0.9030626196335795,
+            "Qwen3.5-Plus": 0.9353978671041837
+          }
+        },
+        {
+          "key": "procedure_recall",
+          "label": "Procedure Recall",
+          "raw_label": "proc_recall",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.9357715796189955,
+            "Claude 4.5 sonnet": 0.9318977303800929,
+            "Gemini 3 pro preview": 0.9549038373894813,
+            "Baichuan-M3 (plus)": 0.7444216570959803,
+            "medgemma": 0.7238720262510255,
+            "GLM-4.7": 0.8850925166347644,
+            "kimi-k2.5": 0.9242594111749154,
+            "Deepseek-v3.2": 0.8983957706681249,
+            "Qwen-Max": 0.8901558654634945,
+            "Qwen3.5-Plus": 0.9410081122960533
+          }
+        },
+        {
+          "key": "med_acc",
+          "label": "Medication Accuracy",
+          "raw_label": "med_acc",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.5631255127153405,
+            "Claude 4.5 sonnet": 0.5575152675234716,
+            "Gemini 3 pro preview": 0.6850879591650716,
+            "Baichuan-M3 (plus)": 0.4422249567040377,
+            "medgemma": 0.3055920153130985,
+            "GLM-4.7": 0.4645383283201169,
+            "kimi-k2.5": 0.4421474797192599,
+            "Deepseek-v3.2": 0.5373347917236351,
+            "Qwen-Max": 0.3795460760185945,
+            "Qwen3.5-Plus": 0.5626150761097443
+          }
+        },
+        {
+          "key": "med_recall",
+          "label": "Medication Recall",
+          "raw_label": "med_recall",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.4881258382488898,
+            "Claude 4.5 sonnet": 0.4999596338398642,
+            "Gemini 3 pro preview": 0.5855990468377671,
+            "Baichuan-M3 (plus)": 0.3932484341836269,
+            "medgemma": 0.2932848939411696,
+            "GLM-4.7": 0.3858881206297118,
+            "kimi-k2.5": 0.4003216271468937,
+            "Deepseek-v3.2": 0.5048426370821776,
+            "Qwen-Max": 0.2775342786827615,
+            "Qwen3.5-Plus": 0.5268369858197587
+          }
+        },
+        {
+          "key": "all_acc",
+          "label": "Overall Treatment Accuracy",
+          "raw_label": "all_acc",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.7806216388660987,
+            "Claude 4.5 sonnet": 0.7892054160101722,
+            "Gemini 3 pro preview": 0.8499065718712959,
+            "Baichuan-M3 (plus)": 0.6193575269867316,
+            "medgemma": 0.4782131641032392,
+            "GLM-4.7": 0.74619386173939,
+            "kimi-k2.5": 0.7085055405810108,
+            "Deepseek-v3.2": 0.7327643006888265,
+            "Qwen-Max": 0.7581988879773945,
+            "Qwen3.5-Plus": 0.7392215841764634
+          }
+        },
+        {
+          "key": "all_recall",
+          "label": "Overall Treatment Recall",
+          "raw_label": "all_recall",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.6789543645368091,
+            "Claude 4.5 sonnet": 0.6922684696884842,
+            "Gemini 3 pro preview": 0.7438989587266852,
+            "Baichuan-M3 (plus)": 0.5426152714298752,
+            "medgemma": 0.481549083948593,
+            "GLM-4.7": 0.600956309057213,
+            "kimi-k2.5": 0.6395135877703566,
+            "Deepseek-v3.2": 0.6824099031646196,
+            "Qwen-Max": 0.5422849633883277,
+            "Qwen3.5-Plus": 0.7148540958631184
+          }
+        },
+        {
+          "key": "reasoning_score",
+          "label": "Reasoning (Graph + Citation)",
+          "raw_label": "推理（graph+citation）",
+          "group": "reasoning",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.3408299550865888,
+            "Claude 4.5 sonnet": 0.4189937040749473,
+            "Gemini 3 pro preview": 0.3302013108080828,
+            "Baichuan-M3 (plus)": 0.0606915568426862,
+            "medgemma": 0.04713884463484154,
+            "GLM-4.7": 0.3060369803457922,
+            "kimi-k2.5": 0.3961088854900442,
+            "Deepseek-v3.2": 0.3629937900832043,
+            "Qwen-Max": 0.3958292029320772,
+            "Qwen3.5-Plus": 0.3739114305828244
+          }
+        }
+      ]
+    }
+  ],
+  "metric_catalog": [
+    {
+      "key": "f1_ece",
+      "label": "F1 ECE",
+      "group": "calibration",
+      "direction": "lower",
+      "datasets": [
+        "acs",
+        "ais"
+      ]
+    },
+    {
+      "key": "iou_ece",
+      "label": "IoU ECE",
+      "group": "calibration",
+      "direction": "lower",
+      "datasets": [
+        "acs",
+        "ais"
+      ]
+    },
+    {
+      "key": "ndcg_ece",
+      "label": "NDCG ECE",
+      "group": "calibration",
+      "direction": "lower",
+      "datasets": [
+        "cnlc",
+        "bclc",
+        "nsclc"
+      ]
+    },
+    {
+      "key": "pw_ece_mem",
+      "label": "PW-ECE Mem",
+      "group": "calibration",
+      "direction": "lower",
+      "datasets": [
+        "cnlc",
+        "bclc",
+        "nsclc"
+      ]
+    },
+    {
+      "key": "pw_ece_rt",
+      "label": "PW-ECE RT",
+      "group": "calibration",
+      "direction": "lower",
+      "datasets": [
+        "cnlc",
+        "bclc",
+        "nsclc"
+      ]
+    },
+    {
+      "key": "indication_exact",
+      "label": "Indication/Contra Exact Match",
+      "group": "labeling",
+      "direction": "higher",
+      "datasets": [
+        "cnlc",
+        "bclc",
+        "nsclc",
+        "acs",
+        "ais"
+      ]
+    },
+    {
+      "key": "indication_hit",
+      "label": "Indication/Contra Hit Score",
+      "group": "labeling",
+      "direction": "higher",
+      "datasets": [
+        "cnlc",
+        "bclc",
+        "nsclc",
+        "acs",
+        "ais"
+      ]
+    },
+    {
+      "key": "pred-missing-staging-rate",
+      "label": "Pred missing staging rate",
+      "group": "other",
+      "direction": "higher",
+      "datasets": [
+        "cnlc",
+        "bclc",
+        "nsclc"
+      ]
+    },
+    {
+      "key": "reasoning_score",
+      "label": "Reasoning (Graph + Citation)",
+      "group": "reasoning",
+      "direction": "higher",
+      "datasets": [
+        "cnlc",
+        "bclc",
+        "nsclc",
+        "acs",
+        "ais"
+      ]
+    },
+    {
+      "key": "parse_error_rate",
+      "label": "Parse Error Rate",
+      "group": "robustness",
+      "direction": "lower",
+      "datasets": [
+        "cnlc",
+        "bclc",
+        "nsclc",
+        "acs",
+        "ais"
+      ]
+    },
+    {
+      "key": "staging_accuracy",
+      "label": "Staging Accuracy",
+      "group": "staging",
+      "direction": "higher",
+      "datasets": [
+        "cnlc",
+        "bclc",
+        "nsclc"
+      ]
+    },
+    {
+      "key": "med_acc",
+      "label": "Medication Accuracy",
+      "group": "treatment",
+      "direction": "higher",
+      "datasets": [
+        "acs",
+        "ais"
+      ]
+    },
+    {
+      "key": "med_recall",
+      "label": "Medication Recall",
+      "group": "treatment",
+      "direction": "higher",
+      "datasets": [
+        "acs",
+        "ais"
+      ]
+    },
+    {
+      "key": "all_acc",
+      "label": "Overall Treatment Accuracy",
+      "group": "treatment",
+      "direction": "higher",
+      "datasets": [
+        "acs",
+        "ais"
+      ]
+    },
+    {
+      "key": "all_recall",
+      "label": "Overall Treatment Recall",
+      "group": "treatment",
+      "direction": "higher",
+      "datasets": [
+        "acs",
+        "ais"
+      ]
+    },
+    {
+      "key": "procedure_acc",
+      "label": "Procedure Accuracy",
+      "group": "treatment",
+      "direction": "higher",
+      "datasets": [
+        "acs",
+        "ais"
+      ]
+    },
+    {
+      "key": "procedure_recall",
+      "label": "Procedure Recall",
+      "group": "treatment",
+      "direction": "higher",
+      "datasets": [
+        "acs",
+        "ais"
+      ]
+    },
+    {
+      "key": "treatment_ndcg",
+      "label": "Treatment NDCG",
+      "group": "treatment",
+      "direction": "higher",
+      "datasets": [
+        "cnlc",
+        "bclc",
+        "nsclc"
+      ]
+    }
+  ]
+}

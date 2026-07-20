@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/styles/base.css" />
+    <link rel="stylesheet" href="/assets/styles/site-shell.css" />
+    <link rel="stylesheet" href="/assets/styles/reference.css" />
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  </head>
+  <body data-page="reference">
+    <header class="pagebar">
+      <div class="pagebar__title" data-page-title></div>
+      <nav class="site-nav" data-site-nav></nav>
+    </header>
+
+    <div class="topbar">
+      <div class="group grow">
+        <select class="select flex" id="referenceSelect" title="Select reference"></select>
+        <button class="btn primary" id="openButton">Open</button>
+      </div>
+
+      <div class="right">
+        <span class="chip" id="fileChip">Not opened</span>
+        <span class="chip">
+          <span class="statusDot" id="loadDot"></span>
+          <span id="loadText">Idle</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="col" id="colLeft" style="width:56%;">
+        <div class="panel" style="height:58%;">
+          <div class="panelHeader">
+            <div class="panelTitle">
+              Full Graph
+              <button class="btn miniBtn" id="btnResetGraph" title="Reset view">⟲ Reset</button>
+              <button class="btn miniBtn" id="btnExportGraph" title="Export current graph">Export SVG</button>
+            </div>
+            <span class="muted small" id="graphMeta">-</span>
+          </div>
+          <div class="panelBody graphStage" id="graphWrap">
+            <div class="graphPlaceholder" id="graphPlaceholder">Waiting for reference data…</div>
+            <svg class="graphCanvas" id="graphSvg"></svg>
+            <div id="nodeInfoCard" class="nodeInfoCard" hidden></div>
+          </div>
+        </div>
+
+        <div class="resizerH" id="resHLeft"></div>
+
+        <div class="panel" style="height:42%;">
+          <div class="panelHeader">
+            <div class="panelTitle">Rules</div>
+            <div class="panelControls">
+              <span class="chip smallChip" id="ruleHint">Click a rule to highlight related nodes and paths</span>
+            </div>
+          </div>
+          <div class="panelBody" id="rulesBox"></div>
+        </div>
+      </div>
+
+      <div class="resizerV" id="resVMain"></div>
+
+      <div class="col" id="colRight" style="width:44%;">
+        <div class="panel" style="height:100%;">
+          <div class="panelHeader">
+            <div class="panelTitle">Guidance Items</div>
+            <div class="panelControls">
+              <span class="chip smallChip" id="guidanceMeta">-</span>
+            </div>
+          </div>
+          <div class="panelBody" id="guidanceBox"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/assets/js/site-shell.js"></script>
+    <script type="module" src="/assets/js/reference-page.js"></script>
+  </body>
+</html>

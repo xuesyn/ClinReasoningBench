@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/styles/base.css" />
+    <link rel="stylesheet" href="/assets/styles/layout.css" />
+    <link rel="stylesheet" href="/assets/styles/site-shell.css" />
+  </head>
+  <body data-page="home" class="home-page">
+    <div class="page-shell">
+      <header class="pagebar">
+        <div class="pagebar__title" data-page-title></div>
+        <nav class="site-nav" data-site-nav></nav>
+      </header>
+
+      <main class="home-main">
+        <h1 class="home-heading" data-page-heading></h1>
+        <section class="home-card-grid">
+          <a class="home-card" href="/reference">
+            <h2>Reference</h2>
+            <p>Inspect the reference for each disease, including the graph definition, node rules, and guidance entries.</p>
+          </a>
+          <a class="home-card" href="/gt">
+            <h2>Ground Truth</h2>
+            <p>Pick a reference and GT file to browse samples, thinking, subgraphs, and rule validation.</p>
+          </a>
+          <a class="home-card" href="/data">
+            <h2>Model Data</h2>
+            <p>Inspect model prediction outputs against the ground truth and graph-structured results.</p>
+          </a>
+          <a class="home-card" href="/results">
+            <h2>Results</h2>
+            <p>View the final statistics, per-metric breakdowns, and overall benchmark results.</p>
+          </a>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/assets/js/site-shell.js"></script>
+  </body>
+</html>

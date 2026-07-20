@@ -1,0 +1,57 @@
+# Instruction
+    Imagine you are a senior emergency room physician. You have a series of patient case details and need to use this information to determine the most suitable treatment plan (may include multiple treatment methods) for each patient.
+
+    The case information you are given includes:
+        1. Patient's basic information
+        2. Patient's laboratory test results
+        3. Patient's imaging test reports
+
+    The treatment options you are presented with include (If necessary, you can choose to perform multiple treatments simultaneously, and provide a list.):
+        1. analgesics
+        2. aspirin therapy
+        3. P2Y12 inhibitors
+        4. intravenous glycoprotein IIb/IIIa inhibitors
+        5. parenteral anticoagulation
+        6. lipid management
+        7. beta-blocker therapy
+        8. RAAS inhibitors
+        9. fibrinolytic therapy
+        10. PCI
+        11. CABG surgery
+        12. immediate invasive
+        13. early invasive
+        14. routine invasive
+        15. selective invasive
+
+    In addition to providing a recommended treatment list, you also need to provide a step-by-step reasoning process. Specifically, if your reasoning involves important key conclusions, you need to mark them with special tags, such as 'The patient has <classification>STEMI</classification>, and <treatment>PPCI</treatment> is recommended as the first-line treatment, along with <treatment>aspirin therapy</treatment>. Based on the imaging report, ..., it is determined that <treatment>CABG surgery</treatment> should be performed subsequently for revascularization.'. Below is all the content that needs to be marked (if it appears in the reasoning), and the value of each content should be contained in a special label with the corresponding key, in the format <key>value</key> (like <classification>STEMI</classification>):
+    {REFERENCE_TREE}
+    In addition, if you have referenced clinical knowledge from the guideline mentioned below as a basis for your decision during the reasoning process, you need to use the special tag <cite></cite> to indicate the citation, for example: <cite>An oral P2Y12 inhibitor should be administered in addition to aspirin to reduce MACE in patients with ACS.</cite>.:
+    {REFERENCE_NAME}
+
+    Also, you should give following labels accroding to your thinking process:
+    1. Does this patient fall within the indications for each treatment regimen: Yes/No
+    2. Does this patient fall within the contraindications of any of the treatment options: Yes/No
+        
+# Output Format
+    Your output needs to be output in JSON format that can be parsed by json.loads() in python. The details are as follows:
+    {{"thinking": <Your-step-by-step-thinking-progress>, "suggested_treatment_list": [<all-your-suggested-treatment-list>], "confidence_score": <your-confidence-level-for-provided-treatmentlist>, "indication": {{"analgesics": <indication-on-analgesics>,"aspirin therapy": <indication-on-aspirin therapy>,"P2Y12 inhibitors": <indication-on-P2Y12 inhibitors>,"intravenous glycoprotein IIb/IIIa inhibitors": <indication-on-intravenous glycoprotein IIb/IIIa inhibitors>,"parenteral anticoagulation": <indication-on-parenteral anticoagulation>,"lipid management": <indication-on-lipid management>,"beta-blocker therapy": <indication-on-beta-blocker therapy>,"RAAS inhibitors": <indication-on-RAAS inhibitors>,"fibrinolytic therapy": <indication-on-fibrinolytic therapy>,"PCI": <indication-on-PCI>,"CABG surgery": <indication-on-CABG surgery>}},"contraindication": {{"analgesics": <contraindication-on-analgesics>,"aspirin therapy": <contraindication-on-aspirin therapy>,"P2Y12 inhibitors": <contraindication-on-P2Y12 inhibitors>,"intravenous glycoprotein IIb/IIIa inhibitors": <contraindication-on-intravenous glycoprotein IIb/IIIa inhibitors>,"parenteral anticoagulation": <contraindication-on-parenteral anticoagulation>,"lipid management": <contraindication-on-lipid management>,"beta-blocker therapy": <contraindication-on-beta-blocker therapy>,"RAAS inhibitors": <contraindication-on-RAAS inhibitors>,"fibrinolytic therapy": <contraindication-on-fibrinolytic therapy>,"PCI": <contraindication-on-PCI>,"CABG surgery": <contraindication-on-CABG surgery>}}}}
+    Your confidence level in providing the recommended treatment list needs to be rated from 0 to 1, with the specific rules as follows:
+        First, reason through the question step by step to arrive at an answer (how much you recommend each treatment).
+        Then, thoroughly assess your confidence in that answer by evaluating your thinking process so far.
+        Finally, classify your confidence into one of the following classes based on how likely your answer is to be correct:
+        - "Almost no chance" (0.0–0.1)
+        - "Highly unlikely" (0.1–0.2)
+        - "Chances are slight" (0.2–0.3)
+        - "Unlikely" (0.3–0.4)
+        - "Less than even" (0.4–0.5)
+        - "Better than even" (0.5–0.6)
+        - "Likely" (0.6–0.7)
+        - "Very good chance" (0.7–0.8)
+        - "Highly likely" (0.8–0.9)
+        - "Almost certain" (0.9–1.0)
+        Each category reflects the probability that your answer is correct.
+    The indication and contraindication for each treatment can be marked as "Yes" or "No". "Yes" indicates that the patient meets the indications for the treatment or falls under the contraindications of the treatment; "No" indicates that the patient does not meet the indications for the treatment or does not fall under the contraindications of the treatment.
+
+# Input
+    Below is all the patient's relevant information:
+    {INPUT_DATA}

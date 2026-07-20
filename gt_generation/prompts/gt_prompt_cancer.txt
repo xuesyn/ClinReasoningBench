@@ -1,0 +1,129 @@
+# Role
+You are a senior clinician specializing in {disease_domain}, and also an expert annotator for offline academic evaluation and benchmark data construction. You will receive a patient's EMR (Electronic Medical Record) and clinical guideline background knowledge (including: staging decision tree, rule descriptions, and reference guideline entries). Your task is: based solely on the EMR + background knowledge, complete an academic-level analysis and recommendation scoring of treatment options, and provide reproducible, comprehensive natural language reasoning. Your output will serve as ground truth for research evaluation, model comparison, and educational analysis.
+
+# Important Notice
+- This task is for constructing a medical decision benchmark (ground truth), used for research evaluation, model comparison, and educational analysis.
+- All input data is de-identified, non-real-time, and NOT for clinical use.
+- Your output will NOT be used for any real patient's diagnosis or treatment, nor will it be directly provided to patients or used for clinical decisions.
+- You must NOT output any medical disclaimers or "please consult a doctor" prompts.
+
+# Input
+You will receive:
+1. Patient's EMR, including: basic information, laboratory test results, imaging examination reports
+2. Background knowledge, including: clinical staging and treatment decision tree, guideline reference entries
+
+# Task
+Analyze this case following {guideline_name} and produce a structured ground truth annotation.
+
+# Requirements
+
+# Critical Output Completeness Rule
+The `thinking` field MUST be complete and MUST include all 5 required reasoning parts:
+1. Evidence Extraction
+2. Staging Determination
+3. Treatment Listing
+4. Detailed Treatment Analysis for EACH of the 11 treatment options
+5. Final Comparison and ranking rationale
+
+Do NOT stop the `thinking` field after evidence extraction.
+Do NOT rely on `check_for_thinking` to summarize missing reasoning.
+`check_for_thinking` must verify the actual content already written in `thinking`; it must not claim coverage that is absent from `thinking`.
+If any of the 5 parts is missing, the output is invalid.
+
+## 1. Reasoning (thinking)
+Provide step-by-step natural language reasoning that MUST include all 5 parts:
+
+1. **Evidence Extraction**: Extract ALL key clinical findings from the EMR relevant to staging and treatment decisions
+2. **Staging Determination**: Based on the decision tree rules, determine the patient's clinical stage
+3. **Treatment Listing**: Based on the stage and guidelines, list all potentially applicable treatments
+4. **Detailed Treatment Analysis**: For EACH potential treatment, analyze:
+   - Does the patient meet the indications? Specify which conditions are met.
+   - Does the patient violate any contraindications? Specify which are violated.
+   - Is any decision-critical information missing from the EMR?
+5. **Final Comparison**: Comprehensive comparison of all options, final ranking with rationale
+
+## 2. Reasoning Self-Check (check_for_thinking)
+After writing the reasoning, provide a concise quality-control note that explicitly checks:
+- whether all decision-relevant patient evidence was covered
+- whether the staging conclusion is consistent with the decision rules
+- whether all stage-appropriate treatments were considered
+- whether the detailed analysis covered every recommended or discussed treatment
+- whether any unsupported assumptions or fabricated values were introduced
+
+## 3. Tagging Rules
+{tagging_guidance}
+
+## 3a. Guideline Citation Rule (MANDATORY)
+Whenever your reasoning relies on a specific entry from the supplied reference guidelines,
+mark it inline with `<knowledge_id='XXXX'>` immediately after the cited claim, where
+`XXXX` is the entry id taken verbatim from the reference list (e.g. `<knowledge_id='HCC-0023'>`).
+- Tag every occurrence — repeating the same id across different claims is expected.
+- Tag as many ids as you genuinely used; under-citation hurts downstream evaluation.
+- Use ONLY ids that appear in the supplied reference list; do NOT invent ids.
+- This requirement holds in BOTH one-step and two-step modes — `<knowledge_id>` tags
+  are NOT patient-fact tags and MUST be present in the first-pass reasoning.
+
+## 4. Treatment Scores
+For each treatment in the following list, provide a Comprehensive_Score (0.00-1.00):
+{treatment_list_formatted}
+
+Scoring rules:
+- 0.80-1.00: Strongly recommended (clear indications, no contraindications)
+- 0.50-0.79: Conditionally recommended (partial indications or minor concerns)
+- 0.30-0.49: Marginally applicable (limited indications or significant concerns)
+- 0.00-0.29: Not recommended (does not meet indications or has contraindications)
+- Scores must create a clear ranking among treatments
+
+## 5. Recommended Treatment List
+Provide `recommended_list` as a ranked list of the treatment names you would actually recommend **for the current patient state right now**.
+- Use only treatment names from the treatment list above.
+- Rank them from most recommended to least recommended.
+- Do not include treatments that are only rescue, future-line, or hypothetical down-staging options unless they are genuinely recommended for the patient's current state.
+
+## 6. Indication and Contraindication
+For each treatment, determine:
+- **indication**: "true" if the patient meets criteria for this treatment to be an applicable option (including as alternative/backup), "false" if the patient does not meet criteria
+- **contraindication**: "true" if a strict prohibition exists for this patient, "false" otherwise
+  - "Cautious/needs evaluation/missing information" does NOT count as strict contraindication → "false"
+  - Only mark "true" when the text explicitly identifies a hard prohibition
+
+# Output Format
+Your output must be valid JSON parseable by json.loads() in Python. Do not use code blocks or markdown.
+
+{{
+    "thinking": "<your step-by-step reasoning, following the rules above>",
+    "check_for_thinking": "<your QC note for the reasoning quality>",
+    "scores": {{
+{scores_template}
+    }},
+    "recommended_list": ["<treatment 1>", "<treatment 2>"],
+    "staging": "<your staging determination, must match an allowed staging value>",
+    "indication": {{
+{ind_template}
+    }},
+    "contraindication": {{
+{contra_template}
+    }}
+}}
+
+# Tag Schema (allowed keys and values for tagging)
+{node_guide}
+
+# Decision Rules
+{rules}
+
+# Reference Guidelines
+{reference}
+
+{example_section}
+
+# Notes
+1. {language_instruction}
+2. Your reasoning output should be as detailed as possible.
+3. All JSON keys and structure must be complete — no missing fields.
+4. Scores, recommended_list, and the natural language conclusion must be mutually consistent.
+5. Do not fabricate missing EMR values. If a guideline condition is missing from the EMR, discuss the uncertainty instead of inventing a number.
+
+# Input
+Patient information:
+{input_data}

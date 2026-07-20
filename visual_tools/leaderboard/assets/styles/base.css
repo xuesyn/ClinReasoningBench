@@ -1,0 +1,75 @@
+:root {
+  --bg: #f6f7fb;
+  --bg-strong: #edf2ff;
+  --panel: #ffffff;
+  --panel-2: #fbfbfd;
+  --panel2: var(--panel-2);
+  --line: #e6e8f0;
+  --border: var(--line);
+  --text: #1f2330;
+  --muted: #6c7486;
+  --accent: #2f6fed;
+  --accent-strong: #2452b8;
+  --success: #1b9b61;
+  --warning: #f59e0b;
+  --danger: #d63b3b;
+  --shadow: 0 10px 20px rgba(16, 24, 40, 0.06);
+  --radius: 14px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "PingFang SC", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  min-height: 100%;
+  color: var(--text);
+  background:
+    radial-gradient(900px 520px at 15% 8%, rgba(47, 111, 237, 0.08), transparent 60%),
+    radial-gradient(700px 520px at 90% 20%, rgba(27, 155, 97, 0.06), transparent 60%),
+    var(--bg);
+  font-family: var(--sans);
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+select,
+input,
+textarea {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+p,
+dl,
+dd,
+dt,
+pre {
+  margin: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.empty-state {
+  color: var(--muted);
+}

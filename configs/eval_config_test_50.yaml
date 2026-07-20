@@ -1,0 +1,48 @@
+experiment_name: cnlc_smoke_test_50
+output_dir: outputs
+
+# 定义需要评测的模型
+models:
+  <model_name>:
+    type: openai # 对应 med_eval_pipeline/models/ 下的文件名 (api_openai.py -> openai)
+    model_name: "<model_name>" # 请替换为你要使用的模型名称
+    api_key: "YOUR_API_KEY_HERE" # 请替换为你的 API Key
+    base_url: "" # 请替换为你的 base_url，例如 "https://api.openai.com/v1"
+    max_tokens: 8192
+    temperature: 0.1
+    max_retry: 3
+    timeout: 120
+
+# 定义需要评测的数据集
+datasets:
+  CNLC:
+    gt_path: ["eval_data/test_subset_50/test.jsonl"]
+    graph_def_path: "data/CNLC/cnlc_graph_beta_v1.json"
+ # reference_map_path: "data/CNLC/cnlc_guidance.jsonl" # 可选
+    prompt_template_path: "prompts/thinking_all_task_cite_version.txt" # 可选
+    reference_guideline_name: "原发性肝癌诊疗指南（2024 年版）"
+    task: "treatment"
+ # meta_path 将由 eval.py 自动生成并填充
+
+# 评测参数
+evaluation_params:
+  pass_k: 1 # pass@k 的 k 值
+  num_workers: 16 # 并行推理/评分的 worker 数量
+  skip_inference: false # 是否跳过推理，直接进行评分（用于重新评分）
+  save_interval: 10
+
+# 定义需要计算的 Metrics
+metrics:
+  GraphBasedMetric: {
+    use_hard_check_score: false,
+    knowledge_calc_method: 'semantic',
+    knowledge_db_path: 'data/CNLC/cnlc_guidance.jsonl',
+    knowledge_key: 'original_text',
+    model_local_path: 'ckpt/bge-large-zh-v1.5',
+    similarity_threshold: 0.8
+  }
+  treatment_score: {threshold: 0.5}
+  staging_score: {allowed_stagings: ['Ia', 'Ib', 'IIa', 'IIb', 'IIIa', 'IIIb', 'IV']}
+  Indication_and_contraindication_score: {}
+  treatment_calibration: {threshold: 0.5, k: null, top_m: 3, tau: 1, use_position_weighting: true}
+

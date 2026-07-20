@@ -1,0 +1,52 @@
+# Large data directories
+outputs/
+outputs_v0/
+eval_data/
+ckpt/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Backup files
+*.bak
+
+# Log files
+*.log
+
+# Generated images and documents
+*.png
+*.jpg
+*.svg
+*.pdf
+*.xlsx
+*.csv
+*.zip
+!visual_tools/results/results.xlsx
+
+# OS files
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Generated plots and analysis
+comparison_plots*/
+detailed_analysis_plots/
+curve_plots*/
+km_plots/
+res_survival/
+fix_inference_outputs*/
+restore_inference_outputs/
+other/
+ssh_key_cp/
+
+# Misc generated files
+treatment_index_cache.json
+all_models_evaluation_summary.csv
+FlagEmbedding
+tools/__MACOSX/
+tools/FlagEmbedding/

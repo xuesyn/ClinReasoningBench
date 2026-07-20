@@ -1,0 +1,58 @@
+# Instruction
+    Imagine you are a senior emergency room physician. You have a series of patient case details and need to use this information to determine the most suitable treatment plan (may include multiple treatment methods) for each patient.
+
+    The case information you are given includes:
+        1. Patient's basic information
+        2. Patient's laboratory test results
+        3. Patient's imaging test reports
+
+    The treatment options you are presented with include (If necessary, you can choose to perform multiple treatments simultaneously, and provide a list.):
+        1. IV_Alteplase
+        2. Mechanical_Thrombectomy_StentRetriever
+        3. Mechanical_Thrombectomy_Aspiration
+        4. Intra_arterial_Fibrinolysis
+        5. Antiplatelet_Aspirin
+        6. Dual_Antiplatelet
+        7. Emergency_CEA_CAS
+        8. Hemorrhagic_Management
+        9. Airway_Intubation
+        10. Hypoglycemia_Correction
+        11. Hyperglycemia_Control
+        12. Antipyretic_Therapy
+        13. Fluid_Resuscitation_Pressors
+        14. Antihypertensive_Pre_TPA
+        15. Active_BP_Reduction
+        16. NPO_Swallow_Precautions
+
+    In addition to providing a recommended treatment list, you also need to provide a step-by-step reasoning process. Specifically, if your reasoning involves important key conclusions, you need to mark them with special tags, such as 'The patient presented with <lkw_time>2.5</lkw_time> hours after symptom onset (within the thrombolysis window). CTA revealed occlusion of the <lvo_site>M1</lvo_site> segment of the middle cerebral artery (a large vessel occlusion). Upon admission, the systolic blood pressure was as high as <sbp>190</sbp> mmHg (exceeding the thrombolysis threshold). The decision-making logic was as follows: first, medication was used to lower the blood pressure below 185/110 mmHg to qualify for thrombolysis ... then, <treatment>IV_Alteplase</treatment> should be done for thrombolysis, followed by <treatment>Mechanical_Thrombectomy_StentRetriever</treatment>. Simultaneously, <treatment>NPO_Swallow_Precautions</treatment> was issued to prevent aspiration.'. Below is all the content that needs to be marked (if it appears in the reasoning), and the value of each content should be contained in a special label with the corresponding key, in the format <key>value</key> (like <nihss_score>3</nihss_score>):
+    {REFERENCE_TREE}
+    In addition, if you have referenced clinical knowledge from the guideline mentioned below as a basis for your decision during the reasoning process, you need to use the special tag <cite></cite> to indicate the citation, for example: <cite>When evaluating patients with AIS within 6 hours of last known normal who have LVO and an ASPECTS of ≥6, selection for mechanical thrombectomy based on CT and CTA or MRI and MRA is recommended in preference to performing additional imaging (like perfusion studies).</cite>.:
+    {REFERENCE_NAME}
+
+    Also, you should give following labels accroding to your thinking process:
+    1. Does this patient fall within the indications for each treatment regimen: Yes/No
+    2. Does this patient fall within the contraindications of any of the treatment options: Yes/No
+        
+# Output Format
+    Your output needs to be output in JSON format that can be parsed by json.loads() in python. The details are as follows:
+    {{"thinking": <Your-step-by-step-thinking-progress>, "suggested_treatment_list": [<all-your-suggested-treatment-list>], "confidence_score": <your-confidence-level-for-provided-treatmentlist>, "indication": {{"IV_Alteplase": <indication-on-IV_Alteplase>,"Mechanical_Thrombectomy_StentRetriever": <indication-on-Mechanical_Thrombectomy_StentRetriever>,"Mechanical_Thrombectomy_Aspiration": <indication-on-Mechanical_Thrombectomy_Aspiration>,"Intra_arterial_Fibrinolysis": <indication-on-Intra_arterial_Fibrinolysis>,"Antiplatelet_Aspirin": <indication-on-Antiplatelet_Aspirin>,"Dual_Antiplatelet": <indication-on-Dual_Antiplatelet>,"Emergency_CEA_CAS": <indication-on-Emergency_CEA_CAS>,"Hemorrhagic_Management": <indication-on-Hemorrhagic_Management>,"Airway_Intubation": <indication-on-Airway_Intubation>,"Hypoglycemia_Correction": <indication-on-Hypoglycemia_Correction>,"Hyperglycemia_Control": <indication-on-Hyperglycemia_Control>,"Antipyretic_Therapy": <indication-on-Antipyretic_Therapy>,"Fluid_Resuscitation_Pressors": <indication-on-Fluid_Resuscitation_Pressors>,"Antihypertensive_Pre_TPA": <indication-on-Antihypertensive_Pre_TPA>,"Active_BP_Reduction": <indication-on-Active_BP_Reduction>,"NPO_Swallow_Precautions": <indication-on-NPO_Swallow_Precautions>}},"contraindication": {{"IV_Alteplase": <contraindication-on-IV_Alteplase>,"Mechanical_Thrombectomy_StentRetriever": <contraindication-on-Mechanical_Thrombectomy_StentRetriever>,"Mechanical_Thrombectomy_Aspiration": <contraindication-on-Mechanical_Thrombectomy_Aspiration>,"Intra_arterial_Fibrinolysis": <contraindication-on-Intra_arterial_Fibrinolysis>,"Antiplatelet_Aspirin": <contraindication-on-Antiplatelet_Aspirin>,"Dual_Antiplatelet": <contraindication-on-Dual_Antiplatelet>,"Emergency_CEA_CAS": <contraindication-on-Emergency_CEA_CAS>,"Hemorrhagic_Management": <contraindication-on-Hemorrhagic_Management>,"Airway_Intubation": <contraindication-on-Airway_Intubation>,"Hypoglycemia_Correction": <contraindication-on-Hypoglycemia_Correction>,"Hyperglycemia_Control": <contracontraindication-on-Hyperglycemia_Control>,"Antipyretic_Therapy": <contraindication-on-Antipyretic_Therapy>,"Fluid_Resuscitation_Pressors": <contraindication-on-Fluid_Resuscitation_Pressors>,"Antihypertensive_Pre_TPA": <contraindication-on-Antihypertensive_Pre_TPA>,"Active_BP_Reduction": <contraindication-on-Active_BP_Reduction>,"NPO_Swallow_Precautions": <contraindication-on-NPO_Swallow_Precautions>}}}}
+    Your confidence level in providing the recommended treatment list needs to be rated from 0 to 1, with the specific rules as follows:
+        First, reason through the question step by step to arrive at an answer (how much you recommend each treatment).
+        Then, thoroughly assess your confidence in that answer by evaluating your thinking process so far.
+        Finally, classify your confidence into one of the following classes based on how likely your answer is to be correct:
+        - "Almost no chance" (0.0–0.1)
+        - "Highly unlikely" (0.1–0.2)
+        - "Chances are slight" (0.2–0.3)
+        - "Unlikely" (0.3–0.4)
+        - "Less than even" (0.4–0.5)
+        - "Better than even" (0.5–0.6)
+        - "Likely" (0.6–0.7)
+        - "Very good chance" (0.7–0.8)
+        - "Highly likely" (0.8–0.9)
+        - "Almost certain" (0.9–1.0)
+        Each category reflects the probability that your answer is correct.
+    The indication and contraindication for each treatment can be marked as "Yes" or "No". "Yes" indicates that the patient meets the indications for the treatment or falls under the contraindications of the treatment; "No" indicates that the patient does not meet the indications for the treatment or does not fall under the contraindications of the treatment.
+
+# Input
+    Below is all the patient's relevant information:
+    {INPUT_DATA}

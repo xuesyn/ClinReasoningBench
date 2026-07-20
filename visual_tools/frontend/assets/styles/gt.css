@@ -1,0 +1,144 @@
+@import url("/assets/styles/workspace.css");
+
+.guidance-tag {
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: help;
+  font-weight: 600;
+  background: rgba(47, 111, 237, 0.05);
+  border-radius: 3px;
+}
+
+.highlight-error {
+  background-color: rgba(214, 59, 59, 0.12);
+  color: var(--danger);
+  font-weight: 800;
+  border-bottom: 2px solid var(--danger);
+  border-radius: 4px;
+  padding: 0 2px;
+}
+
+.subSection {
+  margin-top: 12px;
+}
+
+.subTitle {
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.commentBox {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  min-height: 30px;
+}
+
+.statusRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.statusGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statusGroupRight {
+  margin-left: auto;
+  align-items: flex-end;
+}
+
+.radio-group {
+  display: inline-flex;
+  background: #eaecf0;
+  padding: 2px;
+  border-radius: 8px;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.radio-btn {
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.radio-btn.active {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+}
+
+.radio-btn.active[data-val="1"] {
+  color: var(--success);
+}
+
+.radio-btn.active[data-val="0"] {
+  color: var(--danger);
+}
+
+.autoChip {
+  height: 24px;
+  padding: 0 8px;
+  font-weight: 700;
+}
+
+.autoChip.is-pass {
+  color: var(--success);
+  background: #ecfff7;
+  border-color: rgba(27, 155, 97, 0.3);
+}
+
+.autoChip.is-fail {
+  color: var(--danger);
+  background: #fff0f0;
+  border-color: rgba(214, 59, 59, 0.3);
+}
+
+.autoChip.is-neutral {
+  color: var(--muted);
+  background: #f2f4f7;
+  border-color: var(--border);
+}
+
+#guidanceTooltip {
+  position: fixed;
+  display: none;
+  z-index: 10000;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  padding: 12px;
+  max-width: 450px;
+  max-height: 400px;
+  overflow: auto;
+  pointer-events: none;
+  font-family: var(--sans);
+  font-size: 12px;
+}
+
+#guidanceTooltip .jsonNode {
+  margin-left: 0;
+  border-left: none;
+}
+
+#guidanceTooltip .tooltip-title {
+  font-weight: 800;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+}

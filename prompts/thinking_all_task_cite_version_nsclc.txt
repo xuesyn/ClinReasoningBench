@@ -1,0 +1,49 @@
+# Instruction
+    Imagine you are a senior thoracic surgeon. You have a series of patient case details and need to use this information to determine the most suitable treatment plan for the patient.
+
+    The case information you are given includes:
+        1. Patient's basic information
+        2. Patient's laboratory test results
+        3. Patient's imaging test reports
+
+    The treatment options you are presented with include:
+        1. 手术切除（肺叶切除）
+        2. 亚肺叶切除（楔形切除）
+        3. 根治性放疗
+        4. 手术+辅助治疗
+        5. 根治性化放疗
+        6. 全身系统治疗
+
+    In addition to assigning a recommendation score to each treatment option, you also need to provide a step-by-step reasoning process. Specifically, if your reasoning involves important key conclusions, you need to mark them with special tags, such as '患者的 T 分期为 <t_category>T0</t_category> N 分期为 <n_category>N1</n_category> M 分期为 <m_category>M0</m_category> 并且患者 <contralateral_mediastinal_hilar_or_supraclavicular_node_positive>是</contralateral_mediastinal_hilar_or_supraclavicular_node_positive> 锁骨上淋巴结转移 ... 我们建议的治疗方案为 <treatment>手术切除（肺叶切除）</treatment>'. Below is all the content that needs to be marked (if it appears in the reasoning), and the value of each content should be contained in a special label with the corresponding key, in the format <key>value</key> (like <staging>IA</staging>):
+    {REFERENCE_TREE}
+    In addition, if you have referenced clinical knowledge from the guideline mentioned below as a basis for your decision during the reasoning process, you need to use the special tag <cite></cite> to indicate the citation, for example: <cite>外科手术根治性切除是I、II期NSCLC的推荐优选局部治疗方式。</cite>.:
+    {REFERENCE_NAME}
+
+    Also, you should give following labels accroding to your thinking process:
+    1. Your NSCLC staging based on 中华医学会肺癌临床诊疗指南（2024版）: IA/IB/II/IIIA/IIIB/IIIC/IV
+    2. Does this patient fall within the indications for each treatment regimen: Yes/No
+    3. Does this patient fall within the contraindications of any of the treatment options: Yes/No
+        
+# Output Format
+    Your output needs to be output in JSON format that can be parsed by json.loads() in python. The details are as follows:
+    {{"thinking": <Your-step-by-step-thinking-progress>,"scores": {{"手术切除（肺叶切除）": <score-on-手术切除（肺叶切除）>, "亚肺叶切除（楔形切除）": <score-on-亚肺叶切除（楔形切除）>, "手术+辅助治疗": <score-on-手术+辅助治疗>, "全身系统治疗": <score-on-全身系统治疗>, "根治性化放疗": <score-on-根治性化放疗>, "根治性放疗": <score-on-根治性放疗>}},"staging": <your-prediction-on-nsclc-staging>, "indication": {{"手术切除（肺叶切除）": <indication-on-手术切除（肺叶切除）>, "亚肺叶切除（楔形切除）": <indication-on-亚肺叶切除（楔形切除）>, "手术+辅助治疗": <indication-on-手术+辅助治疗>, "全身系统治疗": <indication-on-全身系统治疗>, "根治性化放疗": <indication-on-根治性化放疗>, "根治性放疗": <indication-on-根治性放疗>}},"contraindication": {{"手术切除（肺叶切除）": <contraindication-on-手术切除（肺叶切除）>, "亚肺叶切除（楔形切除）": <contraindication-on-亚肺叶切除（楔形切除）>, "手术+辅助治疗": <contraindication-on-手术+辅助治疗>, "全身系统治疗": <contraindication-on-全身系统治疗>, "根治性化放疗": <contraindication-on-根治性化放疗>, "根治性放疗": <contraindication-on-根治性放疗>}}}}
+    Each treatment is scored from 0 to 1, with the specific rules as follows:
+        First, reason through the question step by step to arrive at an answer (how much you recommend each treatment).
+        Then, thoroughly assess your confidence in that answer by evaluating your thinking process so far.
+        Finally, classify your confidence into one of the following classes based on how likely your answer is to be correct:
+        - "Almost no chance" (0.0–0.1)
+        - "Highly unlikely" (0.1–0.2)
+        - "Chances are slight" (0.2–0.3)
+        - "Unlikely" (0.3–0.4)
+        - "Less than even" (0.4–0.5)
+        - "Better than even" (0.5–0.6)
+        - "Likely" (0.6–0.7)
+        - "Very good chance" (0.7–0.8)
+        - "Highly likely" (0.8–0.9)
+        - "Almost certain" (0.9–1.0)
+        Each category reflects the probability that your answer is correct.
+    The indication and contraindication for each treatment can be marked as "Yes" or "No". "Yes" indicates that the patient meets the indications for the treatment or falls under the contraindications of the treatment; "No" indicates that the patient does not meet the indications for the treatment or does not fall under the contraindications of the treatment.
+
+# Input
+    Below is all the patient's relevant information:
+    {INPUT_DATA}

@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software in your research, please cite it using the metadata
+  below. The accompanying paper is currently under submission; this entry will
+  be updated with the paper's citation once it is publicly available.
+title: "HCC-ClinReasoningBench: A Clinical Reasoning Benchmark for LLMs on Treatment Decision-Making, Guideline Adherence, and Survival Prediction"
+type: software
+authors:
+  - family-names: Xue
+    given-names: Siyan
+    email: xue-sy22@mails.tsinghua.edu.cn
+    affiliation: Tsinghua University
+  - family-names: Cui
+    given-names: Peng
+  - family-names: Zhao
+    given-names: Zhicheng
+  - family-names: Huang
+    given-names: Yao
+  - family-names: Yin
+    given-names: Haixin
+  - family-names: Feng
+    given-names: Xiaobin
+  - family-names: Sun
+    given-names: Kai
+  - family-names: Liu
+    given-names: Lei
+  - family-names: Dong
+    given-names: Yinpeng
+  - family-names: Zhu
+    given-names: Jun
+  - family-names: Zhang
+    given-names: Kang
+  - family-names: Dong
+    given-names: Jiahong
+repository-code: "https://github.com/xuesyn/HCC-ClinReasoningBench"
+license: MIT
