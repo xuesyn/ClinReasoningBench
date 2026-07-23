@@ -85,13 +85,29 @@ function buildMetricSelect() {
   els.metricSelect.value = state.selectedMetricKey;
 }
 
+function directionNote(metric) {
+  return metric.direction === "lower" ? "↓ lower is better" : "↑ higher is better";
+}
+
+function bestOf(nums, direction) {
+  const clean = nums.filter((v) => v != null && !Number.isNaN(v));
+  if (!clean.length) return null;
+  return direction === "lower" ? Math.min(...clean) : Math.max(...clean);
+}
+
+function isBest(value, best) {
+  return value != null && best != null && Math.abs(value - best) < 1e-9;
+}
+
 function renderMetricMeta() {
   const metric = metricByKey(state.selectedMetricKey);
   if (!metric) {
-    els.metricMeta.textContent = "";
+    els.metricMeta.innerHTML = "";
     return;
   }
-  els.metricMeta.textContent = displayMetricLabel(metric);
+  els.metricMeta.innerHTML =
+    `<strong>${escapeHtml(displayMetricLabel(metric))}</strong>` +
+    ` <span class="dir">${directionNote(metric)}</span>`;
 }
 
 function renderSmallMultiples() {
@@ -122,13 +138,19 @@ function renderSmallMultiples() {
       .map((item) => ({ model: item.name, value: metricEntry.values[item.name] }))
       .filter((item) => item.value != null);
 
-    const width = 680;
-    const height = Math.max(320, values.length * 24 + 40);
-    const margin = { top: 8, right: 20, bottom: 22, left: 148 };
+    // Rank so the best model is always on top (direction-aware).
+    const lower = metric.direction === "lower";
+    values.sort((a, b) => (lower ? a.value - b.value : b.value - a.value));
+    const bestModel = values.length ? values[0].model : null;
+
+    const width = 340;
+    const margin = { top: 6, right: 46, bottom: 20, left: 124 };
+    const height = Math.max(110, values.length * 22 + margin.top + margin.bottom);
 
     const svg = d3.select(card)
       .append("svg")
-      .attr("viewBox", `0 0 ${width} ${height}`);
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("preserveAspectRatio", "xMinYMin meet");
 
     const x = d3.scaleLinear()
       .domain([0, d3.max(values, (item) => item.value) || 1])
@@ -138,42 +160,49 @@ function renderSmallMultiples() {
     const y = d3.scaleBand()
       .domain(values.map((item) => item.model))
       .range([margin.top, height - margin.bottom])
-      .padding(0.18);
+      .padding(0.3);
 
     svg.append("g")
       .attr("transform", `translate(0, ${height - margin.bottom})`)
       .call(d3.axisBottom(x).ticks(4).tickSizeOuter(0))
-      .call((g) => g.selectAll("text").attr("fill", "#64748b"))
-      .call((g) => g.selectAll("line,path").attr("stroke", "rgba(100, 116, 139, 0.25)"));
+      .call((g) => g.selectAll("text").attr("fill", "#898781").attr("font-size", 9))
+      .call((g) => g.selectAll("line,path").attr("stroke", "#e1e0d9"));
 
     svg.append("g")
-      .call(d3.axisLeft(y).tickSizeOuter(0))
       .attr("transform", `translate(${margin.left}, 0)`)
-      .call((g) => g.selectAll("text").attr("fill", "#40536d").attr("font-size", 12))
+      .call(d3.axisLeft(y).tickSizeOuter(0))
+      .call((g) => g.selectAll("text")
+        .attr("fill", (d) => (d === bestModel ? "#0b0b0b" : "#52514e"))
+        .attr("font-size", 11)
+        .attr("font-weight", (d) => (d === bestModel ? 700 : 400)))
       .call((g) => g.selectAll("line,path").remove());
 
-    svg.append("g")
+    const bars = svg.append("g")
       .selectAll("rect")
       .data(values)
       .join("rect")
       .attr("x", margin.left)
       .attr("y", (item) => y(item.model))
       .attr("height", y.bandwidth())
-      .attr("rx", 10)
-      .attr("ry", 10)
-      .attr("width", (item) => x(item.value) - margin.left)
-      .attr("fill", (item) => MODEL_COLORS.get(item.model) || "#2254f4");
+      .attr("rx", 4)
+      .attr("ry", 4)
+      .attr("width", (item) => Math.max(2, x(item.value) - margin.left))
+      .attr("fill", (item) => MODEL_COLORS.get(item.model) || "#2254f4")
+      .attr("opacity", (item) => (item.model === bestModel ? 1 : 0.82));
+    bars.append("title").text((item) => `${item.model}: ${formatValue(item.value)}`);
 
     svg.append("g")
       .selectAll("text.value")
       .data(values)
       .join("text")
       .attr("class", "value")
-      .attr("x", (item) => x(item.value) + 8)
-      .attr("y", (item) => y(item.model) + y.bandwidth() / 2 + 4)
-      .attr("fill", "#50627e")
-      .attr("font-size", 12)
-      .text((item) => formatValue(item.value));
+      .attr("x", (item) => x(item.value) + 6)
+      .attr("y", (item) => y(item.model) + y.bandwidth() / 2 + 3.5)
+      .attr("fill", (item) => (item.model === bestModel ? "#0b0b0b" : "#52514e"))
+      .attr("font-size", 10)
+      .attr("font-weight", (item) => (item.model === bestModel ? 700 : 400))
+      .style("font-variant-numeric", "tabular-nums")
+      .text((item) => (item.model === bestModel ? `▸ ${formatValue(item.value)}` : formatValue(item.value)));
 
     els.smallMultiples.append(card);
   });
@@ -182,12 +211,18 @@ function renderSmallMultiples() {
 function renderTables() {
   const sections = state.payload.datasets.map((dataset) => {
     const modelNames = state.payload.models.map((item) => item.name);
-    const header = modelNames.map((name) => `<th>${escapeHtml(name)}</th>`).join("");
+    const header = modelNames.map((name) => `<th class="model-col">${escapeHtml(name)}</th>`).join("");
     const rows = dataset.metrics.map((metric) => {
-      const valueCells = modelNames.map((name) => `<td>${formatValue(metric.values[name])}</td>`).join("");
+      const rowValues = modelNames.map((name) => metric.values[name]);
+      const best = bestOf(rowValues, metric.direction);
+      const valueCells = modelNames.map((name) => {
+        const value = metric.values[name];
+        const best_ = isBest(value, best);
+        return `<td class="num${best_ ? " is-best" : ""}"${best_ ? ' title="Best"' : ""}>${formatValue(value)}</td>`;
+      }).join("");
       return `
         <tr>
-          <td><strong>${escapeHtml(displayMetricLabel(metric))}</strong></td>
+          <td class="metric-name" title="${escapeHtml(directionNote(metric))}">${escapeHtml(displayMetricLabel(metric))}</td>
           ${valueCells}
         </tr>
       `;
@@ -195,11 +230,11 @@ function renderTables() {
 
     return `
       <section class="metric-table__section">
-        <h3 class="metric-table__title">${escapeHtml(displayDatasetLabel(dataset))} · n=${dataset.sample_size ?? "-"}</h3>
+        <h3 class="metric-table__title">${escapeHtml(displayDatasetLabel(dataset))} <span class="metric-table__n">n=${dataset.sample_size ?? "-"}</span></h3>
         <table class="metric-table">
           <thead>
             <tr>
-              <th>Metric</th>
+              <th class="metric-col">Metric</th>
               ${header}
             </tr>
           </thead>

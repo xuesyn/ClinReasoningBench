@@ -4,8 +4,9 @@
 
 .results-shell {
   width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 8px 10px;
+  padding: 20px 20px 32px;
 }
 
 .panel {
@@ -62,7 +63,7 @@
 }
 
 .panel {
-  padding: 8px 10px 10px;
+  padding: 14px 16px 16px;
 }
 
 .panel--wide {
@@ -95,21 +96,39 @@
   display: block;
 }
 
+.section-note {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #697893;
+}
+
+.toolbar__right .dir {
+  color: #697893;
+  font-weight: 500;
+  margin-left: 6px;
+}
+
 .small-multiples {
   display: flex;
   flex-wrap: nowrap;
-  gap: 6px;
+  gap: 10px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
 }
 
 .dataset-card {
-  flex: 0 0 420px;
-  padding: 6px 8px;
+  flex: 0 0 340px;
+  padding: 8px 10px 10px;
   border: 1px solid rgba(20, 39, 87, 0.06);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.56);
+}
+
+.dataset-card svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .dataset-card__head {
@@ -148,7 +167,7 @@
 
 .metric-table th,
 .metric-table td {
-  padding: 9px 10px;
+  padding: 9px 12px;
   border-bottom: 1px solid rgba(20, 39, 87, 0.08);
   text-align: left;
   white-space: nowrap;
@@ -161,12 +180,53 @@
   letter-spacing: 0.12em;
 }
 
-.metric-table td strong {
+.metric-table th.model-col {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 13px;
+  font-weight: 700;
   color: #1b2a45;
+  text-align: right;
+}
+
+.metric-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: #3a4a63;
+}
+
+.metric-table th.metric-col,
+.metric-table td.metric-name {
+  position: sticky;
+  left: 0;
+  background: #ffffff;
+  border-right: 1px solid rgba(20, 39, 87, 0.10);
+  z-index: 1;
+}
+
+.metric-table td.metric-name {
+  font-weight: 600;
+  color: #1b2a45;
+  text-transform: none;
+}
+
+/* best-in-row: weight + status-green tint (two channels, never color alone) */
+.metric-table td.is-best {
+  font-weight: 700;
+  color: #0a7d33;
+  background: rgba(12, 163, 12, 0.12);
+}
+
+.metric-table tbody tr:hover td {
+  background: rgba(34, 84, 244, 0.06);
+}
+
+.metric-table tbody tr:hover td.is-best {
+  background: rgba(12, 163, 12, 0.18);
 }
 
 .metric-table__section {
-  margin-top: 10px;
+  margin-top: 18px;
 }
 
 .metric-table__section:first-child {
@@ -174,9 +234,17 @@
 }
 
 .metric-table__title {
-  margin-bottom: 4px;
-  font-size: 14px;
+  margin-bottom: 6px;
+  font-size: 15px;
+  font-weight: 700;
   color: #1d2940;
+}
+
+.metric-table__n {
+  font-size: 12px;
+  font-weight: 500;
+  color: #697893;
+  margin-left: 6px;
 }
 
 @media (max-width: 1160px) {
