@@ -27,7 +27,7 @@ Please be ready to provide:
 - *(Optional)* a short description or paper/model-card link
 
 Once we validate access we run the evaluation and add your results to the
-leaderboard (typically within a few weeks). Questions: [dongjiahong@mail.tsinghua.edu.cn](mailto:dongjiahong@mail.tsinghua.edu.cn).
+leaderboard (typically within a few weeks). Questions: xue-sy22 at mails dot tsinghua dot edu dot cn.
 
 ## Supported Diseases & Guidelines
 
