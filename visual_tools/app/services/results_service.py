@@ -22,6 +22,10 @@ MODEL_META: dict[str, dict[str, str]] = {
     "Deepseek-v3.2": {"id": "deepseek-v3-2", "family": "general", "access": "open"},
     "Qwen-Max": {"id": "qwen-max", "family": "general", "access": "closed"},
     "Qwen3.5-Plus": {"id": "qwen-3-5-plus", "family": "general", "access": "open"},
+    "GPT-5.6-sol": {"id": "gpt-5-6-sol", "family": "frontier", "access": "closed"},
+    "Claude Opus 4.7": {"id": "claude-opus-4-7", "family": "frontier", "access": "closed"},
+    "DeepSeek-V4-Flash": {"id": "deepseek-v4-flash", "family": "general", "access": "open"},
+    "GLM-5.2": {"id": "glm-5-2", "family": "general", "access": "open"},
 }
 
 DATASET_META: dict[str, dict[str, str]] = {

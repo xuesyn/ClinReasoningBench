@@ -24,6 +24,10 @@ const MODEL_COLORS = new Map([
   ["Deepseek-v3.2", "#0d9488"],
   ["Qwen-Max", "#dc6b1f"],
   ["Qwen3.5-Plus", "#6d55ff"],
+  ["GPT-5.6-sol", "#e11d48"],
+  ["Claude Opus 4.7", "#b45309"],
+  ["DeepSeek-V4-Flash", "#0891b2"],
+  ["GLM-5.2", "#65a30d"],
 ]);
 
 async function loadDashboard() {
