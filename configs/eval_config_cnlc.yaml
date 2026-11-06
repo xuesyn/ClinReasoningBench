@@ -3,9 +3,9 @@ output_dir: outputs
 
 # 定义需要评测的模型
 models:
-  Baichuan-M3-Plus:
+  <model_name>:
     type: openai # 对应 med_eval_pipeline/models/ 下的文件名 (api_openai.py -> openai)
-    model_name: "Baichuan-M3-Plus" # "gemini-3-pro-preview" # "claude-sonnet-4-5-20250929-thinking"
+    model_name: "<model_name>" # 请替换为你要使用的模型名称
     api_key: "YOUR_API_KEY_HERE" # 请替换为你的 API Key
     base_url: "" # 请替换为你的 base_url，例如 "https://api.openai.com/v1"
     max_tokens: 8192

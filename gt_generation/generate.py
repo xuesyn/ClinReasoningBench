@@ -1,5 +1,5 @@
 """
-Ground Truth Generation CLI for ClinReasonBench.
+Ground Truth Generation CLI for ClinReasoningBench.
 """
 
 from __future__ import annotations
@@ -43,7 +43,7 @@ def resolve_mode(mode: str, two_step_flag: bool) -> str:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate ground truth for ClinReasonBench")
+    parser = argparse.ArgumentParser(description="Generate ground truth for ClinReasoningBench")
     parser.add_argument("--input", "-i", required=True, help="Input patient data JSONL")
     parser.add_argument("--graph", "-g", required=True, help="Graph definition JSON")
     parser.add_argument("--guidance", required=True, help="Guidance JSONL (reference knowledge)")

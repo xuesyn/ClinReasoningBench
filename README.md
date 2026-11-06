@@ -1,12 +1,17 @@
 
 
-# ClinReasonBench
+# ClinReasoningBench
 
-A clinical reasoning benchmark for evaluating LLMs on treatment decision-making, guideline adherence, and survival prediction across 5 disease types.
+A clinical reasoning benchmark for evaluating LLMs on treatment decision-making, guideline-grounded reasoning, and survival prediction across five guideline cohorts covering four diseases (hepatocellular carcinoma under the BCLC and CNLC guidelines, non-small cell lung cancer, acute coronary syndromes, and acute ischemic stroke).
 
 ## Leaderboard & Model Submission
 
 **Live leaderboard:** https://leaderboard.clinreasoningbench.org/
+
+The leaderboard shows the main-benchmark treatment-decision results of the 16 models in the paper (BCLC 3,689; CNLC 4,103;
+NSCLC 4,219; ACS 3,611; AIS 3,657 cases; intent-to-treat). Aggregate tables for all other analyses in the paper — survival
+prediction, confidence risk–coverage, SFT ablation, the single-centre HCC cohort and the clinician comparison — are in
+[`visual_tools/leaderboard/downloads/`](visual_tools/leaderboard/downloads/README.md).
 
 Want your model evaluated and added to the leaderboard? We run the full evaluation
 on the held-out benchmark for you — you don't need the ground-truth data.
@@ -31,13 +36,13 @@ leaderboard (typically within a few weeks). Questions: xue-sy22 at mails dot tsi
 
 ## Supported Diseases & Guidelines
 
-| Disease | Guideline | Tasks |
+| Cohort | Guideline | Tasks |
 |---------|-----------|-------|
 | BCLC | Barcelona Clinic Liver Cancer 2022 | Treatment Decision + Survival Prediction |
 | CNLC | 原发性肝癌诊疗指南（2024年版） | Treatment Decision + Survival Prediction |
 | NSCLC | 中华医学会肺癌临床诊疗指南（2024版） | Treatment Decision + Survival Prediction |
-| ACS | 2025 ACC/AHA ACS Guideline | Treatment Decision (Set) + Survival Prediction |
-| AIS | AHA/ASA Acute Ischemic Stroke 2019 | Treatment Decision (Set) + Survival Prediction |
+| ACS | 2025 ACC/AHA ACS Guideline | Treatment Decision (Set) + Survival Prediction / 12-month mortality |
+| AIS | AHA/ASA Acute Ischemic Stroke 2019 | Treatment Decision (Set) + Survival Prediction / 12-month mortality |
 
 ## Setup
 
@@ -244,11 +249,11 @@ Patient EMR + Clinical Guideline
 
 | Metric | Config Key | Cancer | Emergency | Description |
 |--------|-----------|--------|-----------|-------------|
-| GraphBasedMetric | `GraphBasedMetric` | ✓ | ✓ | Knowledge graph node matching + citation semantic matching |
+| GraphBasedMetric | `GraphBasedMetric` | ✓ | ✓ | Reasoning score: per case, the mean of (i) node accuracy along the guideline dependency graph (an incorrect value invalidates dependent downstream nodes; omitted nodes receive no credit) and (ii) citation fidelity, precision × recall of BGE-matched guideline citations (cosine > 0.8); averaged over cases |
 | TreatmentNDCG | `treatment_score` | ✓ | | Ranking quality of treatment recommendations |
-| TreatmentOverlapMetrics | `treatment_set_score` | | ✓ | Set overlap (medication + procedure) |
+| TreatmentOverlapMetrics | `treatment_set_score` | | ✓ | Set precision/recall (overall, medication, procedure) and per-case set-F1 of the overall sets (`treatment_total_f1`, the paper's ACS/AIS treatment metric) |
 | StagingScore | `staging_score` | ✓ | | Clinical staging accuracy |
-| Indication/Contraindication | `Indication_and_contraindication_score` | ✓ | ✓ | Guideline adherence |
+| Indication/Contraindication | `Indication_and_contraindication_score` | ✓ | ✓ | Per-item accuracy and exact match of the model's `indication` / `contraindication` JSON labels (Yes/No/true/false; anything else counts as incorrect) |
 | TreatmentCalibration | `treatment_calibration` | ✓ | | ECE of treatment confidence |
 | SetCalibrationECE | `set_calibration` | | ✓ | ECE for set-based predictions |
 
@@ -256,7 +261,7 @@ Patient EMR + Clinical Guideline
 
 | Metric | Config Key | Description |
 |--------|-----------|-------------|
-| SurvivalConfidenceScore | `survival_calibration` | C-index, IPCW-MAE, AURC, selective gain |
+| SurvivalConfidenceScore | `survival_calibration` | `c_index`: Harrell's C-index on parse-valid cases (zero follow-up excluded); ACS/AIS (`cancer_type: non-cancer`): `mortality_auroc` / `mortality_auprc` for death within 12 months (risk = −predicted survival); confidence risk–coverage: IPCW-MAE, AURC, selective gain, Spearman ρ, each averaged over 30 random orders of equal-confidence cases (`tie_orders`, default 30); `full_c_index` includes parse failures at the default prediction |
 | SurvivalScore | `survival_score` | Basic concordance index |
 
 ## Disease Registry
@@ -281,7 +286,7 @@ To add a new disease/guideline, add a `DiseaseConfig` entry to `DISEASE_REGISTRY
 ## Project Structure
 
 ```
-ClinReasonBench/
+ClinReasoningBench/
 ├── eval.py                          # Single-experiment entry point
 ├── run_batch.py                     # Unified batch runner (recommended)
 ├── med_eval_pipeline/
@@ -304,6 +309,8 @@ ClinReasonBench/
 ├── data/                            # Knowledge graphs + guidelines
 ├── gt_generation/                   # GT generation pipeline
 ├── visual_tools/                    # Visual inspection workspace
+│   ├── leaderboard/                 # Static leaderboard (Cloudflare Pages) + downloads/ paper result tables
+│   └── results/                     # Leaderboard input workbook + build_results_xlsx.py
 ├── prompts/                         # Prompt templates per disease
 ├── tools/
 │   └── download_ckpt.py             # Download embedding model checkpoint

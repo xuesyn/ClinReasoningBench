@@ -45,6 +45,53 @@ def spearman_corr(x: np.ndarray, y: np.ndarray) -> float:
     return float((rx * ry).sum() / denom) if denom > 0 else 0.0
 
 
+def _binary_auroc(y: np.ndarray, s: np.ndarray) -> float:
+    """AUROC = P(score_pos > score_neg) + 0.5 * P(tie) (Mann-Whitney U with average ranks)."""
+    y = np.asarray(y, dtype=int)
+    s = np.asarray(s, dtype=float)
+    n_pos, n_neg = int(y.sum()), int(len(y) - y.sum())
+    if n_pos == 0 or n_neg == 0:
+        return float("nan")
+    ranks = _rankdata_average_ties(s) + 1.0
+    return float((ranks[y == 1].sum() - n_pos * (n_pos + 1) / 2.0) / (n_pos * n_neg))
+
+
+def _average_precision(y: np.ndarray, s: np.ndarray) -> float:
+    """Average precision (area under the step-wise precision-recall curve), ties grouped by score."""
+    y = np.asarray(y, dtype=int)
+    s = np.asarray(s, dtype=float)
+    n_pos = int(y.sum())
+    if n_pos == 0:
+        return float("nan")
+    order = np.argsort(-s, kind="mergesort")
+    s_sorted, y_sorted = s[order], y[order]
+    last = np.r_[np.flatnonzero(np.diff(s_sorted) != 0), len(s_sorted) - 1]   # last index of each tie group
+    tp = np.cumsum(y_sorted)[last]
+    precision = tp / (last + 1)
+    recall = tp / n_pos
+    return float(np.sum(np.diff(np.r_[0.0, recall]) * precision))
+
+
+def _average_runs(runs: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Element-wise mean of aggregate outputs over tie orders (numbers, equal-length lists, nested dicts);
+    non-numeric entries are taken from the first run."""
+    out = {}
+    for k, v0 in runs[0].items():
+        vals = [r.get(k) for r in runs]
+        if isinstance(v0, dict):
+            out[k] = _average_runs(vals) if all(isinstance(v, dict) for v in vals) else v0
+        elif isinstance(v0, (int, float)) and not isinstance(v0, bool) and all(isinstance(v, (int, float)) for v in vals):
+            out[k] = float(np.mean(vals))
+        elif isinstance(v0, (list, tuple)) and v0 and all(isinstance(v, (list, tuple)) and len(v) == len(v0) for v in vals):
+            try:
+                out[k] = np.mean(np.asarray(vals, dtype=float), axis=0).tolist()
+            except (TypeError, ValueError):
+                out[k] = v0
+        else:
+            out[k] = v0
+    return out
+
+
 # ==========================================
 # 核心评估类 (包含缺省惩罚机制)
 # ==========================================
@@ -70,6 +117,12 @@ class SurvivalConfidenceScore(BaseMetric):
         # 新增：解析失败时的惩罚缺省值
         self.default_pred_surv = float(params.get('default_pred_surv', -1.0))
         self.default_conf = float(params.get('default_conf', 0.0))
+
+        # Ties in confidence are broken uniformly at random; risk-coverage curves, AURC and selective gains
+        # are averaged over `tie_orders` random tie orders (paper: 30). tie_orders <= 1 keeps the input order.
+        self.tie_orders = int(params.get('tie_orders', 30))
+        # Acute cohorts (cancer_type 'non-cancer', i.e. ACS/AIS) are also scored as death within this horizon.
+        self.mortality_horizon_months = float(params.get('mortality_horizon_months', 12.0))
 
     # ================= 分期解析辅助函数 =================
     def _normalize_staging(self, staging_val: Any) -> str:
@@ -220,6 +273,45 @@ class SurvivalConfidenceScore(BaseMetric):
         return float(np.sum(weights * errors) / np.sum(weights))
 
     def aggregate(self, results: List[Dict[str, Any]], coverage_grid: np.ndarray = None) -> Dict[str, Any]:
+        if self.tie_orders > 1:
+            runs = []
+            for s in range(self.tie_orders):
+                perm = np.random.default_rng(10_000 + s).permutation(len(results))
+                runs.append(self._aggregate_one_order([results[i] for i in perm], coverage_grid))
+            out = _average_runs(runs) if runs and runs[0] else {}
+            if out:
+                out["stats"]["tie_orders"] = self.tie_orders
+        else:
+            out = self._aggregate_one_order(results, coverage_grid)
+        if out:
+            out.update(self._discrimination(results))
+        return out
+
+    def _discrimination(self, results: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Order-independent discrimination on parse-valid cases (the headline survival metrics):
+        Harrell's C-index (zero follow-up skipped, predictions clipped at min_pred_surv) and, for the acute
+        cohorts, death within `mortality_horizon_months` scored by AUROC / AUPRC with risk = -predicted survival."""
+        valid = [r for r in results if r and not r.get('meta_parse_failed', False)]
+        p, t, e = [], [], []
+        for r in valid:
+            tt = float(r.get('gt_survival', 0.0))
+            if tt == 0.0 and self.skip_zero_surv:
+                continue
+            p.append(max(float(r.get('pred_survival', self.default_pred_surv)), self.min_pred_surv))
+            t.append(tt)
+            e.append(int(r.get('event', 0)))
+        out = {"c_index": self._calc_c_index(np.array(p), np.array(t), np.array(e)) if len(p) >= 2 else float("nan"),
+               "c_index_n": len(p)}
+        if self.cancer_type == 'non-cancer':
+            h = self.mortality_horizon_months
+            y = np.array([1 if (int(r.get('event', 0)) == 1 and float(r.get('gt_survival', 0.0)) <= h) else 0 for r in valid])
+            s = np.array([-float(r.get('pred_survival', self.default_pred_surv)) for r in valid])
+            out.update({"mortality_auroc": _binary_auroc(y, s), "mortality_auprc": _average_precision(y, s),
+                        "mortality_prevalence": float(y.mean()) if len(y) else float("nan"), "mortality_n": int(len(y)),
+                        "mortality_horizon_months": h})
+        return out
+
+    def _aggregate_one_order(self, results: List[Dict[str, Any]], coverage_grid: np.ndarray = None) -> Dict[str, Any]:
         valid_data = []
         zero_surv_count = 0
         clipped_pred_count = 0
@@ -252,7 +344,7 @@ class SurvivalConfidenceScore(BaseMetric):
         g_weights = self._fit_censoring_km(data_mat[:, 1], data_mat[:, 2])
 
         # 按 Confidence 降序排列 (最自信的排前面)
-        order = np.argsort(-data_mat[:, 3])
+        order = np.argsort(-data_mat[:, 3], kind="stable")
         data_mat = data_mat[order]
         
         p_sorted = data_mat[:, 0]
@@ -607,10 +699,11 @@ class TreatmentCalibration(BaseMetric):
 
         pred_scores_map = parsed_pred.get('scores', {})
 
+        # non-numeric scores (e.g. null) are ignored; no valid prediction is scored as a failure below
         valid_preds = [
-            (treatment, score) 
-            for treatment, score in pred_scores_map.items() 
-            if score > self.threshold
+            (treatment, score)
+            for treatment, score in pred_scores_map.items()
+            if isinstance(score, (int, float)) and score > self.threshold
         ]
         sorted_preds = sorted(valid_preds, key=lambda x: x[1], reverse=True)
         if self.k is not None:
@@ -808,9 +901,12 @@ class TreatmentOverlapMetrics(BaseMetric):
         med_metrics = self._calculate_stats(pred_med, gt_med)
         proc_metrics = self._calculate_stats(pred_proc, gt_proc)
 
+        p, r = total_metrics["acc"], total_metrics["recall"]
         return {
-            "treatment_total_acc": total_metrics["acc"],
-            "treatment_total_recall": total_metrics["recall"],
+            "treatment_total_acc": p,
+            "treatment_total_recall": r,
+            # set-F1 = 2|P∩G| / (|P|+|G|) = 2pr/(p+r); the headline treatment metric for ACS/AIS
+            "treatment_total_f1": (2 * p * r / (p + r)) if (p + r) > 0 else 0.0,
             "treatment_med_acc": med_metrics["acc"],
             "treatment_med_recall": med_metrics["recall"],
             "treatment_proc_acc": proc_metrics["acc"],
@@ -857,10 +953,11 @@ class TreatmentNDCG(BaseMetric):
         if not isinstance(pred_scores_map, dict):
             pred_scores_map = {}
 
+        # non-numeric scores (e.g. null) count as "not recommended": missing scores give zero credit (ITT)
         valid_preds = [
-            (treatment, score) 
-            for treatment, score in pred_scores_map.items() 
-            if score > self.threshold
+            (treatment, score)
+            for treatment, score in pred_scores_map.items()
+            if isinstance(score, (int, float)) and score > self.threshold
         ]
         sorted_preds = sorted(valid_preds, key=lambda x: x[1], reverse=True)
         
@@ -1070,20 +1167,13 @@ class IndicationAndContraindicationScore(BaseMetric):
         if not gt_labels: 
             return None 
             
-        pred_labels = self._get_gt_value(gt_sample, "llm_ind_cond")
-
         pred_ind_dict = {}
         pred_con_dict = {}
-        
+
         # 惩罚逻辑：只有成功解析才去提取预测值
         if not parsed_pred.get('_parse_failed', False):
-            if pred_labels: 
-                for treatment, pred_values in pred_labels.items():
-                    pred_ind_dict[treatment] = pred_values.get('indication')
-                    pred_con_dict[treatment] = pred_values.get('contraindication')
-            else:
-                pred_ind_dict = parsed_pred.get('indication', {})
-                pred_con_dict = parsed_pred.get('contraindication', {})
+            pred_ind_dict = parsed_pred.get('indication', {})
+            pred_con_dict = parsed_pred.get('contraindication', {})
         
         val_map = {"Yes": "true", "No": "false", "true": "true", "false": "false"}
         
