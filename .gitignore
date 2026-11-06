@@ -23,7 +23,9 @@ __pycache__/
 *.xlsx
 *.csv
 *.zip
-!visual_tools/results/results.xlsx
+!visual_tools/results/results_paper_final.xlsx
+!visual_tools/leaderboard/downloads/*.csv
+!visual_tools/leaderboard/downloads/*.xlsx
 
 # OS files
 .DS_Store

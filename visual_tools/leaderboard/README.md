@@ -17,15 +17,23 @@ leaderboard/
 
 ## Update the numbers
 
-The data is baked into `dashboard.json`. Regenerate it from the final
-spreadsheet whenever results change, then redeploy:
+The data is baked into `dashboard.json`, rendered from `../results/results_paper_final.xlsx`
+(16 models). That workbook is produced by
+`../results/build_results_xlsx.py` from an explicit manifest of per-case score files and the case roster
+(not distributed; see the repository README). Its `.provenance.json` records the source file names and
+SHA-256 hashes. Regenerate and redeploy whenever results change:
 
 ```bash
 # from this leaderboard/ directory (needs: pip install openpyxl)
 python build_dashboard.py
 # custom input/output:
-python build_dashboard.py --excel ../results/results_filtered_latest.xlsx --out dashboard.json
+python build_dashboard.py --excel ../results/results_paper_final.xlsx --out dashboard.json
 ```
+
+`dashboard.json` records `source_sha256` (of the workbook) and the leaderboard scope.
+Acute cohorts (ACS, AIS) report `Treatment set-F1`, the paper's treatment metric; `all_acc` / `med_acc` /
+`proc_acc` are set precisions and are not the same quantity. Aggregate tables for the other analyses in the
+paper are in `downloads/` (see `downloads/README.md`).
 
 The parser is shared with the local visualization tool
 (`app/services/results_service.py`), so the two never drift apart.

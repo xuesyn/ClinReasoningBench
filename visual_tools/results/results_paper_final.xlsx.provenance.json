@@ -1,0 +1,564 @@
+{
+ "cells": [
+  {
+   "cohort": "cnlc",
+   "model": "GPT-5.2",
+   "file": "CNLC_v1_gpt-5.2@scores.jsonl",
+   "sha256": "f5870d5b057fee003decd68474952edf96b96f89a9f2cbdb55b4a65aa6dd9bc6",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "Claude 4.5 Sonnet",
+   "file": "CNLC_v1_claude-sonnet-4-5@scores.jsonl",
+   "sha256": "11ff9c6d8d6e83f1acb10513b85b0e6c1e02db3f5f78dce5da4f78781e6279b9",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "Gemini 3 Pro",
+   "file": "CNLC_v1_gemini-3-pro-preview@scores.jsonl",
+   "sha256": "8a9b36cb6bb21031954806cbc95f35052a2890a6a17c619c3347cbc1efa9f0c1",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "Baichuan-M3-plus",
+   "file": "CNLC_v1_Baichuan-M3-Plus@scores.jsonl",
+   "sha256": "2608436de807e763c4ac2fdcd0c9d50246197bfcc727c51c0459ec1b455ea67b",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "MedGemma-27B",
+   "file": "CNLC_v1_medgemma-27b@scores.jsonl",
+   "sha256": "a1520152a76b936936002afeb9041a9582e80de1d2857b37e1742485bad39e25",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "GLM-4.7",
+   "file": "CNLC_v1_glm-4.7@scores.jsonl",
+   "sha256": "32d5134f142c2fdf57e2c4138218f4201fdf91043885903b65087ab6aba07caf",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "Kimi-K2.5",
+   "file": "CNLC_v1_kimi-k2.5@scores.jsonl",
+   "sha256": "b973b245d2d534cc50d28f24edd36798ed1aa88764059a9d5fdd6b1ff4b28d22",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "DeepSeek-V3.2",
+   "file": "CNLC_v1_deepseek-v3.2@scores.jsonl",
+   "sha256": "b3671139fec3e2ec4cdf9f9bdc93daf6fb49a007587aab7e975540e3b9204f1e",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "Qwen-Max",
+   "file": "CNLC_v1_qwen3-max@scores.jsonl",
+   "sha256": "479fca5628214226f9e1eddddac4d95957c9e7f584bcc013b089bf230fd124aa",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "Qwen3.5-Plus",
+   "file": "CNLC_v1_qwen3.5-plus@scores.jsonl",
+   "sha256": "d66005209b35903f50b981a13817b6c9b9412f28d5ec8ecfab6ea5c236bbecf1",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "GPT-5.6-sol",
+   "file": "CNLC_v1_gpt-5.6-sol@scores.jsonl",
+   "sha256": "458fe0a63b6332dbd3f9461dfa27b78c41421f86e2ca5411b42e19354432bed4",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "Claude Opus 4.7",
+   "file": "CNLC_v1_claude-opus-4-7@scores.jsonl",
+   "sha256": "40272a7d65ae482e4b669f28f3a4aebedf658530ff31934a6d1afac5a15c809e",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "DeepSeek-V4-Flash",
+   "file": "CNLC_v1_deepseek-v4-flash@scores.jsonl",
+   "sha256": "94aab4cc99ed91e0fc18d6d53600802866ceb13979eff8f89daeee9dc9fabf5d",
+   "n": 4103
+  },
+  {
+   "cohort": "cnlc",
+   "model": "GLM-5.2",
+   "file": "CNLC_v1_glm-5.2@scores.jsonl",
+   "sha256": "812bb58be34a22677c163c17308bf5606fcde506e5308fe3758c7641da384b34",
+   "n": 4103
+  },
+  {
+   "cohort": "bclc",
+   "model": "GPT-5.2",
+   "file": "BCLC_v1_rescore@scores.jsonl",
+   "sha256": "10473c42174df0278e3c6650df37ee18a24668ff815219bb14a0aab95caf646c",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "Claude 4.5 Sonnet",
+   "file": "BCLC_v1_rescore@scores.jsonl",
+   "sha256": "54728a9ad03e41bdd28768bcebf9ead0894008a5a804fa1d4f3c90b254ed8ec9",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "Gemini 3 Pro",
+   "file": "BCLC_v1_rescore@scores.jsonl",
+   "sha256": "49eef3ec6994cca351316c2c2860ca3340d84c37cc8f9c6fcb36d53bee2c0abb",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "Baichuan-M3-plus",
+   "file": "BCLC_v1_rescore@scores.jsonl",
+   "sha256": "bc215e6b1bfb6c440e93f1c682a029452504ad111c47db4dfecf165d8cb61224",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "MedGemma-27B",
+   "file": "BCLC_v1_medgemma-27b@scores.jsonl",
+   "sha256": "f911db0c85f2f98052f192c1f4188c210606afc2280f546798009c6dc3f069ca",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "GLM-4.7",
+   "file": "BCLC_v1_glm-4.7@scores.jsonl",
+   "sha256": "ba645233c31af160768d9f3388d3018d1c6132688ac0ed2dbbc731f801eeb0ce",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "Kimi-K2.5",
+   "file": "BCLC_v1_kimi-k2.5@scores.jsonl",
+   "sha256": "b28b3c6419ae31ec2d6e2cc03d144ebc22f8ea3e35f7c1a6ed30eab016ee0167",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "DeepSeek-V3.2",
+   "file": "BCLC_v1_deepseek-v3.2@scores.jsonl",
+   "sha256": "04f7732b5e1c14e44bfd845dac946bba1d9a5297eff924384207f871bfd450c3",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "Qwen-Max",
+   "file": "BCLC_v1_qwen3-max@scores.jsonl",
+   "sha256": "1e3ec5f51f28b3abc0a8cce25a333a0ae2bffa33c803c714ec4642cd9c8f7647",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "Qwen3.5-Plus",
+   "file": "BCLC_v1_qwen3.5-plus@scores.jsonl",
+   "sha256": "f650f03f975f3d4ba35d106eae67a7db96d6a965953feb9eb0cc7fa5dbce1021",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "GPT-5.6-sol",
+   "file": "BCLC_v1_gpt-5.6-sol@scores.jsonl",
+   "sha256": "bdcabbbf1a50a8c0d9a790999926a705241817029c4a2e6925d8e179ad867a9b",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "Claude Opus 4.7",
+   "file": "BCLC_v1_claude-opus-4-7@scores.jsonl",
+   "sha256": "86eba957a4567666b6e49a25a18dcb034d3820bb2788fc9f9d0262925c794cf7",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "DeepSeek-V4-Flash",
+   "file": "BCLC_v1_deepseek-v4-flash@scores.jsonl",
+   "sha256": "c3804ac17fc94c5b3de5c984c753a4b3ab706a247d000ae8d5f8583dc9b630b5",
+   "n": 3689
+  },
+  {
+   "cohort": "bclc",
+   "model": "GLM-5.2",
+   "file": "BCLC_v1_glm-5.2@scores.jsonl",
+   "sha256": "4e424b1a47d1ccdd7de60c7fec4674abb357fcd3b5827c3c6fe17ae010330c49",
+   "n": 3689
+  },
+  {
+   "cohort": "nsclc",
+   "model": "GPT-5.2",
+   "file": "CNLC_v1_gpt-5.2@scores.jsonl",
+   "sha256": "7f995a4ea9755e2abe61a9a0a40a01fca4003eb2e824ea12698d773ec4b11fc1",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "Claude 4.5 Sonnet",
+   "file": "NSCLC_v1_claude-sonnet-4-5-20250929@scores.jsonl",
+   "sha256": "5bc9697f0f87095864c27480f227a642849890d6dba6e25353308ba767434d0e",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "Gemini 3 Pro",
+   "file": "CNLC_v1_gemini-3-pro-preview@scores.jsonl",
+   "sha256": "091a6dbb0d605169547853ce05dd573d3c9847d9587d2a14f6e2b6a74751c844",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "Baichuan-M3-plus",
+   "file": "NSCLC_v1_Baichuan-M3-Plus@scores.jsonl",
+   "sha256": "bbf4defceaa4be60afb38ef110139376e8399a313f53c7ba924e89644071adaf",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "MedGemma-27B",
+   "file": "NSCLC_v1_medgemma-27b@scores.jsonl",
+   "sha256": "1601bc47dfcd2c76e246987e048473bb0b2833827901990bc2b1b28fd283cec9",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "GLM-4.7",
+   "file": "NSCLC_v1_glm-4.7@scores.jsonl",
+   "sha256": "7fd44724c7a875dea2cc16abf06b71bc86304594db1a562e979a7e7b10803bce",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "Kimi-K2.5",
+   "file": "NSCLC_v1_kimi-k2.5@scores.jsonl",
+   "sha256": "aa44769717876815b9f1b148f5c0c41c308e213ca32039e880b95c056dc643df",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "DeepSeek-V3.2",
+   "file": "NSCLC_v1_deepseek-v3.2@scores.jsonl",
+   "sha256": "5ec01102ec844e0d1b18a52a11f66c09c9e528875eedfa0dc4f39063b572262e",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "Qwen-Max",
+   "file": "NSCLC_v1_qwen3-max@scores.jsonl",
+   "sha256": "c72b3928ef63c69b0be4e4efa4727fca9621fc019662c39312116d0aee30808a",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "Qwen3.5-Plus",
+   "file": "NSCLC_v1_qwen3.5-plus@scores.jsonl",
+   "sha256": "f6850b5609682861a4c590096876c09647ef13ade9839e5008cb2ffcc8ab8af7",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "GPT-5.6-sol",
+   "file": "CNLC_v1_gpt-5.6-sol@scores.jsonl",
+   "sha256": "44e3cf0053a37eb6a1000f33dcb364c29e9412b662b6863efeac8409bf8a4398",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "Claude Opus 4.7",
+   "file": "CNLC_v1_claude-opus-4-7@scores.jsonl",
+   "sha256": "e02e2794ca199fea7479a6d7c6ec6c77f9a899f2327845b9e1d336ccef7239c1",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "DeepSeek-V4-Flash",
+   "file": "CNLC_v1_deepseek-v4-flash@scores.jsonl",
+   "sha256": "74059bf1ef4cabab3d668c3c5015b4e29fc65e0d0ab21edad70d5d3bb8ea023d",
+   "n": 4219
+  },
+  {
+   "cohort": "nsclc",
+   "model": "GLM-5.2",
+   "file": "CNLC_v1_glm-5.2@scores.jsonl",
+   "sha256": "317a45fc32b8e4b111fa7a1972b102dd465fb9fe00b90f505ab8a3795d2f39f3",
+   "n": 4219
+  },
+  {
+   "cohort": "mi",
+   "model": "GPT-5.2",
+   "file": "MI_v1_gpt-5.2@scores.jsonl",
+   "sha256": "c36c7f47ca558c19d9a734e15413b9a9c60f4014a5678baf5edff53a8ff228a8",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "Claude 4.5 Sonnet",
+   "file": "MI_v1_claude-sonnet-4-5-20250929@scores.jsonl",
+   "sha256": "0bc80342766be56c928ba12706b95ac0597bbbf62ea3e10a2bad2a6c04573560",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "Gemini 3 Pro",
+   "file": "MI_v1_gemini-3-pro-preview@scores.jsonl",
+   "sha256": "b15849d994549c3cad0e41e09532b54c16988ca8fdd5252c94478e17e7be2f39",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "Baichuan-M3-plus",
+   "file": "MI_v1_Baichuan-M3-Plus@scores.jsonl",
+   "sha256": "c05762bb0284a6228369bead2df71e414c3647655c2bd19b2ad85ba93cebec7d",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "MedGemma-27B",
+   "file": "MI_v1_medgemma-27b@scores.jsonl",
+   "sha256": "58d39aee81b78320380c6c8b1d8817db27719f46b99bd1082fd476fd7b11b9c3",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "GLM-4.7",
+   "file": "MI_v1_glm-4.7@scores.jsonl",
+   "sha256": "ab0e0cb14158c736b91ffb61c9f3c17edd6525aa4edf759f1cd7c56a3ee813f5",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "Kimi-K2.5",
+   "file": "MI_v1_kimi-k2.5@scores.jsonl",
+   "sha256": "740db7edc9b2778670d78a35f18c2e0f21ff558faf6bb33d30ec5b99dc3731e0",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "DeepSeek-V3.2",
+   "file": "MI_v1_deepseek-v3.2@scores.jsonl",
+   "sha256": "7c72a7d34483da83be9a062bed32904219eaf9ba9cd53e0500bbe698b46beea4",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "Qwen-Max",
+   "file": "MI_v1_qwen3-max@scores.jsonl",
+   "sha256": "4277f19d4102dcd5e86816740b4a5b128a256ecf6c93c9f0b4dd79f66c093a76",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "Qwen3.5-Plus",
+   "file": "MI_v1_qwen3.5-plus@scores.jsonl",
+   "sha256": "0f23ab5b4cd48c802f763c8128b2ff5c36431323167992f3d4b7c75c3ad94ef3",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "GPT-5.6-sol",
+   "file": "MI_v1_gpt-5.6-sol@scores.jsonl",
+   "sha256": "8c7b295df71ce54370bba911bd974720fd854516043cd6e832a23beba5ba33fd",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "Claude Opus 4.7",
+   "file": "MI_v1_claude-opus-4-7@scores.jsonl",
+   "sha256": "68ec09d17c36a970a2261f8d94def239860574638922604f1dc1db59ca19be37",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "DeepSeek-V4-Flash",
+   "file": "MI_v1_deepseek-v4-flash@scores.jsonl",
+   "sha256": "621956ffc423612ffb99725e0154bc5ed79e0f3c5eed8af00dbc3a0f20c99ea8",
+   "n": 3611
+  },
+  {
+   "cohort": "mi",
+   "model": "GLM-5.2",
+   "file": "MI_v1_glm-5.2@scores.jsonl",
+   "sha256": "b26dbdd1b21ad7506f0e8c3e534191f8bb8fbb18e71109cfd8ac57b27cf883ca",
+   "n": 3611
+  },
+  {
+   "cohort": "stroke",
+   "model": "GPT-5.2",
+   "file": "STROKE_v1_gpt-5.2@scores.jsonl",
+   "sha256": "d7c672363d5c4eb150bb09fa9d5398cba9f7ed9d8eaf549d0b8b8853640a55f7",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "Claude 4.5 Sonnet",
+   "file": "STROKE_v1_claude-sonnet-4-5-20250929@scores.jsonl",
+   "sha256": "572e6687d194577eca47bdc4f87d6c1008341d226dc1eab603d42c376a9af926",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "Gemini 3 Pro",
+   "file": "STROKE_v1_gemini-3-pro-preview@scores.jsonl",
+   "sha256": "7db692f2b26e9da47f37c672ef8236407ee73b86192948fed905b1ade3bcded7",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "Baichuan-M3-plus",
+   "file": "STROKE_v1_Baichuan-M3-Plus@scores.jsonl",
+   "sha256": "d86b12e1b2c0159c60e7ef9db7865947faa9874ecf44be892faf3b008e2b8766",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "MedGemma-27B",
+   "file": "STROKE_v1_medgemma-27b@scores.jsonl",
+   "sha256": "4576c7fdfbdd40ef0e6ffdc24e1228487c6e39ee2e9f42b8a7d7bd7a3b2db3a3",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "GLM-4.7",
+   "file": "STROKE_v1_glm-4.7@scores.jsonl",
+   "sha256": "55bca471d92d61d6374a1a52cae208c16ad09d860fae69c104a5d2e714d6391b",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "Kimi-K2.5",
+   "file": "STROKE_v1_kimi-k2.5@scores.jsonl",
+   "sha256": "b4c1f01d7006385d18dea2246ab63bbf65a383bc312644e43d8bbb9ece2cb2fd",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "DeepSeek-V3.2",
+   "file": "STROKE_v1_deepseek-v3.2@scores.jsonl",
+   "sha256": "ea463c96af40b314211a8070cb35f23c30b039bec4958e01464538a5d93047d4",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "Qwen-Max",
+   "file": "STROKE_v1_qwen3-max@scores.jsonl",
+   "sha256": "1984a2408598bc2d5f02564b7978a32d3efafc8205aecd4956b273ccd8dc3d36",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "Qwen3.5-Plus",
+   "file": "STROKE_v1_qwen3.5-plus@scores.jsonl",
+   "sha256": "f9555fe41f4b8fd9106f176d8c40726ccb9b7f2da456ee282ed29d273373deb3",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "GPT-5.6-sol",
+   "file": "STROKE_v1_gpt-5.6-sol@scores.jsonl",
+   "sha256": "79e7f1e6580a18d43e583d4ff4b2dc5ceca39514c5768232486a8a344f8e6123",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "Claude Opus 4.7",
+   "file": "STROKE_v1_claude-opus-4-7@scores.jsonl",
+   "sha256": "dd39939969d39c9ceb246c274bc2d66e8827936e51ee0f1d109874dcaba1f833",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "DeepSeek-V4-Flash",
+   "file": "STROKE_v1_deepseek-v4-flash@scores.jsonl",
+   "sha256": "ab68c8123d88d2fbe69c32f02fdfc38fa6d27b1e515dab12f4ab87235fc8b131",
+   "n": 3657
+  },
+  {
+   "cohort": "stroke",
+   "model": "GLM-5.2",
+   "file": "STROKE_v1_glm-5.2@scores.jsonl",
+   "sha256": "8d7181b003edfc9201a5aa156d4585cfe08cc3b572fa7c0cba108150c0de93e6",
+   "n": 3657
+  },
+  {
+   "cohort": "cnlc",
+   "model": "GPT-6-sol",
+   "file": "cnlc_gpt-6-sol@scores.jsonl",
+   "sha256": "9806ab82f2466f23f75abb65633b5ca170d42381ddbb42f0b6abbc8767267d1d",
+   "n": 4103
+  },
+  {
+   "cohort": "bclc",
+   "model": "GPT-6-sol",
+   "file": "bclc_gpt-6-sol@scores.jsonl",
+   "sha256": "805bbcec999a292857ddd2eee1716ea4396a4aa9d5d5a5879581e16b2734e45d",
+   "n": 3689
+  },
+  {
+   "cohort": "nsclc",
+   "model": "GPT-6-sol",
+   "file": "nsclc_gpt-6-sol@scores.jsonl",
+   "sha256": "d0648c902e18a0a548c2e5ce55063aad81fb46c5b6a4de9dd1576d0098926c27",
+   "n": 4219
+  },
+  {
+   "cohort": "mi",
+   "model": "GPT-6-sol",
+   "file": "mi_gpt-6-sol@scores.jsonl",
+   "sha256": "46ecb72f7a6d99da9e386e1f40070d6bd6a38d973adefe941eaa7caaf52695d4",
+   "n": 3611
+  },
+  {
+   "cohort": "stroke",
+   "model": "GPT-6-sol",
+   "file": "stroke_gpt-6-sol@scores.jsonl",
+   "sha256": "53e57058c2c18bad91c13366234f7af915f9a3a189ef12421ec2dd601bc733d7",
+   "n": 3657
+  },
+  {
+   "cohort": "cnlc",
+   "model": "Claude Sonnet 5",
+   "file": "cnlc_claude-sonnet-5@scores.jsonl",
+   "sha256": "63a15f15205ffa26ec6e3dfd9bd0c343075ffec5b327120e9b6fcfd00b55e1eb",
+   "n": 4103
+  },
+  {
+   "cohort": "bclc",
+   "model": "Claude Sonnet 5",
+   "file": "bclc_claude-sonnet-5@scores.jsonl",
+   "sha256": "ce449410c6152101154e495a153c43d70df2411a6d711231905ae063fa72f7b5",
+   "n": 3689
+  },
+  {
+   "cohort": "nsclc",
+   "model": "Claude Sonnet 5",
+   "file": "nsclc_claude-sonnet-5@scores.jsonl",
+   "sha256": "44072cc8ef956fa1eead7b36c1428e2b8cbe51ceb0e09b9bced9cd4c9f828c89",
+   "n": 4219
+  },
+  {
+   "cohort": "mi",
+   "model": "Claude Sonnet 5",
+   "file": "mi_claude-sonnet-5@scores.jsonl",
+   "sha256": "75e01925b0573cad319e1cbcd828cd4040db8be2d2c1f7afc2604a0c6e0557e1",
+   "n": 3611
+  },
+  {
+   "cohort": "stroke",
+   "model": "Claude Sonnet 5",
+   "file": "stroke_claude-sonnet-5@scores.jsonl",
+   "sha256": "0fdf750a9eb5c7a68389af0255b1c235c95a89040539bec5e09a4e23f8f25f98",
+   "n": 3657
+  }
+ ]
+}

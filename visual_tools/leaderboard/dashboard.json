@@ -1,5 +1,5 @@
 {
-  "source_file": "results_filtered_latest.xlsx",
+  "source_file": "results_paper_final.xlsx",
   "models": [
     {
       "name": "GPT-5.2",
@@ -84,6 +84,18 @@
       "id": "glm-5-2",
       "family": "general",
       "access": "open"
+    },
+    {
+      "name": "GPT-6-sol",
+      "id": "gpt-6-sol",
+      "family": "frontier",
+      "access": "closed"
+    },
+    {
+      "name": "Claude Sonnet 5",
+      "id": "claude-sonnet-5",
+      "family": "frontier",
+      "access": "closed"
     }
   ],
   "datasets": [
@@ -116,7 +128,9 @@
             "GPT-5.6-sol": 0.0002437241043139166,
             "Claude Opus 4.7": 0.008774067755300999,
             "DeepSeek-V4-Flash": 0.0,
-            "GLM-5.2": 0.0009748964172556666
+            "GLM-5.2": 0.0009748964172556666,
+            "GPT-6-sol": 0.0102364123811845,
+            "Claude Sonnet 5": 0.004143309773336583
           }
         },
         {
@@ -139,7 +153,9 @@
             "GPT-5.6-sol": 0.09266530645985746,
             "Claude Opus 4.7": 0.02663467728844829,
             "DeepSeek-V4-Flash": 0.03773000620193495,
-            "GLM-5.2": 0.03280365563576498
+            "GLM-5.2": 0.03280365563576498,
+            "GPT-6-sol": 0.08194637708345653,
+            "Claude Sonnet 5": 0.04658140505242837
           }
         },
         {
@@ -162,7 +178,9 @@
             "GPT-5.6-sol": 0.1136839213585476,
             "Claude Opus 4.7": 0.03718289686181525,
             "DeepSeek-V4-Flash": 0.03773528416416835,
-            "GLM-5.2": 0.02599033927715783
+            "GLM-5.2": 0.02599033927715783,
+            "GPT-6-sol": 0.07085816176237265,
+            "Claude Sonnet 5": 0.0385544044530805
           }
         },
         {
@@ -185,7 +203,9 @@
             "GPT-5.6-sol": 0.1585804696821225,
             "Claude Opus 4.7": 0.1109810121522047,
             "DeepSeek-V4-Flash": 0.09184411873542912,
-            "GLM-5.2": 0.09906797347580709
+            "GLM-5.2": 0.09906797347580709,
+            "GPT-6-sol": 0.07501829508156913,
+            "Claude Sonnet 5": 0.06217146253105237
           }
         },
         {
@@ -208,7 +228,9 @@
             "GPT-5.6-sol": 0.7811579110628806,
             "Claude Opus 4.7": 0.7821438858485145,
             "DeepSeek-V4-Flash": 0.7480114328761708,
-            "GLM-5.2": 0.7543593379567174
+            "GLM-5.2": 0.7543593379567174,
+            "GPT-6-sol": 0.7379744311257932,
+            "Claude Sonnet 5": 0.76573682228083
           }
         },
         {
@@ -231,7 +253,9 @@
             "GPT-5.6-sol": 0.004874482086278333,
             "Claude Opus 4.7": 0.005361930294906166,
             "DeepSeek-V4-Flash": 0.00950524006824275,
-            "GLM-5.2": 0.00511820619059225
+            "GLM-5.2": 0.00511820619059225,
+            "GPT-6-sol": 0.002437241043139166,
+            "Claude Sonnet 5": 0.003168413356080916
           }
         },
         {
@@ -254,7 +278,9 @@
             "GPT-5.6-sol": 0.8560957898687346,
             "Claude Opus 4.7": 0.8351808301882852,
             "DeepSeek-V4-Flash": 0.8294597175198741,
-            "GLM-5.2": 0.7854821372291871
+            "GLM-5.2": 0.7854821372291871,
+            "GPT-6-sol": 0.7703129021583407,
+            "Claude Sonnet 5": 0.8135688622536695
           }
         },
         {
@@ -277,15 +303,17 @@
             "GPT-5.6-sol": 0.9485742139897636,
             "Claude Opus 4.7": 0.8727760175481355,
             "DeepSeek-V4-Flash": 0.7489641725566658,
-            "GLM-5.2": 0.774798927613941
+            "GLM-5.2": 0.774798927613941,
+            "GPT-6-sol": 0.8242749207896661,
+            "Claude Sonnet 5": 0.5971240555690958
           }
         },
         {
-          "key": "pred-missing-staging-rate",
-          "label": "Pred missing staging rate",
+          "key": "pred_missing_staging_rate",
+          "label": "Predicted Staging Missing Rate",
           "raw_label": "Pred missing staging rate",
-          "group": "other",
-          "direction": "higher",
+          "group": "staging",
+          "direction": "lower",
           "values": {
             "GPT-5.2": 0.01267365342432366,
             "Claude 4.5 sonnet": 0.02875944430904217,
@@ -300,7 +328,9 @@
             "GPT-5.6-sol": 0.0009748964172556666,
             "Claude Opus 4.7": 0.008774067755300999,
             "DeepSeek-V4-Flash": 0.0,
-            "GLM-5.2": 0.0009748964172556666
+            "GLM-5.2": 0.0009748964172556666,
+            "GPT-6-sol": 0.04265171825493541,
+            "Claude Sonnet 5": 0.004630757981964416
           }
         },
         {
@@ -323,7 +353,9 @@
             "GPT-5.6-sol": 0.4788865909938891,
             "Claude Opus 4.7": 0.4965578418833361,
             "DeepSeek-V4-Flash": 0.3690333693927473,
-            "GLM-5.2": 0.4478721651217173
+            "GLM-5.2": 0.4478721651217173,
+            "GPT-6-sol": 0.4065968408773688,
+            "Claude Sonnet 5": 0.4877194504202524
           }
         }
       ]
@@ -346,8 +378,8 @@
           "values": {
             "GPT-5.2": 0.007047980482515587,
             "Claude 4.5 sonnet": 0.0,
-            "Gemini 3 pro preview": 0.1000271076172404,
-            "Baichuan-M3 (plus)": 0.0005421523448088912,
+            "Gemini 3 pro preview": 0.099756031444836,
+            "Baichuan-M3 (plus)": 0.0002710761724044456,
             "medgemma": 0.09352127947953374,
             "GLM-4.7": 0.01328273244781784,
             "kimi-k2.5": 0.000813228517213337,
@@ -357,7 +389,9 @@
             "GPT-5.6-sol": 0.000813228517213337,
             "Claude Opus 4.7": 0.0005421523448088912,
             "DeepSeek-V4-Flash": 0.0,
-            "GLM-5.2": 0.06966657630794253
+            "GLM-5.2": 0.06966657630794253,
+            "GPT-6-sol": 0.000813228517213337,
+            "Claude Sonnet 5": 0.0002710761724044456
           }
         },
         {
@@ -367,10 +401,10 @@
           "group": "calibration",
           "direction": "lower",
           "values": {
-            "GPT-5.2": 0.09113519981452936,
-            "Claude 4.5 sonnet": 0.08137495340786555,
-            "Gemini 3 pro preview": 0.1194393823088759,
-            "Baichuan-M3 (plus)": 0.03986327319354072,
+            "GPT-5.2": 0.0658127130282931,
+            "Claude 4.5 sonnet": 0.1006722680774658,
+            "Gemini 3 pro preview": 0.09346966160598336,
+            "Baichuan-M3 (plus)": 0.09781624372322426,
             "medgemma": 0.1629785543111811,
             "GLM-4.7": 0.1588337495145253,
             "kimi-k2.5": 0.08910057272560065,
@@ -380,7 +414,9 @@
             "GPT-5.6-sol": 0.06710195771898506,
             "Claude Opus 4.7": 0.0278160444356743,
             "DeepSeek-V4-Flash": 0.03431400850595759,
-            "GLM-5.2": 0.1529990148546078
+            "GLM-5.2": 0.1529990148546078,
+            "GPT-6-sol": 0.1298369999570656,
+            "Claude Sonnet 5": 0.08669438803232044
           }
         },
         {
@@ -390,10 +426,10 @@
           "group": "calibration",
           "direction": "lower",
           "values": {
-            "GPT-5.2": 0.08766785363770857,
-            "Claude 4.5 sonnet": 0.07932311207540102,
-            "Gemini 3 pro preview": 0.1271133273244593,
-            "Baichuan-M3 (plus)": 0.04208517404732081,
+            "GPT-5.2": 0.06183546300193983,
+            "Claude 4.5 sonnet": 0.1015516286485221,
+            "Gemini 3 pro preview": 0.09878173329459256,
+            "Baichuan-M3 (plus)": 0.09714001302859546,
             "medgemma": 0.1714721214180006,
             "GLM-4.7": 0.1658743902712315,
             "kimi-k2.5": 0.09694367500562241,
@@ -403,7 +439,9 @@
             "GPT-5.6-sol": 0.07238725580517948,
             "Claude Opus 4.7": 0.02740787760800885,
             "DeepSeek-V4-Flash": 0.03863882591504421,
-            "GLM-5.2": 0.1575825317662465
+            "GLM-5.2": 0.1575825317662465,
+            "GPT-6-sol": 0.1274890460818879,
+            "Claude Sonnet 5": 0.08979226264080124
           }
         },
         {
@@ -413,10 +451,10 @@
           "group": "calibration",
           "direction": "lower",
           "values": {
-            "GPT-5.2": 0.09126013577902817,
-            "Claude 4.5 sonnet": 0.04546913138928628,
-            "Gemini 3 pro preview": 0.2168994044900922,
-            "Baichuan-M3 (plus)": 0.101690268123735,
+            "GPT-5.2": 0.1085039309659822,
+            "Claude 4.5 sonnet": 0.1019644204831748,
+            "Gemini 3 pro preview": 0.1897879717424183,
+            "Baichuan-M3 (plus)": 0.1680853954609348,
             "medgemma": 0.2811254121659887,
             "GLM-4.7": 0.2488396148672057,
             "kimi-k2.5": 0.1713723833153823,
@@ -426,7 +464,9 @@
             "GPT-5.6-sol": 0.1467064634601016,
             "Claude Opus 4.7": 0.09879636712432668,
             "DeepSeek-V4-Flash": 0.1373108746964074,
-            "GLM-5.2": 0.2328665253225022
+            "GLM-5.2": 0.2328665253225022,
+            "GPT-6-sol": 0.1547949973192486,
+            "Claude Sonnet 5": 0.1280185321717558
           }
         },
         {
@@ -436,10 +476,10 @@
           "group": "labeling",
           "direction": "higher",
           "values": {
-            "GPT-5.2": 0.7284053699681258,
-            "Claude 4.5 sonnet": 0.7958708410050259,
-            "Gemini 3 pro preview": 0.7590604276901352,
-            "Baichuan-M3 (plus)": 0.6711614557846592,
+            "GPT-5.2": 0.728405369968127,
+            "Claude 4.5 sonnet": 0.7958708410050263,
+            "Gemini 3 pro preview": 0.7593089141815038,
+            "Baichuan-M3 (plus)": 0.6714325319570661,
             "medgemma": 0.7283345302930583,
             "GLM-4.7": 0.7739169665911306,
             "kimi-k2.5": 0.8158534088122001,
@@ -449,7 +489,9 @@
             "GPT-5.6-sol": 0.8145633326644448,
             "Claude Opus 4.7": 0.8138777994091071,
             "DeepSeek-V4-Flash": 0.7515563507905635,
-            "GLM-5.2": 0.646393024462963
+            "GLM-5.2": 0.646393024462963,
+            "GPT-6-sol": 0.7881766000632935,
+            "Claude Sonnet 5": 0.7833134720163726
           }
         },
         {
@@ -462,7 +504,7 @@
             "GPT-5.2": 0.08023854703171591,
             "Claude 4.5 sonnet": 0.07834101382488479,
             "Gemini 3 pro preview": 0.1816210355109786,
-            "Baichuan-M3 (plus)": 0.06912442396313365,
+            "Baichuan-M3 (plus)": 0.06939550013553808,
             "medgemma": 0.0219571699647601,
             "GLM-4.7": 0.1512605042016807,
             "kimi-k2.5": 0.1439414475467606,
@@ -472,7 +514,9 @@
             "GPT-5.6-sol": 0.07563025210084033,
             "Claude Opus 4.7": 0.1030089455136893,
             "DeepSeek-V4-Flash": 0.07834101382488479,
-            "GLM-5.2": 0.06668473841149362
+            "GLM-5.2": 0.06668473841149362,
+            "GPT-6-sol": 0.07102195716996476,
+            "Claude Sonnet 5": 0.07725670913526701
           }
         },
         {
@@ -482,10 +526,10 @@
           "group": "treatment",
           "direction": "higher",
           "values": {
-            "GPT-5.2": 0.777369093879157,
-            "Claude 4.5 sonnet": 0.8005966221617778,
-            "Gemini 3 pro preview": 0.690281299769164,
-            "Baichuan-M3 (plus)": 0.8034479091543091,
+            "GPT-5.2": 0.7452723941564294,
+            "Claude 4.5 sonnet": 0.7224897059405084,
+            "Gemini 3 pro preview": 0.7261383956560419,
+            "Baichuan-M3 (plus)": 0.7092359434289799,
             "medgemma": 0.5819934089385111,
             "GLM-4.7": 0.6253169635660032,
             "kimi-k2.5": 0.7053280216011482,
@@ -495,7 +539,9 @@
             "GPT-5.6-sol": 0.7081855366684217,
             "Claude Opus 4.7": 0.7212283114106093,
             "DeepSeek-V4-Flash": 0.6958338469191422,
-            "GLM-5.2": 0.608027510773116
+            "GLM-5.2": 0.608027510773116,
+            "GPT-6-sol": 0.6181054101641894,
+            "Claude Sonnet 5": 0.7163012762328766
           }
         },
         {
@@ -505,10 +551,10 @@
           "group": "staging",
           "direction": "higher",
           "values": {
-            "GPT-5.2": 0.7668744917321767,
-            "Claude 4.5 sonnet": 0.7937110328002168,
-            "Gemini 3 pro preview": 0.7178097045269721,
-            "Baichuan-M3 (plus)": 0.6993765248034698,
+            "GPT-5.2": 0.7370561127676877,
+            "Claude 4.5 sonnet": 0.7194361615613988,
+            "Gemini 3 pro preview": 0.6690159934941718,
+            "Baichuan-M3 (plus)": 0.6153429113580916,
             "medgemma": 0.5974518839793982,
             "GLM-4.7": 0.7010029818378964,
             "kimi-k2.5": 0.6703713743561941,
@@ -518,20 +564,22 @@
             "GPT-5.6-sol": 0.6869070208728653,
             "Claude Opus 4.7": 0.7180807806993765,
             "DeepSeek-V4-Flash": 0.6391976145296828,
-            "GLM-5.2": 0.5947411222553538
+            "GLM-5.2": 0.5947411222553538,
+            "GPT-6-sol": 0.4478178368121442,
+            "Claude Sonnet 5": 0.7023583626999187
           }
         },
         {
-          "key": "pred-missing-staging-rate",
-          "label": "Pred missing staging rate",
+          "key": "pred_missing_staging_rate",
+          "label": "Predicted Staging Missing Rate",
           "raw_label": "Pred missing staging rate",
-          "group": "other",
-          "direction": "higher",
+          "group": "staging",
+          "direction": "lower",
           "values": {
             "GPT-5.2": 0.007047980482515587,
             "Claude 4.5 sonnet": 0.000813228517213337,
-            "Gemini 3 pro preview": 0.1000271076172404,
-            "Baichuan-M3 (plus)": 0.05529953917050692,
+            "Gemini 3 pro preview": 0.099756031444836,
+            "Baichuan-M3 (plus)": 0.05502846299810247,
             "medgemma": 0.0967741935483871,
             "GLM-4.7": 0.0154513418270534,
             "kimi-k2.5": 0.000813228517213337,
@@ -541,7 +589,9 @@
             "GPT-5.6-sol": 0.001084304689617782,
             "Claude Opus 4.7": 0.001355380862022228,
             "DeepSeek-V4-Flash": 0.0002710761724044456,
-            "GLM-5.2": 0.07047980482515587
+            "GLM-5.2": 0.07047980482515587,
+            "GPT-6-sol": 0.04337218758471131,
+            "Claude Sonnet 5": 0.003795066413662239
           }
         },
         {
@@ -551,10 +601,10 @@
           "group": "reasoning",
           "direction": "higher",
           "values": {
-            "GPT-5.2": 0.2429587354369468,
-            "Claude 4.5 sonnet": 0.4283885813311039,
-            "Gemini 3 pro preview": 0.2488685699146461,
-            "Baichuan-M3 (plus)": 0.04415004399633862,
+            "GPT-5.2": 0.246526449217712,
+            "Claude 4.5 sonnet": 0.4238438442411824,
+            "Gemini 3 pro preview": 0.2473242769399394,
+            "Baichuan-M3 (plus)": 0.04434348610866129,
             "medgemma": 0.09506677052620736,
             "GLM-4.7": 0.2665789144184753,
             "kimi-k2.5": 0.2964073055275128,
@@ -564,7 +614,9 @@
             "GPT-5.6-sol": 0.3892748766131844,
             "Claude Opus 4.7": 0.4128289044525361,
             "DeepSeek-V4-Flash": 0.199699138791163,
-            "GLM-5.2": 0.2992215581916861
+            "GLM-5.2": 0.2992215581916861,
+            "GPT-6-sol": 0.239462227772715,
+            "Claude Sonnet 5": 0.3652851881525778
           }
         }
       ]
@@ -598,7 +650,9 @@
             "GPT-5.6-sol": 0.002607252903531643,
             "Claude Opus 4.7": 0.001896183929841195,
             "DeepSeek-V4-Flash": 0.0,
-            "GLM-5.2": 0.04337520739511733
+            "GLM-5.2": 0.04337520739511733,
+            "GPT-6-sol": 0.00331832187722209,
+            "Claude Sonnet 5": 0.001422137947380896
           }
         },
         {
@@ -621,7 +675,9 @@
             "GPT-5.6-sol": 0.08647400803666948,
             "Claude Opus 4.7": 0.07932193398964192,
             "DeepSeek-V4-Flash": 0.1100845685102268,
-            "GLM-5.2": 0.1201743199588636
+            "GLM-5.2": 0.1201743199588636,
+            "GPT-6-sol": 0.08227827759680234,
+            "Claude Sonnet 5": 0.1685390939837874
           }
         },
         {
@@ -644,7 +700,9 @@
             "GPT-5.6-sol": 0.09266109627213259,
             "Claude Opus 4.7": 0.08595892152164088,
             "DeepSeek-V4-Flash": 0.116830282741401,
-            "GLM-5.2": 0.1266551742350969
+            "GLM-5.2": 0.1266551742350969,
+            "GPT-6-sol": 0.08206349474838992,
+            "Claude Sonnet 5": 0.1707613787170902
           }
         },
         {
@@ -667,7 +725,9 @@
             "GPT-5.6-sol": 0.1158548744382479,
             "Claude Opus 4.7": 0.1107942571060075,
             "DeepSeek-V4-Flash": 0.1415904586702023,
-            "GLM-5.2": 0.1479395684289498
+            "GLM-5.2": 0.1479395684289498,
+            "GPT-6-sol": 0.08364765482067274,
+            "Claude Sonnet 5": 0.1899687364154916
           }
         },
         {
@@ -690,7 +750,9 @@
             "GPT-5.6-sol": 0.7935134708066719,
             "Claude Opus 4.7": 0.796496010112983,
             "DeepSeek-V4-Flash": 0.7648929446156303,
-            "GLM-5.2": 0.7041755550288369
+            "GLM-5.2": 0.7041755550288369,
+            "GPT-6-sol": 0.7625424666192653,
+            "Claude Sonnet 5": 0.7088370071896938
           }
         },
         {
@@ -713,7 +775,9 @@
             "GPT-5.6-sol": 0.2393932211424508,
             "Claude Opus 4.7": 0.2391561981512207,
             "DeepSeek-V4-Flash": 0.1986252666508651,
-            "GLM-5.2": 0.1204076795449159
+            "GLM-5.2": 0.1204076795449159,
+            "GPT-6-sol": 0.187248163071818,
+            "Claude Sonnet 5": 0.1346290590187248
           }
         },
         {
@@ -736,7 +800,9 @@
             "GPT-5.6-sol": 0.813959362474699,
             "Claude Opus 4.7": 0.8185929867588939,
             "DeepSeek-V4-Flash": 0.7879140085893387,
-            "GLM-5.2": 0.7688373907214212
+            "GLM-5.2": 0.7688373907214212,
+            "GPT-6-sol": 0.8000544903225268,
+            "Claude Sonnet 5": 0.7535610431375874
           }
         },
         {
@@ -759,15 +825,17 @@
             "GPT-5.6-sol": 0.9182270680255985,
             "Claude Opus 4.7": 0.8814885043849253,
             "DeepSeek-V4-Flash": 0.7831239630244133,
-            "GLM-5.2": 0.8520976534723869
+            "GLM-5.2": 0.8520976534723869,
+            "GPT-6-sol": 0.8902583550604408,
+            "Claude Sonnet 5": 0.7684285375681441
           }
         },
         {
-          "key": "pred-missing-staging-rate",
-          "label": "Pred missing staging rate",
+          "key": "pred_missing_staging_rate",
+          "label": "Predicted Staging Missing Rate",
           "raw_label": "Pred missing staging rate",
-          "group": "other",
-          "direction": "higher",
+          "group": "staging",
+          "direction": "lower",
           "values": {
             "GPT-5.2": 0.002370229912301493,
             "Claude 4.5 sonnet": 0.1585683811329699,
@@ -782,7 +850,9 @@
             "GPT-5.6-sol": 0.06684048352690211,
             "Claude Opus 4.7": 0.07608438018487794,
             "DeepSeek-V4-Flash": 0.1844038871770562,
-            "GLM-5.2": 0.08580232282531405
+            "GLM-5.2": 0.08580232282531405,
+            "GPT-6-sol": 0.07371415027257644,
+            "Claude Sonnet 5": 0.1526428063522162
           }
         },
         {
@@ -805,7 +875,9 @@
             "GPT-5.6-sol": 0.3708044144943565,
             "Claude Opus 4.7": 0.393525204745105,
             "DeepSeek-V4-Flash": 0.1434205226996613,
-            "GLM-5.2": 0.239652178382558
+            "GLM-5.2": 0.239652178382558,
+            "GPT-6-sol": 0.3177308308761725,
+            "Claude Sonnet 5": 0.383602847963074
           }
         }
       ]
@@ -839,7 +911,9 @@
             "GPT-5.6-sol": 0.0,
             "Claude Opus 4.7": 0.0,
             "DeepSeek-V4-Flash": 0.001938521185267239,
-            "GLM-5.2": 0.001384657989476599
+            "GLM-5.2": 0.001384657989476599,
+            "GPT-6-sol": 0.0,
+            "Claude Sonnet 5": 0.001661589587371919
           }
         },
         {
@@ -862,7 +936,9 @@
             "GPT-5.6-sol": 0.5086416005607378,
             "Claude Opus 4.7": 0.2346545088500234,
             "DeepSeek-V4-Flash": 0.3314840656435831,
-            "GLM-5.2": 0.3505318045749867
+            "GLM-5.2": 0.3505318045749867,
+            "GPT-6-sol": 0.4448578397816838,
+            "Claude Sonnet 5": 0.2081192967775635
           }
         },
         {
@@ -885,7 +961,9 @@
             "GPT-5.6-sol": 0.4518598137580985,
             "Claude Opus 4.7": 0.2053946209032721,
             "DeepSeek-V4-Flash": 0.2983033951139313,
-            "GLM-5.2": 0.2495004452805857
+            "GLM-5.2": 0.2495004452805857,
+            "GPT-6-sol": 0.3859222293156189,
+            "Claude Sonnet 5": 0.236863899509549
           }
         },
         {
@@ -908,7 +986,9 @@
             "GPT-5.6-sol": 0.4860334164128145,
             "Claude Opus 4.7": 0.5498292255146361,
             "DeepSeek-V4-Flash": 0.5243699806147976,
-            "GLM-5.2": 0.557555617095918
+            "GLM-5.2": 0.557555617095918,
+            "GPT-6-sol": 0.4861626511585007,
+            "Claude Sonnet 5": 0.4925966952829394
           }
         },
         {
@@ -931,12 +1011,39 @@
             "GPT-5.6-sol": 0.0,
             "Claude Opus 4.7": 0.0002769315978953199,
             "DeepSeek-V4-Flash": 0.0,
-            "GLM-5.2": 0.0
+            "GLM-5.2": 0.0,
+            "GPT-6-sol": 0.0,
+            "Claude Sonnet 5": 0.0
+          }
+        },
+        {
+          "key": "treatment_set_f1",
+          "label": "Treatment set-F1",
+          "raw_label": "Treatment set-F1",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.5099766485840832,
+            "Claude 4.5 sonnet": 0.4678252324248854,
+            "Gemini 3 pro preview": 0.458481465307998,
+            "Baichuan-M3 (plus)": 0.5565508924944252,
+            "medgemma": 0.5194939788481782,
+            "GLM-4.7": 0.4835786846695603,
+            "kimi-k2.5": 0.5904995518638616,
+            "Deepseek-v3.2": 0.5750611088633105,
+            "Qwen-Max": 0.3962647122318523,
+            "Qwen3.5-Plus": 0.6962213541901711,
+            "GPT-5.6-sol": 0.3513955660599062,
+            "Claude Opus 4.7": 0.5255840251535795,
+            "DeepSeek-V4-Flash": 0.4683025585976913,
+            "GLM-5.2": 0.5782720501055565,
+            "GPT-6-sol": 0.2200401079870674,
+            "Claude Sonnet 5": 0.4621690966474654
           }
         },
         {
           "key": "procedure_acc",
-          "label": "Procedure Accuracy",
+          "label": "Procedure Precision (proc_acc)",
           "raw_label": "治疗（proc_acc）",
           "group": "treatment",
           "direction": "higher",
@@ -954,7 +1061,9 @@
             "GPT-5.6-sol": 0.2278223945352165,
             "Claude Opus 4.7": 0.2847318379027047,
             "DeepSeek-V4-Flash": 0.2114372749930767,
-            "GLM-5.2": 0.2663620419089818
+            "GLM-5.2": 0.2663620419089818,
+            "GPT-6-sol": 0.142527462383458,
+            "Claude Sonnet 5": 0.2089448906120189
           }
         },
         {
@@ -977,12 +1086,14 @@
             "GPT-5.6-sol": 0.2221914520446783,
             "Claude Opus 4.7": 0.2884704144742916,
             "DeepSeek-V4-Flash": 0.189328902427767,
-            "GLM-5.2": 0.247161451121573
+            "GLM-5.2": 0.247161451121573,
+            "GPT-6-sol": 0.1309424905381704,
+            "Claude Sonnet 5": 0.1968983661035724
           }
         },
         {
           "key": "med_acc",
-          "label": "Medication Accuracy",
+          "label": "Medication Precision (med_acc)",
           "raw_label": "med_acc",
           "group": "treatment",
           "direction": "higher",
@@ -1000,7 +1111,9 @@
             "GPT-5.6-sol": 0.5495661404966304,
             "Claude Opus 4.7": 0.6546821220872734,
             "DeepSeek-V4-Flash": 0.5330260711318612,
-            "GLM-5.2": 0.6934502380293038
+            "GLM-5.2": 0.6934502380293038,
+            "GPT-6-sol": 0.4142342841318195,
+            "Claude Sonnet 5": 0.5588585143279153
           }
         },
         {
@@ -1023,12 +1136,14 @@
             "GPT-5.6-sol": 0.3343111656182811,
             "Claude Opus 4.7": 0.5842755601271237,
             "DeepSeek-V4-Flash": 0.5572490142553835,
-            "GLM-5.2": 0.6741392042832095
+            "GLM-5.2": 0.6741392042832095,
+            "GPT-6-sol": 0.1903786050559796,
+            "Claude Sonnet 5": 0.530599622845538
           }
         },
         {
           "key": "all_acc",
-          "label": "Overall Treatment Accuracy",
+          "label": "Overall Treatment Precision (all_acc)",
           "raw_label": "all_acc",
           "group": "treatment",
           "direction": "higher",
@@ -1046,7 +1161,9 @@
             "GPT-5.6-sol": 0.4851582246486688,
             "Claude Opus 4.7": 0.577927732441722,
             "DeepSeek-V4-Flash": 0.4973640147968643,
-            "GLM-5.2": 0.6241794652622726
+            "GLM-5.2": 0.6241794652622726,
+            "GPT-6-sol": 0.3841484133577733,
+            "Claude Sonnet 5": 0.5263127776559006
           }
         },
         {
@@ -1069,7 +1186,9 @@
             "GPT-5.6-sol": 0.3045562940398167,
             "Claude Opus 4.7": 0.5178769236855671,
             "DeepSeek-V4-Flash": 0.4711637281147144,
-            "GLM-5.2": 0.5799759772828222
+            "GLM-5.2": 0.5799759772828222,
+            "GPT-6-sol": 0.171108341795132,
+            "Claude Sonnet 5": 0.4525787606651658
           }
         },
         {
@@ -1092,7 +1211,9 @@
             "GPT-5.6-sol": 0.1521520469831256,
             "Claude Opus 4.7": 0.2293474159243678,
             "DeepSeek-V4-Flash": 0.1074421312601562,
-            "GLM-5.2": 0.195078699102051
+            "GLM-5.2": 0.195078699102051,
+            "GPT-6-sol": 0.05440495244379884,
+            "Claude Sonnet 5": 0.187645459790979
           }
         }
       ]
@@ -1126,7 +1247,9 @@
             "GPT-5.6-sol": 0.001367240907847963,
             "Claude Opus 4.7": 0.0008203445447087777,
             "DeepSeek-V4-Flash": 0.0002734481815695926,
-            "GLM-5.2": 0.002734481815695926
+            "GLM-5.2": 0.002734481815695926,
+            "GPT-6-sol": 0.001367240907847963,
+            "Claude Sonnet 5": 0.00109379272627837
           }
         },
         {
@@ -1149,7 +1272,9 @@
             "GPT-5.6-sol": 0.1824565195689025,
             "Claude Opus 4.7": 0.1471571155123277,
             "DeepSeek-V4-Flash": 0.3387969799167595,
-            "GLM-5.2": 0.3122847897704418
+            "GLM-5.2": 0.3122847897704418,
+            "GPT-6-sol": 0.1950138677292106,
+            "Claude Sonnet 5": 0.1403841946951074
           }
         },
         {
@@ -1169,10 +1294,12 @@
             "Deepseek-v3.2": 0.1226265804198552,
             "Qwen-Max": 0.2504375756713696,
             "Qwen3.5-Plus": 0.1523446125169001,
-            "GPT-5.6-sol": 0.08905725423362695,
+            "GPT-5.6-sol": 0.08905725423362691,
             "Claude Opus 4.7": 0.08097919034753033,
             "DeepSeek-V4-Flash": 0.2429366087077438,
-            "GLM-5.2": 0.2015317791778856
+            "GLM-5.2": 0.2015317791778855,
+            "GPT-6-sol": 0.117807710170305,
+            "Claude Sonnet 5": 0.1257179175313667
           }
         },
         {
@@ -1195,7 +1322,9 @@
             "GPT-5.6-sol": 0.902977167076839,
             "Claude Opus 4.7": 0.8957991523106371,
             "DeepSeek-V4-Flash": 0.8888604047033087,
-            "GLM-5.2": 0.8829129067541701
+            "GLM-5.2": 0.8829129067541701,
+            "GPT-6-sol": 0.8973971151216844,
+            "Claude Sonnet 5": 0.9043273174733388
           }
         },
         {
@@ -1218,12 +1347,39 @@
             "GPT-5.6-sol": 0.07929997265518185,
             "Claude Opus 4.7": 0.07082307902652447,
             "DeepSeek-V4-Flash": 0.04129067541700848,
-            "GLM-5.2": 0.05578342904019688
+            "GLM-5.2": 0.05578342904019688,
+            "GPT-6-sol": 0.0475799835931091,
+            "Claude Sonnet 5": 0.06398687448728466
+          }
+        },
+        {
+          "key": "treatment_set_f1",
+          "label": "Treatment set-F1",
+          "raw_label": "Treatment set-F1",
+          "group": "treatment",
+          "direction": "higher",
+          "values": {
+            "GPT-5.2": 0.7019091670035096,
+            "Claude 4.5 sonnet": 0.7121262081885565,
+            "Gemini 3 pro preview": 0.7751627849864128,
+            "Baichuan-M3 (plus)": 0.5573985292196963,
+            "medgemma": 0.4529088008579408,
+            "GLM-4.7": 0.642539739299383,
+            "kimi-k2.5": 0.6467636410622521,
+            "Deepseek-v3.2": 0.6818123556023516,
+            "Qwen-Max": 0.606294718558874,
+            "Qwen3.5-Plus": 0.7090401637981637,
+            "GPT-5.6-sol": 0.7275357644512709,
+            "Claude Opus 4.7": 0.7118102099644383,
+            "DeepSeek-V4-Flash": 0.5928437899110635,
+            "GLM-5.2": 0.6641330254368969,
+            "GPT-6-sol": 0.6374761491660611,
+            "Claude Sonnet 5": 0.7073179661608013
           }
         },
         {
           "key": "procedure_acc",
-          "label": "Procedure Accuracy",
+          "label": "Procedure Precision (proc_acc)",
           "raw_label": "治疗（proc_acc）",
           "group": "treatment",
           "direction": "higher",
@@ -1241,7 +1397,9 @@
             "GPT-5.6-sol": 0.9114939385653086,
             "Claude Opus 4.7": 0.9072509342812869,
             "DeepSeek-V4-Flash": 0.8337435056056878,
-            "GLM-5.2": 0.9001184942120134
+            "GLM-5.2": 0.9001184942120134,
+            "GPT-6-sol": 0.8852201257861636,
+            "Claude Sonnet 5": 0.9203126424209277
           }
         },
         {
@@ -1264,12 +1422,14 @@
             "GPT-5.6-sol": 0.9210509525111659,
             "Claude Opus 4.7": 0.9217117856166256,
             "DeepSeek-V4-Flash": 0.8229331874943032,
-            "GLM-5.2": 0.9114665937471514
+            "GLM-5.2": 0.9114665937471514,
+            "GPT-6-sol": 0.8721401877677513,
+            "Claude Sonnet 5": 0.9301203171998904
           }
         },
         {
           "key": "med_acc",
-          "label": "Medication Accuracy",
+          "label": "Medication Precision (med_acc)",
           "raw_label": "med_acc",
           "group": "treatment",
           "direction": "higher",
@@ -1287,7 +1447,9 @@
             "GPT-5.6-sol": 0.6009616261051869,
             "Claude Opus 4.7": 0.5927764105368706,
             "DeepSeek-V4-Flash": 0.4418375717801478,
-            "GLM-5.2": 0.5136906389572512
+            "GLM-5.2": 0.5136906389572512,
+            "GPT-6-sol": 0.4292908577157963,
+            "Claude Sonnet 5": 0.5500319022878498
           }
         },
         {
@@ -1310,12 +1472,14 @@
             "GPT-5.6-sol": 0.5203289190984024,
             "Claude Opus 4.7": 0.5201010456137611,
             "DeepSeek-V4-Flash": 0.3846758336914202,
-            "GLM-5.2": 0.4503899891922863
+            "GLM-5.2": 0.4503899891922863,
+            "GPT-6-sol": 0.3327525814810474,
+            "Claude Sonnet 5": 0.5196889201401098
           }
         },
         {
           "key": "all_acc",
-          "label": "Overall Treatment Accuracy",
+          "label": "Overall Treatment Precision (all_acc)",
           "raw_label": "all_acc",
           "group": "treatment",
           "direction": "higher",
@@ -1333,7 +1497,9 @@
             "GPT-5.6-sol": 0.8242626665104092,
             "Claude Opus 4.7": 0.7768587965675733,
             "DeepSeek-V4-Flash": 0.663077659283566,
-            "GLM-5.2": 0.7117149758454098
+            "GLM-5.2": 0.7117149758454098,
+            "GPT-6-sol": 0.8239052306730724,
+            "Claude Sonnet 5": 0.7683451176478224
           }
         },
         {
@@ -1356,7 +1522,9 @@
             "GPT-5.6-sol": 0.6936104274906564,
             "Claude Opus 4.7": 0.6955932523405849,
             "DeepSeek-V4-Flash": 0.5746582982842218,
-            "GLM-5.2": 0.6548754074594935
+            "GLM-5.2": 0.6548754074594934,
+            "GPT-6-sol": 0.5588688360222405,
+            "Claude Sonnet 5": 0.7044917119158275
           }
         },
         {
@@ -1379,7 +1547,9 @@
             "GPT-5.6-sol": 0.4081019151111865,
             "Claude Opus 4.7": 0.4299230555887212,
             "DeepSeek-V4-Flash": 0.1589717193681162,
-            "GLM-5.2": 0.4069486174252744
+            "GLM-5.2": 0.4069486174252744,
+            "GPT-6-sol": 0.328187472560782,
+            "Claude Sonnet 5": 0.4186066276049661
           }
         }
       ]
@@ -1466,17 +1636,6 @@
       ]
     },
     {
-      "key": "pred-missing-staging-rate",
-      "label": "Pred missing staging rate",
-      "group": "other",
-      "direction": "higher",
-      "datasets": [
-        "cnlc",
-        "bclc",
-        "nsclc"
-      ]
-    },
-    {
       "key": "reasoning_score",
       "label": "Reasoning (Graph + Citation)",
       "group": "reasoning",
@@ -1503,6 +1662,17 @@
       ]
     },
     {
+      "key": "pred_missing_staging_rate",
+      "label": "Predicted Staging Missing Rate",
+      "group": "staging",
+      "direction": "lower",
+      "datasets": [
+        "cnlc",
+        "bclc",
+        "nsclc"
+      ]
+    },
+    {
       "key": "staging_accuracy",
       "label": "Staging Accuracy",
       "group": "staging",
@@ -1515,7 +1685,7 @@
     },
     {
       "key": "med_acc",
-      "label": "Medication Accuracy",
+      "label": "Medication Precision (med_acc)",
       "group": "treatment",
       "direction": "higher",
       "datasets": [
@@ -1535,7 +1705,7 @@
     },
     {
       "key": "all_acc",
-      "label": "Overall Treatment Accuracy",
+      "label": "Overall Treatment Precision (all_acc)",
       "group": "treatment",
       "direction": "higher",
       "datasets": [
@@ -1555,7 +1725,7 @@
     },
     {
       "key": "procedure_acc",
-      "label": "Procedure Accuracy",
+      "label": "Procedure Precision (proc_acc)",
       "group": "treatment",
       "direction": "higher",
       "datasets": [
@@ -1583,6 +1753,18 @@
         "bclc",
         "nsclc"
       ]
+    },
+    {
+      "key": "treatment_set_f1",
+      "label": "Treatment set-F1",
+      "group": "treatment",
+      "direction": "higher",
+      "datasets": [
+        "acs",
+        "ais"
+      ]
     }
-  ]
+  ],
+  "source_sha256": "2e0a6707c5652074e8c8b539f10f86640c636a94534b7bb5c653cd9495cc2cba",
+  "scope": "Main-benchmark treatment-decision leaderboard: 16 models x 5 guideline cohorts (BCLC 3,689; CNLC 4,103; NSCLC 4,219; ACS 3,611; AIS 3,657 cases), intent-to-treat (parse failures count as errors). Survival, SFT, single-centre HCC and clinician-comparison results are provided as downloadable tables (downloads/)."
 }
