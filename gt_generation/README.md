@@ -1,6 +1,6 @@
 # Ground Truth Generation
 
-Generate evaluation-ready ground truth JSONL for ClinReasonBench from patient data plus guideline knowledge.
+Generate evaluation-ready ground truth JSONL for ClinReasoningBench from patient data plus guideline knowledge.
 
 ## Core Workflow
 

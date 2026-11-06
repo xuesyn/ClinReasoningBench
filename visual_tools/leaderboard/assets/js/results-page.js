@@ -11,6 +11,7 @@ const els = {
   metricMeta: document.getElementById("metricMeta"),
   smallMultiples: document.getElementById("smallMultiples"),
   metricTables: document.getElementById("metricTables"),
+  dataScope: document.getElementById("dataScope"),
 };
 
 const MODEL_COLORS = new Map([
@@ -28,6 +29,8 @@ const MODEL_COLORS = new Map([
   ["Claude Opus 4.7", "#b45309"],
   ["DeepSeek-V4-Flash", "#0891b2"],
   ["GLM-5.2", "#65a30d"],
+  ["GPT-6-sol", "#111827"],
+  ["Claude Sonnet 5", "#7c3aed"],
 ]);
 
 async function loadDashboard() {
@@ -260,7 +263,13 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
+function renderScope() {
+  if (!els.dataScope) return;
+  els.dataScope.textContent = state.payload.scope || "";
+}
+
 function renderAll() {
+  renderScope();
   renderMetricMeta();
   renderSmallMultiples();
   renderTables();

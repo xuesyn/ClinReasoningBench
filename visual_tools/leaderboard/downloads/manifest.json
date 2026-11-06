@@ -1,0 +1,87 @@
+{
+ "files": [
+  {
+   "file": "leaderboard_main_treatment.xlsx",
+   "description": "Workbook rendered by the online leaderboard",
+   "sha256": "2e0a6707c5652074e8c8b539f10f86640c636a94534b7bb5c653cd9495cc2cba"
+  },
+  {
+   "file": "main_treatment_metrics.csv",
+   "rows": 80,
+   "description": "Main benchmark treatment decision: reasoning, corresponding (node accuracy), staging, indication/contraindication, treatment (NDCG for oncology, set-F1 for ACS/AIS), calibration ECEs; ITT (paper) and parse-valid subset",
+   "sha256": "52bd36c3ce026b7676b0232f57178174e5ca97bfe6626bcd4f8d56d22d9d3586"
+  },
+  {
+   "file": "main_treatment_bootstrap_ci.csv",
+   "rows": 80,
+   "description": "Case-level bootstrap 95% CIs (B=1000, seed 628) for reasoning, treatment and ECE",
+   "sha256": "b69de68c99365730654325e9a627c31c440c55336fc71fde975a830bd6ea23fd"
+  },
+  {
+   "file": "main_reasoning_cross_cohort_mean.csv",
+   "rows": 16,
+   "description": "Cross-cohort (5-cohort) mean reasoning score with bootstrap 95% CI",
+   "sha256": "815462cc9e20fe00be60ba46a5d6819dd29ab4799bad8c4f99171914cacca7f1"
+  },
+  {
+   "file": "survival_cindex.csv",
+   "rows": 160,
+   "description": "Survival prediction C-index on the cohort roster (parse-valid, zero follow-up excluded), bootstrap 95% CI (B=500, seed 628). For ACS/AIS the paper's primary survival endpoint is 12-month mortality (see survival_12m_mortality_acute.csv)",
+   "sha256": "527dd2ae812f3e534d51f7c1570226c8c1cf9168736a1300d34318de193bb8b2"
+  },
+  {
+   "file": "survival_12m_mortality_acute.csv",
+   "rows": 32,
+   "description": "ACS/AIS 12-month mortality AUROC/AUPRC (autonomous and treatment-conditioned) with bootstrap CIs",
+   "sha256": "e302d745e9f969f2b5216e276207fb8d05672f28fd541fcf9be6931a0e58765c"
+  },
+  {
+   "file": "survival_risk_coverage_tieavg.csv",
+   "rows": 128,
+   "description": "Survival confidence risk-coverage scalars (AURC, selective gain at 50%/20% coverage, Spearman rho), mean over 30 random orders of equal-confidence cases (BCLC, CNLC, NSCLC, ACS; AIS uses 12-month mortality)",
+   "sha256": "53e2447ec66fcbc7e93f604ae209a9b2ad9b0d189fe2d44934592229fcac1913"
+  },
+  {
+   "file": "single_centre_hcc_443.csv",
+   "rows": 33,
+   "description": "Single-centre HCC cohort (n=443; 10 LLMs + OpenEvidence) x treatment / treatment-conditioned survival / autonomous survival. Separate cohort; not comparable to the main-benchmark leaderboard",
+   "sha256": "a940f954219d53780cc32ead0efd0e5592bf4d88d3ccc51ea78453337250657f"
+  },
+  {
+   "file": "clinician_comparison_matched_subsets.csv",
+   "rows": 33,
+   "description": "Clinician vs model on the same matched subsets (REAL20 single-centre HCC; SEER CNLC 40). Not comparable to full-cohort scores",
+   "sha256": "e48fde174e19d9c9c67f8bd02df6c308113c14a33c5c3696b1bf5d0da7b81b17"
+  },
+  {
+   "file": "clinician3_tag_supplement_sensitivity.csv",
+   "rows": 4,
+   "description": "Sensitivity: clinician 3 REAL20 reasoning after supplementing omitted objective tags (v1 is the formal value)",
+   "sha256": "887f0236eca86e2b707dc6c05659c3beb8700117cee56e598c2e200e350cc909"
+  },
+  {
+   "file": "sft_ablation_cnlc.csv",
+   "rows": 24,
+   "description": "CNLC SFT ablation (6 models x zero-shot / guideline injection / SFT / knowledge-augmented SFT; n=1050 each) with bootstrap 95% CIs (B=1000, seed 628)",
+   "sha256": "a106f357a78b83e7eabdddc836d49d647c2772c888fca4a809c43826cd29d675"
+  },
+  {
+   "file": "radar_axes.csv",
+   "rows": 16,
+   "description": "Figure 1e radar axes (cross-cohort means; ECE as 1-ECE; Average = mean of the 8 axes)",
+   "sha256": "152444afd0c98467210711efadcac79328deb58eef752e02a6a8f48927472469"
+  },
+  {
+   "file": "stage_stratified_survival_error.csv",
+   "rows": 43,
+   "description": "Figure 2b-3 / Supplementary Fig. S4 panels: stage-stratified IPCW-MAE and censored MAE (parse-valid cases with known stage)",
+   "sha256": "ad3b388dd2780a8435f63e701eac6fb607fef3378f6b5d26ba8f48a1ce0d98ee"
+  },
+  {
+   "file": "stage_stratified_signed_residuals.csv",
+   "rows": 176,
+   "description": "Supplementary Fig. S5: stage-stratified mean signed residual (predicted - true survival, months); stages shown in the figure require n >= 20 for every model",
+   "sha256": "bed67f1625de5e1cfcfbac6519bc521e056227cd92c8724ec3ea85b387b30a39"
+  }
+ ]
+}

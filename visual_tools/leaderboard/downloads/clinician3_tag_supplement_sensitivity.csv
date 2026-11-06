@@ -1,0 +1,5 @@
+subset,entity,version,description,reasoning
+single_centre_HCC_REAL20,Clinician 3,v1,original annotation,0.11826089530464959
+single_centre_HCC_REAL20,Clinician 3,v2,+ PS / Child-Pugh,0.15546327625703055
+single_centre_HCC_REAL20,Clinician 3,v3,+ extrahepatic metastasis,0.16310216514591944
+single_centre_HCC_REAL20,Clinician 3,v4,+ tumour number / maximum size,0.22142918534793968
